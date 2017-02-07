@@ -24,6 +24,17 @@ angular.module('swApp')
             return new Date(some_date).toLocaleString().replace(/(.*)\D\d+/, '$1');
         };
 
+        var convertToLbs = function (mass) {
+            var approx = mass/0.45359237;
+            var lbs = Math.floor(approx);
+            var oz = Math.floor((approx - lbs) * 16);
+            // return {
+            //     pounds: lbs,
+            //     ounces: oz
+            // };
+            return lbs + " lbs " + oz +  " oz";
+        };
+
 
         // Public variables
 
@@ -43,6 +54,10 @@ angular.module('swApp')
 
             localizeThis: function(some_date) {
                 return convertToLocal(some_date);
+            },
+
+            weightThis: function(mass) {
+                return convertToLbs(mass);
             }
 
         };

@@ -36,6 +36,7 @@ angular.module('swApp')
             $location.path("/people");
         };
 
+
         console.log(searchService.category);
 
     })
@@ -51,6 +52,10 @@ angular.module('swApp')
 
         $scope.convertToLocal = function(some_date) {
             return logicService.localizeThis(some_date);
+        };
+
+        $scope.convertWeight = function(mass) {
+            return logicService.weightThis(mass);
         };
 
         apiService.search_term = searchService.search_term;

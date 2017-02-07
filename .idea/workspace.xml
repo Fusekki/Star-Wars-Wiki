@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/controllers/controllers.js" line="66" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/controllers/controllers.js" line="71" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="340a9229-a764-473c-8e96-d77f96bf7186" name="Default" comment="" />
@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
+            <state relative-caret-position="720">
+              <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -54,8 +54,8 @@
       <file leaf-file-name="peopleResult.htm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/peopleResult.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+            <state relative-caret-position="782">
+              <caret line="55" column="36" lean-forward="false" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -81,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+            <state relative-caret-position="289">
+              <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -108,10 +108,10 @@
       <find>people</find>
       <find>/</find>
       <find>li</find>
-      <find>capit</find>
       <find>capital</find>
       <find>modelService</find>
       <find>lower</find>
+      <find>capit</find>
     </findStrings>
     <replaceStrings>
       <replace>tr</replace>
@@ -129,10 +129,10 @@
         <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/templates/searchResult.htm" />
-        <option value="$PROJECT_DIR$/templates/peopleResult.htm" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
-        <option value="$PROJECT_DIR$/services/services.js" />
         <option value="$PROJECT_DIR$/controllers/controllers.js" />
+        <option value="$PROJECT_DIR$/templates/peopleResult.htm" />
+        <option value="$PROJECT_DIR$/services/services.js" />
       </list>
     </option>
   </component>
@@ -381,12 +381,12 @@
       <workItem from="1486140181903" duration="8918000" />
       <workItem from="1486226726692" duration="10821000" />
       <workItem from="1486394478681" duration="12101000" />
-      <workItem from="1486487665694" duration="3076000" />
+      <workItem from="1486487665694" duration="3635000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34916000" />
+    <option name="totallyTimeSpent" value="35475000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -665,14 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/peopleResult.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -689,18 +681,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/services.js">
+    <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        <state relative-caret-position="720">
+          <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
+    <entry file="file://$PROJECT_DIR$/templates/peopleResult.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
+        <state relative-caret-position="782">
+          <caret line="55" column="36" lean-forward="false" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
           <folding />
         </state>
       </provider>
