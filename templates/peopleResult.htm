@@ -1,0 +1,94 @@
+<div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
+<table class="t_results" ng-repeat="i in item">
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            {{ i.name }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Eye Color:
+        </td>
+        <td>
+            {{ i.eye_color }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Sex:
+        </td>
+        <td>
+            {{ i.gender }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Hair Color:
+        </td>
+        <td>
+            {{ i.hair_color }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Height:
+        </td>
+        <td>
+            {{ i.height }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Homeworld:
+        </td>
+        <td>
+            <a ng-click="callUrl()">{{ homeworld }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mass:
+        </td>
+        <td>
+            {{ i.mass }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Skin Color:
+        </td>
+        <td>
+            {{ i.skin_color }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            DOB:
+        </td>
+        <td>
+            {{ i.birth_year }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Created:
+        </td>
+        <td>
+            {{ convertToLocal(i.created) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Last Edited:
+        </td>
+        <td>
+            {{ convertToLocal(i.edited) }}
+        </td>
+    </tr>
+</table>
+
+
+
