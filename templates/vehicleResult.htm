@@ -10,74 +10,99 @@
     </tr>
     <tr>
         <td>
-            Eye Color:
+            Class
         </td>
         <td>
-            {{ i.eye_color }}
+            {{ i.vehicle_class }}
+        </td>
+    </tr>
+    <tr>
+    <tr>
+        <td>
+            Model
+        </td>
+        <td>
+            {{ i.model }}
         </td>
     </tr>
     <tr>
         <td>
-            Sex:
+            Cargo Capacity
         </td>
         <td>
-            {{ i.gender }}
+            {{ i.cargo_capacity }}
         </td>
     </tr>
     <tr>
         <td>
-            Hair Color:
+            Consumables
         </td>
         <td>
-            {{ i.hair_color }}
+            {{ i.consumables }}
         </td>
     </tr>
     <tr>
         <td>
-            Height:
+            Cost
         </td>
         <td>
-            {{ i.height }}
+            {{ i.cost_in_credits }}
         </td>
     </tr>
     <tr>
         <td>
-            Homeworld:
+            Crew:
         </td>
         <td>
-            <a ng-click="callUrl()">{{ homeworld }}</a>
+            {{ i.crew }}
         </td>
     </tr>
     <tr>
         <td>
-            Mass:
-        </td>
-        <td>
-            {{ convertWeight(i.mass) }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Skin Color:
-        </td>
-        <td>
-            {{ i.skin_color }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            DOB:
-        </td>
-        <td>
-            {{ i.birth_year }}
-        </td>
-    </tr>
-    <tr ng-repeat="f in films">
-        <td ng-class="{ hidden_element: $index > 0 }">
             Films:
         </td>
         <td>
-            {{ f }}
+            <a ng-click="callUrl()">{{ film }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Length
+        </td>
+        <td>
+            {{ i.length }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Manufacturer:
+        </td>
+        <td>
+            {{ i.manufacturer }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Max Speed:
+        </td>
+        <td>
+            {{ i.max_atmosphering_speed }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Passengers:
+        </td>
+        <td>
+            {{ i.passengers }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Pilots:
+        </td>
+        <td>
+            {{ pilots }}
         </td>
     </tr>
     <tr>

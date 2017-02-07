@@ -18,4 +18,9 @@ swApp.config(function ($routeProvider) {
             templateUrl: 'templates/peopleResult.htm',
             controller: 'peopleCtrl'
         })
+
+        .when('/vehicles', {
+            templateUrl: 'templates/vehicleResult.htm',
+            controller: 'vehicleCtrl'
+        })
 });

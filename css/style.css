@@ -46,4 +46,8 @@ body {
     color: yellow;
 }
 
+.hidden_element {
+    visibility: hidden;
+}
+
 
