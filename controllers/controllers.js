@@ -2,7 +2,7 @@
 
 angular.module('swApp')
 
-    .controller('homeCtrl', function ($scope, $location, searchService, logicService) {
+    .controller('homeCtrl', function ($scope, $location, logicService) {
 
         $scope.categories = logicService.getCategories();
 
@@ -12,7 +12,7 @@ angular.module('swApp')
         };
 
         $scope.$watch('category', function () {
-            searchService.category = $scope.category;
+            logicService.category = $scope.category;
         });
 
         $scope.capitalize = function(word) {
@@ -24,39 +24,78 @@ angular.module('swApp')
     })
 
     // This is the controller for the realms page
-    .controller('searchCtrl', function ($scope, $location, searchService, logicService) {
-        // $scope.search_term = searchService.search_term;
-        $scope.category = searchService.category;
+    .controller('searchCtrl', function ($scope, $location, logicService) {
+
+        console.log('in search ctrl');
+
+        $scope.category = logicService.category;
+
 
         $scope.$watch('search_term', function () {
-            searchService.search_term = $scope.search_term;
+            logicService.search_term = $scope.search_term;
         });
 
-        // $scope.submit = function() {
-        //     $location.path("/people");
-        // };
-
         $scope.submit = function() {
-            var pathCategory = logicService.lowerCaseThis($scope.category);
-            $location.path("/" + pathCategory);
+            if ($scope.category) {
+                var pathCategory = logicService.lowerCaseThis($scope.category);
+                $location.path("/" + pathCategory);
+            }
+
         };
-
-
-
-        console.log(searchService.category);
-
     })
 
     // This is the controller for the People results
-    .controller('peopleCtrl', function ($scope, searchService, apiService, logicService) {
+    .controller('peopleCtrl', function ($scope, searchService, logicService, apiService) {
 
-        var homeworlds = [];
-        var homeworld;
+        var apiResults = [];
+        var hw = null;
+        var f_array = [];
 
-        var films = [];
-        var film;
+        var returned_results = [];
+        $scope.films = [];
+
+        console.log('in people controller.');
+
+
+
 
         $scope.search_term = searchService.search_term;
+
+        $scope.category = searchService.category;
+
+
+        console.log($scope.search_term);
+        console.log($scope.category);
+
+        if (!logicService.getCacheItems($scope.search_term)) {
+            apiService.getData(function(response) {
+                var trimmed_results = response.data.results;
+                // Trimmed_results contains an object for each separate item returned.
+                trimmed_results.forEach(function(obj){
+                    parseHwUrl(obj);
+                    obj.homeworld = hw;
+
+                    populateFArray(obj);
+
+                    apiResults.push(obj);
+                });
+
+                $scope.item = apiResults;
+                logicService.setCacheItems($scope.search_term, apiResults);
+
+
+                console.log($scope.item.length);
+
+                console.log(response);
+            }, function(err) {
+                console.log(err.status);
+            });
+        } else {
+            $scope.item = logicService.getCacheItems($scope.search_term);
+            populateHwArray($scope.item);
+            populateFArray($scope.item);
+        }
+
 
 
         $scope.convertToLocal = function(some_date) {
@@ -67,68 +106,36 @@ angular.module('swApp')
             return logicService.weightThis(mass);
         };
 
-        apiService.search_term = searchService.search_term;
-        apiService.category = logicService.lowerCaseThis(searchService.category);
-
-        apiService.getData(function(response) {
-            $scope.item = response.data.results;
-            console.log(response);
-            // The following code is temporary and should be updated after all controllers are in place.
-            var trimmed_results = response.data.results;
-            trimmed_results.forEach(function(element) {
-                homeworld = element.homeworld;
-                element.films.forEach(function(film) {
-                    film = film;
-                    console.log(film);
-                    films.push(film);
-                });
-            });
-            console.log(homeworld);
-            getDataWrapper(homeworld, homeworlds);
-            films.forEach(function(film) {
-                getDataWrapper(film, null);
-            });
-
-
-
-
-
-        }, function(err) {
-            console.log(err.status);
-        });
-
-        var getDataWrapper = function(some_url, some_array) {
-            console.log(some_url);
-            apiService.getDataUrl(some_url, function(response) {
-                console.log(response);
-                console.log(response.data.name);
-
-                switch(some_array) {
-                    case homeworlds:
-                        $scope.homeworld = response.data.name;
-                        break;
-                    case null:
-                        if (!$scope.films) {
-                            $scope.films = [];
-                        }
-                        $scope.films.push(response.data.title);
-                        break;
-                }
-                console.log($scope.films);
+        var parseHwUrl = function(obj) {
+{
+            console.log(obj.homeworld);
+            apiService.getDataUrl(obj.homeworld, function(response) {
 
                 // $scope.homeworld = response.data.name;
-
-                // return response.data.results;
+                console.log(response);
+                hw = response.data.name;
             }, function(err) {
                 console.log(err.status);
+            });
+
+
+        };
+
+        var populateFArray = function(items_returned) {
+            items_returned.forEach(function(item) {
+                console.log(item.films);
+                item.films.forEach(function(film_url) {
+                    apiService.getDataUrl(film_url, function(response) {
+                        $scope.films.push(response.data.title);
+                        console.log(response);
+                    }, function(err) {
+                        console.log(err.status);
+                    });
+                });
+
             })
-        }
 
-        var callUrl = function(some_url) {
-            console.log(1);
-            console.log(some_url);
-        }
-
+        };
 
 
     })
@@ -138,52 +145,7 @@ angular.module('swApp')
 
         console.log('here');
 
-        var films = [];
-        var film;
 
-        var pilots = [];
-        var pilot;
-
-
-
-        $scope.search_term = searchService.search_term;
-
-        $scope.convertToLocal = function(some_date) {
-            return logicService.localizeThis(some_date);
-        };
-
-        apiService.search_term = searchService.search_term;
-        apiService.category = logicService.lowerCaseThis(searchService.category);
-
-        apiService.getData(function(response) {
-            $scope.item = response.data.results;
-            console.log(response);
-
-            var trimmed_results = response.data.results;
-            console.log(trimmed_results);
-            trimmed_results.forEach(function(element) {
-                film = element.films;
-                pilot = element.pilot;
-            });
-            console.log(film);
-            getDataWrapper(film, films);
-
-        }, function(err) {
-            console.log(err.status);
-        });
-
-
-        var getDataWrapper = function(some_url, some_array) {
-            console.log(some_url);
-            apiService.getDataUrl(some_url, function(response) {
-                console.log(response.data.name);
-                $scope.film = response.data.name;
-
-                // return response.data.results;
-            }, function(err) {
-                console.log(err.status);
-            })
-        }
 
 
     })
