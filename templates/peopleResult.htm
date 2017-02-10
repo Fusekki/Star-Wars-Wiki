@@ -1,11 +1,11 @@
 <div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
-<table class="t_results" ng-repeat="i in item">
+<table class="t_results" ng-repeat="obj in core_results">
     <tr>
         <td>
             Name
         </td>
         <td>
-            {{ i.name }}
+            {{ obj.name }}
         </td>
     </tr>
     <tr>
@@ -13,7 +13,7 @@
             Eye Color:
         </td>
         <td>
-            {{ i.eye_color }}
+            {{ obj.eye_color }}
         </td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
             Sex:
         </td>
         <td>
-            {{ i.gender }}
+            {{ obj.gender }}
         </td>
     </tr>
     <tr>
@@ -29,7 +29,7 @@
             Hair Color:
         </td>
         <td>
-            {{ i.hair_color }}
+            {{ obj.hair_color }}
         </td>
     </tr>
     <tr>
@@ -37,7 +37,7 @@
             Height:
         </td>
         <td>
-            {{ i.height }}
+            {{ obj.height }}
         </td>
     </tr>
     <tr>
@@ -45,7 +45,7 @@
             Homeworld:
         </td>
         <td>
-            <a ng-click="callUrl()"> {{ homeworld }}</a>
+            <a ng-click="callUrl()"> {{ homeworlds[$index] }}</a>
         </td>
     </tr>
     <tr>
@@ -53,7 +53,7 @@
             Mass:
         </td>
         <td>
-            {{ convertWeight(i.mass) }}
+            {{ convertWeight(obj.mass) }}
         </td>
     </tr>
     <tr>
@@ -61,7 +61,7 @@
             Skin Color:
         </td>
         <td>
-            {{ i.skin_color }}
+            {{ obj.skin_color }}
         </td>
     </tr>
     <tr>
@@ -69,10 +69,10 @@
             DOB:
         </td>
         <td>
-            {{ i.birth_year }}
+            {{ obj.birth_year }}
         </td>
     </tr>
-    <tr ng-repeat="f in films">
+    <tr ng-repeat="f in films[$index]">
         <td ng-class="{ hidden_element: $index > 0 }">
             Films:
         </td>
@@ -85,7 +85,7 @@
             Created:
         </td>
         <td>
-            {{ convertToLocal(i.created) }}
+            {{ convertToLocal(obj.created) }}
         </td>
     </tr>
     <tr>
@@ -93,7 +93,7 @@
             Last Edited:
         </td>
         <td>
-            {{ convertToLocal(i.edited) }}
+            {{ convertToLocal(obj.edited) }}
         </td>
     </tr>
 </table>
