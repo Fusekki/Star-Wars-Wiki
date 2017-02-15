@@ -2,6 +2,7 @@
 
 angular.module('swApp')
 
+
 // Assigning the cachFactory to 'myCache'
     .factory('myCache', function($cacheFactory) {
         return $cacheFactory('myCache');
@@ -135,6 +136,10 @@ angular.module('swApp')
 
     .service('parseService', function (apiService, logicService) {
         var self = this;
+
+        self.item_number = 0;
+        self.array_count = 0;
+
         console.log('in parseService');
 
         self.categories_with_url = ["homeworld"];
@@ -144,6 +149,8 @@ angular.module('swApp')
         self.film_array = [];
         self.films = [];
         self.homeworlds = [];
+        self.films_in_object = 0;
+        self.film_list = [];
 
 
         // whichever category the user specifies, there may be multiple results.
@@ -166,11 +173,21 @@ angular.module('swApp')
 
         self.parseResults = function(results_to_parse) {
 
+            if (self.film_list.length) {
+                self.film_list = [];
+            }
+            console.log(results_to_parse.length);
+
             // var film_array = [];
 
             if (self.film_array) {
                 console.log('self.film_array has data. clearing.');
+                // for (var x = 0; x < results_to_parse.length; x++) {
+                //     self.film_array[x] = [];
+                // }
                 self.film_array = [];
+                console.log(self.film_array);
+
             }
 
 
@@ -182,22 +199,41 @@ angular.module('swApp')
             if (self.films.length) {
                 console.log('self.films has data. clearing.');
                 self.films = [];
+                console.log(self.films);
 
+
+                // for (var x = 0; x < results_to_parse.length; x++) {
+                //     self.films[x] = [];
+                // }
+            }
+
+            if (self.f_array) {
+                self.f_array = [];
             }
 
 
             // console.log(film_array);
 
             // We need to cycle through object returned in the event there are many.
-            results_to_parse.forEach(function(result_item) {
+            results_to_parse.forEach(function(result_item, i, arr) {
 
+
+                var items_to_parse = arr.length;
+                console.log(result_item);
+                console.log('total results to parse is ' + arr.length);
+                console.log('the index of this result is ' + i);
+
+                var a_length = arr.length;
+                var a_index = i;
+
+                // let's define the film array based on the result's length.
 
                 // For each result, we need to check for specific fields that require additional API calls.
                 // These categories should be stored in an object.
 
                 // For each homeworld, for example
                 self.categories_with_url.forEach(function(category) {
-                    console.log(category);
+                    // console.log(category);
                     if (result_item[category]) {
                         // make api call
                         var url = result_item[category];
@@ -207,7 +243,9 @@ angular.module('swApp')
                         // console.log(cache_results);
                         if (!cache_results) {
                             apiService.getDataUrl(url, function(response) {
-                                console.log('homeworld is not in cache');
+
+
+                                // console.log('homeworld is not in cache');
                                 // Store the name for the resolved URL in a variable.
                                 var homeworld_name = response.data.name;
                                 self.homeworlds.push(homeworld_name);
@@ -219,77 +257,136 @@ angular.module('swApp')
                             });
                         } else {
                             console.log('homeworld is in cache');
-                            // console.log(cache_results);
                             var homeworld_name = cache_results.data.name;
-                            // console.log(homeworld_name);
                             self.homeworlds.push(homeworld_name);
                         }
-                        // console.log(self.homeworlds);
                     }
                 });
 
                 // Like films, for example
                 self.categories_with_array.forEach(function(category) {
-                    // console.log(category);
+                     // console.log(i);
                     if (result_item[category]) {
+                        // console.log(result_item[category]);
+                        // console.log(category);
+                        switch (category) {
+                            case 'films':
+                                console.log('total results to parse is ' + a_length);
+                                console.log('the index of this result is ' + a_index);
+
+                                // console.log('triggering populateFilmArray');
+                                self.populateFilmArray(self.films, result_item, a_length, a_index);
+                                break;
+                        }
+
                         // make api call
-                        var some_url = result_item[category];
+                        // var some_url = result_item[category];
                         // console.log(some_url);
-
-                        // For each film in the results
-
-                        some_url.forEach(function(url) {
-                            // console.log(url);
-                            var cache_results = logicService.getCacheItem(url);
-                            if (!cache_results) {
-                                apiService.getDataUrl(url, function(response) {
-                                    console.log('films is not in cache');
-                                    // Store the name for the resolved URL in a variable.
-                                    // console.log(category);
-                                    switch (category) {
-                                        case 'films':
-                                            // console.log('they are films');
-                                            var film_name = response.data.title;
-                                            // console.log(film_name);
-
-                                            self.film_array.push(film_name);
-                                        // self.films.push(film_name);
-                                    }
-                                    // Push the URL and result to the Cache
-                                    logicService.setCacheItem(url, response);
-                                    // console.log(logicService.getCacheItem(url));
-
-                                }, function(err) {
-                                    console.log(err.status);
-                                });
-                            } else {
-                                // console.log(category);
-                                console.log('films are in cache');
-                                switch (category) {
-                                    case 'films':
-                                        // console.log('they are films');
-                                        // console.log(cache_results);
-                                        var film_name = cache_results.data.title;
-                                        // console.log(film_name);
-
-                                        self.film_array.push(film_name);
-                                    // self.films.push(film_name);
-                                }
-
-                            }
-                            // console.log(self.films);
-                        });
-
-                        // self.films.push(self.film_array);
                     }
                 });
-                self.films.push(self.film_array);
-                // console.log(self.films);
             });
 
-
-            // console.log(self.films);
-            // console.log(self.homeworlds);
-
         }
+
+        self.populateFilmArray = function(array_name, obj, a_length, a_index) {
+
+            console.log(array_name);
+            console.log('total results to parse is ' + a_length);
+            console.log('the index of this result is ' + a_index);
+
+            // create the film_array with the designated length in a_length;
+
+
+
+
+
+
+                for (var x = 0; x < a_length; x++) {
+                    self.film_list[x] = [];
+                };
+
+
+
+            console.log(self.film_list);
+
+            // console.log(self.item_number);
+
+            // console.log('There are a total of ' + items_to_parse + ' arrays.');
+            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
+
+            var film_array = obj.films;
+
+            self.films_in_object = obj.films.length;
+
+            // console.log('There are ' + self.films_in_object + ' films for ' + obj.name);
+
+            film_array.forEach(function(film_url) {
+                // console.log(film_url + ' for ' + obj.name);
+                console.log('total results to parse is ' + a_length);
+                console.log('the index of this result is ' + a_index);
+                var cache_results = logicService.getCacheItem(film_url);
+                // if the cache is not created, we need to make an API call.
+                if (!cache_results) {
+                    // console.log('films is not in cache');
+                    apiService.getDataUrl(film_url, function (response) {
+                        console.log('total results to parse is ' + a_length);
+                        console.log('the index of this result is ' + a_index);
+                        // Push the URL and result to the Cache
+                        logicService.setCacheItem(film_url, response.data);
+                        console.log(response.data.url);
+                        console.log(response.data.title);
+
+                        // self.film_list[a_index].push(response.data.title);
+                        self.film_list[a_index].push({
+                            title: response.data.title,
+                            url: response.data.url
+                        });
+
+
+                        // self.films.push({
+                        //     name: obj.name,
+                        //     film_title: response.data.title
+                        // });
+                        console.log(self.film_list);
+
+
+                        // if (array_count == obj.films.length) {
+                        //     // console.log('we have reached the end of the films for ' + obj.name);
+                        //     array_count = 0;
+                        //     console.log(obj.name + ' film_array is...');
+                        //     console.log(self.film_array);
+                        //     self.films.push(self.film_array);
+                        //     self.film_array = [];
+                        //     // console.log('self.films is...');
+                        //     // console.log(self.films);
+                        // }
+                    }, function (err) {
+                        console.log(err.status);
+                    });
+                } else {
+                    console.log('films in cache');
+                    // console.log(cache_results);
+                    var title = cache_results.title;
+                    array_count++;
+                    self.film_array.push(title);
+                    if (array_count == obj.films.length) {
+                        // console.log('we have reached the end of the films for ' + obj.name);
+                        // self.film_array.push(title);
+                        array_count = 0;
+                        // console.log(obj.name + ' film_array is...');
+                        // console.log(self.film_array);
+                        self.films.push(self.film_array);
+                        self.film_array = [];
+                        // console.log('self.films is...');
+                        // console.log(self.films);
+
+                    }
+
+                }
+            });
+        }
+
+
+
+
     })

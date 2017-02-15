@@ -4,6 +4,8 @@ angular.module('swApp')
 
     .controller('homeCtrl', function ($scope, $location, logicService) {
 
+        console.log('in home ctrl');
+
         $scope.categories = logicService.getCategories();
 
         $scope.categoryChoice = function(e) {
@@ -48,12 +50,14 @@ angular.module('swApp')
     // This is the controller for the People results
     .controller('peopleCtrl', function ($scope, searchService, logicService, apiService, parseService) {
 
+        console.log('in people controller.');
+
         var self = this;
         self.cache_results = null;
 
         $scope.search_term = logicService.search_term;
 
-        console.log('in people controller.');
+
 
         apiService.search_term = $scope.search_term;
         apiService.category = logicService.lowerCaseThis(logicService.category);
@@ -62,14 +66,25 @@ angular.module('swApp')
 
 
         self.cache_results = logicService.getCacheItem($scope.search_term);
-        console.log(self.cache_results);
+
 
         // If the cache item does not exist, make the API call.
         if (!self.cache_results) {
+            $scope.film_container_size = [];
             console.log('cache doesnt have item. making api call.');
             apiService.getData(function(response) {
                 $scope.core_results = response.data.results;
-                console.log($scope.core_results);
+                console.log($scope.core_results.length);
+                $scope.core_results.forEach(function(obj) {
+
+                    var height = { height:  (obj.films.length * 2) + 'em' };
+                    console.log(height);
+
+
+                    $scope.film_container_size.push(height);
+                })
+                console.log($scope.film_container_size);
+                // console.log($scope.core_results);
                 // Cache the item in its orginal form
                 // console.log('caching original item before parse.');
                 logicService.setCacheItem($scope.search_term, $scope.core_results);
@@ -79,16 +94,15 @@ angular.module('swApp')
             });
         } else {
             console.log('item is cached.  retrieving values from cache.');
-            $scope.core_results = cache_results;
+            console.log(self.cache_results);
+            $scope.core_results = self.cache_results;
             parseService.parseResults($scope.core_results);
         }
 
-
-
-
         $scope.$watch('films', function () {
-            $scope.films = parseService.films;
+            $scope.films = parseService.film_list;
         });
+
 
         $scope.$watch('homeworlds', function () {
             $scope.homeworlds = parseService.homeworlds;
@@ -102,13 +116,24 @@ angular.module('swApp')
             return logicService.weightThis(mass);
         };
 
+        // $scope.film_container_height = { height: ($scope.core_results * 2) + 'em' };
+
+
+        // $scope.film_container_height = { height: ($scope.core_results * 2) + 'em' };
+        // $scope.$watch('film_container_height', function() {
+        //     console.log($scope.film_container_height);
+        // })
+
+
+
+
 
     })
 
     // This is the controller for the Vehicle results
     .controller('vehicleCtrl', function ($scope, searchService, apiService, logicService) {
 
-        console.log('here');
+        console.log('in vehicle controller.');
 
 
 

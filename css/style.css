@@ -1,3 +1,7 @@
+.flex_results * {
+    border: 1px solid red;
+}
+
 body {
     background-color: black;
     color: white;
@@ -32,17 +36,21 @@ body {
     color: yellow;
 }
 
-.t_results {
-    margin-left: 2em;
-    margin-top: 1em;
-    width: 80%;
+.flex_results {
+    /*display: block;*/
+    /*margin-left: 2em;*/
+    margin-top: 2em;
+    /*width: 80%;*/
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-.t_results td:nth-of-type(1) {
+.flex_results div:nth-of-type(1) {
      color: white;
 }
 
-.t_results td:nth-of-type(2) {
+.flex_results div:nth-of-type(2) {
     color: yellow;
 }
 
@@ -51,3 +59,61 @@ body {
 }
 
 
+.push_column_right {
+    clear: left;
+    margin-left: 38%;
+    position: relative;
+    top: -2em;
+    /*display:block;*/
+    /*box-sizing:border-box;*/
+    /*clear:both*/
+}
+
+.flex_col_justify_top {
+    vertical-align: top;
+}
+
+.display_none {
+    display: none;
+    /*color: green;*/
+    /*background: grey;*/
+}
+
+.display_none::after {
+    clear: both;
+}
+
+
+.flex_row {
+    clear: both;
+    /*float:left;*/
+    /*margin-left: 10px;*/
+    /*display: inline-block;*/
+    /*width: 100%;*/
+    /*height: 2em;*/
+}
+
+.flex_row div {
+    /*float: left;*/
+    /*margin-left: 10px;*/
+    /*border: 1px solid #999999;*/
+    float: left;
+    /*height: 17px;*/
+    overflow: hidden;
+    padding: 3px 1.8%;
+    width: 38%;
+}
+
+
+.flex_row .push_column_right:last-of-type {
+    top-margin: -2em;
+}
+
+.film_row_top {
+    /*We want a calculation for this.  It should pass ($index + 1 * 2em) */
+}
+
+/*.film_row_top div:last-of-type {*/
+
+    /*margin-bottom: 0;*/
+/*}*/
