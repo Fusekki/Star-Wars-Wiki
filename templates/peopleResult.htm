@@ -1,6 +1,6 @@
 <div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
-<div class="flex_results" ng-repeat="obj in core_results">
-    <div class="flex_row">
+<div class="flex_results" ng-repeat="obj in core_results">Result {{ $index + 1 }} of {{ core_results_length }}
+    <div class="r_row">
         <div>
             Name
         </div>
@@ -8,7 +8,7 @@
             {{ obj.name }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Eye Color:
         </div>
@@ -16,7 +16,7 @@
             {{ obj.eye_color }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Sex:
         </div>
@@ -24,7 +24,7 @@
             {{ obj.gender }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Hair Color:
         </div>
@@ -32,7 +32,7 @@
             {{ obj.hair_color }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Height:
         </div>
@@ -40,7 +40,7 @@
             {{ obj.height }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Homeworld:
         </div>
@@ -48,7 +48,7 @@
             <a ng-click="callUrl()"> {{ homeworlds[$index] }}</a>
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Mass:
         </div>
@@ -56,7 +56,7 @@
             {{ convertWeight(obj.mass) }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Skin Color:
         </div>
@@ -64,7 +64,7 @@
             {{ obj.skin_color }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             DOB:
         </div>
@@ -72,21 +72,15 @@
             {{ obj.birth_year }}
         </div>
     </div>
-    <!--<div class="flex_row film_row_top" ng-repeat="f in films[$index]" ng-style="film_container_size[$index]"> {{ film_container_size[$index] }}-->
-        <div class="flex_row film_row_top" ng-repeat="f in films[$index]">
-
-            <!--<div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">-->
+        <div class="r_row film_row_top" ng-repeat="f in films[$index]">
         <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
-
             Films:
         </div>
-        <!--<div class="push_column_right" ng-repeat="x in f" ng-class="{ display_none: $parent.$index != $parent.$parent.$index }">-->
         <div class="push_column_right">
-
-            <a ng-click="callUrl(x.url)"> {{ $index }} {{ $parent.$index}} {{ f.title }}  </a>
+            <a ng-click="callUrl(x.url)">{{ f.title }}</a>
         </div>
     </div>
-    <div class="flex_row move_up">
+    <div class="r_row move_up">
         <div>
             Created:
         </div>
@@ -94,7 +88,7 @@
             {{ convertToLocal(obj.created) }}
         </div>
     </div>
-    <div class="flex_row">
+    <div class="r_row">
         <div>
             Last Edited:
         </div>
@@ -103,113 +97,5 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-<!--<div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>-->
-<!--<table class="t_results" ng-repeat="obj in core_results">-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Name {{ $index }}-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ obj.name }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Eye Color:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ obj.eye_color }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Sex:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ obj.gender }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Hair Color:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ obj.hair_color }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Height:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ obj.height }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Homeworld:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--<a ng-click="callUrl()"> {{ homeworlds[$index] }}</a>-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Mass:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ convertWeight(obj.mass) }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Skin Color:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ obj.skin_color }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--DOB:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ obj.birth_year }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr ng-repeat="f in films">-->
-               <!--<td class="table_cell_justify_top" ng-class="{ hidden_element: $index > 0 } ">-->
-                <!--Films:-->
-                <!--</td>-->
-            <!--<td class="cell_half_width" ng-repeat="x in f" ng-class="{ display_none: $parent.$index != $parent.$parent.$index }">-->
-                <!--<a ng-click="callUrl(x.url)"> {{ x.title }}  </a>-->
-            <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Created:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ convertToLocal(obj.created) }}-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td>-->
-            <!--Last Edited:-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{ convertToLocal(obj.edited) }}-->
-        <!--</td>-->
-    <!--</tr>-->
-<!--</table>-->
-
-
-
 
 

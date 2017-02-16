@@ -42,22 +42,15 @@ angular.module('swApp')
             myCache.put(cache, items);
         };
 
-
         // Public variables
 
         return {
-
-            showCacheLengthWrapper: function() {
-                var info = myCache.info();
-                return info.size;
-            },
 
             setCacheItem: function(name, contents) {
                 setCacheItem(name, contents);
             },
 
             getCacheItem: function(cacheName) {
-                // console.log(cacheName);
                 return getCacheItem(cacheName);
             },
 
@@ -82,23 +75,20 @@ angular.module('swApp')
             }
 
         };
-
-
     })
 
     .service('searchService', function (logicService, apiService) {
 
         console.log('in search service');
+
         var self=this;
 
-        console.log(logicService.search_term);
+        // console.log(logicService.search_term);
 
         self.category = logicService.lowerCaseThis(logicService.category);
         self.search_term = logicService.search_term;
-
         // console.log(self.search_term);
         // console.log(self.category);
-
         apiService.category = logicService.lowerCaseThis(self.category);
         apiService.search_term = self.search_term;
 
@@ -111,11 +101,8 @@ angular.module('swApp')
 
         self.category = logicService.lowerCaseThis(logicService.category);
         self.search_term = logicService.search_term;
-        console.log(self.search_term);
+        // console.log(self.search_term);
         // console.log(self.category);
-
-
-
 
         this.getData = function(callback, err) {
             $http.get('https://swapi.co/api/' + self.category + '/?search='+ self.search_term)
@@ -125,11 +112,6 @@ angular.module('swApp')
         this.getDataUrl = function(url, callback, err) {
             $http.get(url)
                 .then(callback,err);
-        }
-
-        this.test = function(url) {
-            // console.log(url);
-            return url + "1";
         }
 
     })
@@ -176,61 +158,42 @@ angular.module('swApp')
             if (self.film_list.length) {
                 self.film_list = [];
             }
-            console.log(results_to_parse.length);
-
-            // var film_array = [];
+            // console.log(results_to_parse.length);
 
             if (self.film_array) {
-                console.log('self.film_array has data. clearing.');
-                // for (var x = 0; x < results_to_parse.length; x++) {
-                //     self.film_array[x] = [];
-                // }
+                // console.log('self.film_array has data. clearing.');
                 self.film_array = [];
-                console.log(self.film_array);
-
+                // console.log(self.film_array);
             }
 
 
             if (self.homeworlds.length) {
-                console.log('self.homeworlds has data. clearing.');
+                // console.log('self.homeworlds has data. clearing.');
                 self.homeworlds = [];
             }
 
             if (self.films.length) {
-                console.log('self.films has data. clearing.');
+                // console.log('self.films has data. clearing.');
                 self.films = [];
-                console.log(self.films);
-
-
-                // for (var x = 0; x < results_to_parse.length; x++) {
-                //     self.films[x] = [];
-                // }
+                // console.log(self.films);
             }
 
             if (self.f_array) {
                 self.f_array = [];
             }
-
-
             // console.log(film_array);
 
             // We need to cycle through object returned in the event there are many.
             results_to_parse.forEach(function(result_item, i, arr) {
-
-
-                var items_to_parse = arr.length;
-                console.log(result_item);
-                console.log('total results to parse is ' + arr.length);
-                console.log('the index of this result is ' + i);
-
+                // console.log(result_item);
+                // console.log('total results to parse is ' + arr.length);
+                // console.log('the index of this result is ' + i);
                 var a_length = arr.length;
                 var a_index = i;
 
                 // let's define the film array based on the result's length.
-
                 // For each result, we need to check for specific fields that require additional API calls.
                 // These categories should be stored in an object.
-
                 // For each homeworld, for example
                 self.categories_with_url.forEach(function(category) {
                     // console.log(category);
@@ -243,15 +206,12 @@ angular.module('swApp')
                         // console.log(cache_results);
                         if (!cache_results) {
                             apiService.getDataUrl(url, function(response) {
-
-
                                 // console.log('homeworld is not in cache');
                                 // Store the name for the resolved URL in a variable.
                                 var homeworld_name = response.data.name;
                                 self.homeworlds.push(homeworld_name);
                                 // Push the URL and result to the Cache
                                 logicService.setCacheItem(url, response);
-
                             }, function(err) {
                                 console.log(err.status);
                             });
@@ -271,17 +231,12 @@ angular.module('swApp')
                         // console.log(category);
                         switch (category) {
                             case 'films':
-                                console.log('total results to parse is ' + a_length);
-                                console.log('the index of this result is ' + a_index);
-
+                                // console.log('total results to parse is ' + a_length);
+                                // console.log('the index of this result is ' + a_index);
                                 // console.log('triggering populateFilmArray');
                                 self.populateFilmArray(self.films, result_item, a_length, a_index);
                                 break;
                         }
-
-                        // make api call
-                        // var some_url = result_item[category];
-                        // console.log(some_url);
                     }
                 });
             });
@@ -290,103 +245,60 @@ angular.module('swApp')
 
         self.populateFilmArray = function(array_name, obj, a_length, a_index) {
 
-            console.log(array_name);
-            console.log('total results to parse is ' + a_length);
-            console.log('the index of this result is ' + a_index);
-
+            // console.log(array_name);
+            // console.log('total results to parse is ' + a_length);
+            // console.log('the index of this result is ' + a_index);
             // create the film_array with the designated length in a_length;
-
-
-
-
-
-
-                for (var x = 0; x < a_length; x++) {
-                    self.film_list[x] = [];
-                };
-
-
-
-            console.log(self.film_list);
-
+            for (var x = 0; x < a_length; x++) {
+                self.film_list[x] = [];
+            };
+            // console.log(self.film_list);
             // console.log(self.item_number);
-
             // console.log('There are a total of ' + items_to_parse + ' arrays.');
             // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
 
             var film_array = obj.films;
-
             self.films_in_object = obj.films.length;
-
             // console.log('There are ' + self.films_in_object + ' films for ' + obj.name);
 
             film_array.forEach(function(film_url) {
                 // console.log(film_url + ' for ' + obj.name);
-                console.log('total results to parse is ' + a_length);
-                console.log('the index of this result is ' + a_index);
+                // console.log('total results to parse is ' + a_length);
+                // console.log('the index of this result is ' + a_index);
                 var cache_results = logicService.getCacheItem(film_url);
                 // if the cache is not created, we need to make an API call.
                 if (!cache_results) {
                     // console.log('films is not in cache');
                     apiService.getDataUrl(film_url, function (response) {
-                        console.log('total results to parse is ' + a_length);
-                        console.log('the index of this result is ' + a_index);
+                        // console.log('total results to parse is ' + a_length);
+                        // console.log('the index of this result is ' + a_index);
                         // Push the URL and result to the Cache
                         logicService.setCacheItem(film_url, response.data);
-                        console.log(response.data.url);
-                        console.log(response.data.title);
+                        // console.log(response.data.url);
+                        // console.log(response.data.title);
+                        var trimmed_result = response.data;
+                        self.populate_array(self.film_list, trimmed_result, a_index, "film");
+                        // console.log(self.film_list);
 
-                        // self.film_list[a_index].push(response.data.title);
-                        self.film_list[a_index].push({
-                            title: response.data.title,
-                            url: response.data.url
-                        });
-
-
-                        // self.films.push({
-                        //     name: obj.name,
-                        //     film_title: response.data.title
-                        // });
-                        console.log(self.film_list);
-
-
-                        // if (array_count == obj.films.length) {
-                        //     // console.log('we have reached the end of the films for ' + obj.name);
-                        //     array_count = 0;
-                        //     console.log(obj.name + ' film_array is...');
-                        //     console.log(self.film_array);
-                        //     self.films.push(self.film_array);
-                        //     self.film_array = [];
-                        //     // console.log('self.films is...');
-                        //     // console.log(self.films);
-                        // }
                     }, function (err) {
                         console.log(err.status);
                     });
                 } else {
-                    console.log('films in cache');
+                    // console.log('films in cache');
                     // console.log(cache_results);
                     var title = cache_results.title;
-                    array_count++;
-                    self.film_array.push(title);
-                    if (array_count == obj.films.length) {
-                        // console.log('we have reached the end of the films for ' + obj.name);
-                        // self.film_array.push(title);
-                        array_count = 0;
-                        // console.log(obj.name + ' film_array is...');
-                        // console.log(self.film_array);
-                        self.films.push(self.film_array);
-                        self.film_array = [];
-                        // console.log('self.films is...');
-                        // console.log(self.films);
-
-                    }
-
+                    self.populate_array(self.film_list, cache_results, a_index, "film");
                 }
             });
         }
 
-
-
-
+        self.populate_array = function(array, obj, idx, type) {
+            switch(type) {
+                case "film":
+                    array[idx].push({
+                        title: obj.title,
+                        url: obj.url
+                    });
+            }
+        }
     })
