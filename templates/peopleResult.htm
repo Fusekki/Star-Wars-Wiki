@@ -45,7 +45,7 @@
             Homeworld:
         </div>
         <div>
-            <a ng-click="callUrl()"> {{ homeworlds[$index] }}</a>
+            <a ng-click="callUrl(homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
         </div>
     </div>
     <div class="r_row">

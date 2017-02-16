@@ -96,6 +96,10 @@ angular.module('swApp')
             return logicService.weightThis(mass);
         };
 
+        $scope.callUrl = function(url) {
+            console.log('we are going to call the api for ' + url);
+        }
+
     })
 
     // This is the controller for the Vehicle results
@@ -149,4 +153,8 @@ angular.module('swApp')
         $scope.convertWeight = function(mass) {
             return logicService.weightThis(mass);
         };
+
+        $scope.callUrl = function(url) {
+            console.log('we are going to call the api for ' + url);
+        }
     })

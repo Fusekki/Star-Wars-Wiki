@@ -217,8 +217,13 @@ angular.module('swApp')
                             apiService.getDataUrl(url, function(response) {
                                 // console.log('homeworld is not in cache');
                                 // Store the name for the resolved URL in a variable.
+                                console.log(response);
                                 var homeworld_name = response.data.name;
-                                self.homeworlds.push(homeworld_name);
+                                // self.homeworlds.push(homeworld_name);
+                                self.homeworlds.push({
+                                    name: response.data.name,
+                                    url: response.data.url
+                                });
                                 // Push the URL and result to the Cache
                                 logicService.setCacheItem(url, response);
                             }, function(err) {
@@ -227,7 +232,11 @@ angular.module('swApp')
                         } else {
                             console.log('homeworld is in cache');
                             var homeworld_name = cache_results.data.name;
-                            self.homeworlds.push(homeworld_name);
+                            // self.homeworlds.push(homeworld_name);
+                            self.homeworlds.push({
+                                name: cache_results.data.name,
+                                url: cache_results.data.url
+                            });
                         }
                     }
                 });
