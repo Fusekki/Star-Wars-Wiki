@@ -126,13 +126,24 @@ angular.module('swApp')
 
         self.categories_with_url = ["homeworld"];
 
-        self.categories_with_array = ["films"];
+        self.categories_with_array = ["films", "pilots"];
 
-        self.film_array = [];
+        // Used for all controllers. This stores the array that the $scope.films is wired to.
         self.films = [];
-        self.homeworlds = [];
         self.films_in_object = 0;
         self.film_list = [];
+
+        // Used for people controller
+        self.homeworlds = [];
+
+        // Used for vehicle controller
+        self.vehicles = [];
+        self.pilots = [];
+        self.pilot_list = [];
+
+
+
+
 
 
         // whichever category the user specifies, there may be multiple results.
@@ -158,14 +169,11 @@ angular.module('swApp')
             if (self.film_list.length) {
                 self.film_list = [];
             }
-            // console.log(results_to_parse.length);
 
-            if (self.film_array) {
-                // console.log('self.film_array has data. clearing.');
-                self.film_array = [];
-                // console.log(self.film_array);
+            if (self.pilot_list.length) {
+                self.pilot_list = [];
             }
-
+            console.log(results_to_parse);
 
             if (self.homeworlds.length) {
                 // console.log('self.homeworlds has data. clearing.');
@@ -178,10 +186,11 @@ angular.module('swApp')
                 // console.log(self.films);
             }
 
-            if (self.f_array) {
-                self.f_array = [];
+            if (self.pilots.length) {
+                // console.log('self.pilots has data. clearing.');
+                self.pilots = [];
+                // console.log(self.pilots);
             }
-            // console.log(film_array);
 
             // We need to cycle through object returned in the event there are many.
             results_to_parse.forEach(function(result_item, i, arr) {
@@ -236,6 +245,12 @@ angular.module('swApp')
                                 // console.log('triggering populateFilmArray');
                                 self.populateFilmArray(self.films, result_item, a_length, a_index);
                                 break;
+                            case 'pilots':
+                                console.log('total results to parse is ' + a_length);
+                                console.log('the index of this result is ' + a_index);
+                                console.log('triggering populatePilotArray');
+                                self.populatePilotArray(self.pilots, result_item, a_length, a_index);
+                                break;
                         }
                     }
                 });
@@ -245,9 +260,8 @@ angular.module('swApp')
 
         self.populateFilmArray = function(array_name, obj, a_length, a_index) {
 
-            // console.log(array_name);
-            // console.log('total results to parse is ' + a_length);
-            // console.log('the index of this result is ' + a_index);
+            console.log('total results to parse is ' + a_length);
+            console.log('the index of this result is ' + a_index);
             // create the film_array with the designated length in a_length;
             for (var x = 0; x < a_length; x++) {
                 self.film_list[x] = [];
@@ -286,8 +300,56 @@ angular.module('swApp')
                 } else {
                     // console.log('films in cache');
                     // console.log(cache_results);
-                    var title = cache_results.title;
                     self.populate_array(self.film_list, cache_results, a_index, "film");
+                }
+            });
+        }
+
+        self.populatePilotArray = function(array_name, obj, a_length, a_index) {
+
+            console.log(array_name);
+            console.log('total results to parse is ' + a_length);
+            console.log('the index of this result is ' + a_index);
+            // create the film_array with the designated length in a_length;
+            for (var x = 0; x < a_length; x++) {
+                self.pilot_list[x] = [];
+            };
+            // console.log(self.film_list);
+            // console.log(self.item_number);
+            // console.log('There are a total of ' + items_to_parse + ' arrays.');
+            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
+
+            var pilot_array = obj.pilots;
+            self.pilots_in_object = obj.pilots.length;
+            console.log('There are ' + self.pilots_in_object + ' pilots for ' + obj.name);
+
+            pilot_array.forEach(function(pilot_url) {
+                console.log(pilot_url + ' for ' + obj.name);
+                // console.log('total results to parse is ' + a_length);
+                // console.log('the index of this result is ' + a_index);
+                var cache_results = logicService.getCacheItem(pilot_url);
+                // if the cache is not created, we need to make an API call.
+                if (!cache_results) {
+                    // console.log('films is not in cache');
+                    apiService.getDataUrl(pilot_url, function (response) {
+                        // console.log('total results to parse is ' + a_length);
+                        // console.log('the index of this result is ' + a_index);
+                        // Push the URL and result to the Cache
+                        console.log(response);
+                        logicService.setCacheItem(pilot_url, response.data);
+
+                        // console.log(response.data.title);
+                        var trimmed_result = response.data;
+                        self.populate_array(self.pilot_list, trimmed_result, a_index, "pilot");
+                        // console.log(self.film_list);
+
+                    }, function (err) {
+                        console.log(err.status);
+                    });
+                } else {
+                    // console.log('films in cache');
+                    // console.log(cache_results);
+                    self.populate_array(self.pilot_list, cache_results, a_index, "pilot");
                 }
             });
         }
@@ -297,6 +359,11 @@ angular.module('swApp')
                 case "film":
                     array[idx].push({
                         title: obj.title,
+                        url: obj.url
+                    });
+                case "pilot":
+                    array[idx].push({
+                        name: obj.name,
                         url: obj.url
                     });
             }

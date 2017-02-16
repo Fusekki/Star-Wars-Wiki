@@ -99,7 +99,54 @@ angular.module('swApp')
     })
 
     // This is the controller for the Vehicle results
-    .controller('vehicleCtrl', function ($scope, searchService, apiService, logicService) {
+    .controller('vehicleCtrl', function ($scope, searchService, apiService, logicService, parseService) {
 
         console.log('in vehicle controller.');
+
+        var self = this;
+        self.cache_results = null;
+
+        $scope.search_term = logicService.search_term;
+
+        apiService.search_term = $scope.search_term;
+        apiService.category = logicService.lowerCaseThis(logicService.category);
+
+        self.cache_results = logicService.getCacheItem($scope.search_term);
+
+        // If the cache item does not exist, make the API call.
+        if (!self.cache_results) {
+            $scope.film_container_size = [];
+            console.log('cache doesnt have item. making api call.');
+            apiService.getData(function(response) {
+                $scope.vehicle_results = response.data.results;
+                $scope.vehicle_results_length = response.data.results.length;
+                console.log($scope.vehicle_results.length);
+                console.log($scope.vehicle_results);
+                logicService.setCacheItem($scope.search_term, $scope.vehicle_results);
+                parseService.parseResults($scope.vehicle_results);
+            }, function(err) {
+                console.log(err.status);
+            });
+        } else {
+            console.log('item is cached.  retrieving values from cache.');
+            // console.log(self.cache_results);
+            $scope.vehicle_results = self.cache_results;
+            parseService.parseResults($scope.vehicle_results);
+        }
+
+        $scope.$watch('films', function () {
+            $scope.films = parseService.film_list;
+        });
+
+        $scope.$watch('pilots', function () {
+            $scope.pilots = parseService.pilot_list;
+        });
+
+        $scope.convertToLocal = function(some_date) {
+            return logicService.localizeThis(some_date);
+        };
+
+        $scope.convertWeight = function(mass) {
+            return logicService.weightThis(mass);
+        };
     })

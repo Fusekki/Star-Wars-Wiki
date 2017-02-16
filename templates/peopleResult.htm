@@ -72,12 +72,12 @@
             {{ obj.birth_year }}
         </div>
     </div>
-        <div class="r_row film_row_top" ng-repeat="f in films[$index]">
+    <div class="r_row film_row_top" ng-repeat="f in films[$index]">
         <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
             Films:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(x.url)">{{ f.title }}</a>
+            <a ng-click="callUrl(f.url)">{{ f.title }}</a>
         </div>
     </div>
     <div class="r_row move_up">

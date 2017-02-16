@@ -1,127 +1,126 @@
 <div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
-<table class="t_results" ng-repeat="i in item">
-    <tr>
-        <td>
+<div class="flex_results" ng-repeat="i in vehicle_results">
+    <div class="r_row">
+        <div>
             Name
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.name }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Class
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.vehicle_class }}
-        </td>
-    </tr>
-    <tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Model
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.model }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Cargo Capacity
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.cargo_capacity }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Consumables
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.consumables }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Cost
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.cost_in_credits }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Crew:
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.crew }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row film_row_top" ng-repeat="f in films[$index]">
+        <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
             Films:
-        </td>
-        <td>
-            <a ng-click="callUrl()">{{ film }}</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+        <div class="push_column_right">
+            <a ng-click="callUrl(f.url)">{{ f.title }}</a>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Length
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.length }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Manufacturer:
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.manufacturer }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Max Speed:
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.max_atmosphering_speed }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Passengers:
-        </td>
-        <td>
+        </div>
+        <div>
             {{ i.passengers }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row film_row_top"  ng-repeat="p in pilots[$index]">
+        <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
             Pilots:
-        </td>
-        <td>
-            {{ pilots }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+        <div class="push_column_right">
+            <a ng-click="callUrl(p.url)">{{ p.name }}</a>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Created:
-        </td>
-        <td>
+        </div>
+        <div>
             {{ convertToLocal(i.created) }}
-        </td>
-    </tr>
-    <tr>
-        <td>
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
             Last Edited:
-        </td>
-        <td>
+        </div>
+        <div>
             {{ convertToLocal(i.edited) }}
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
 
 
 
