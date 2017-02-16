@@ -361,11 +361,13 @@ angular.module('swApp')
                         title: obj.title,
                         url: obj.url
                     });
+                    break;
                 case "pilot":
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
+                    break;
             }
         }
     })

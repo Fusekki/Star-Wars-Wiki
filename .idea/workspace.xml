@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="340a9229-a764-473c-8e96-d77f96bf7186" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/controllers.js" afterPath="$PROJECT_DIR$/controllers/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/services.js" afterPath="$PROJECT_DIR$/services/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/peopleResult.htm" afterPath="$PROJECT_DIR$/templates/peopleResult.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vehicleResult.htm" afterPath="$PROJECT_DIR$/templates/vehicleResult.htm" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,9 +44,8 @@
       <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2436">
-              <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
-              <caret line="156" column="52" lean-forward="false" selection-start-line="156" selection-start-column="52" selection-end-line="156" selection-end-column="52" />
+            <state relative-caret-position="357">
+              <caret line="356" column="55" lean-forward="true" selection-start-line="356" selection-start-column="55" selection-end-line="356" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -166,7 +162,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-51" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1176" />
   </component>
@@ -416,15 +413,15 @@
       <workItem from="1487089600678" duration="9028000" />
       <workItem from="1487098752451" duration="810000" />
       <workItem from="1487171478745" duration="13236000" />
-      <workItem from="1487260406944" duration="8304000" />
+      <workItem from="1487260406944" duration="9118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141627000" />
+    <option name="totallyTimeSpent" value="142441000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-51" y="0" width="1936" height="1176" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -852,9 +849,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2436">
-          <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
-          <caret line="156" column="52" lean-forward="false" selection-start-line="156" selection-start-column="52" selection-end-line="156" selection-end-column="52" />
+        <state relative-caret-position="357">
+          <caret line="356" column="55" lean-forward="true" selection-start-line="356" selection-start-column="55" selection-end-line="356" selection-end-column="55" />
           <folding />
         </state>
       </provider>
