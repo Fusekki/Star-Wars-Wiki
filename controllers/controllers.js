@@ -44,6 +44,87 @@ angular.module('swApp')
     })
 
     // This is the controller for the People results
+    .controller('resultCtrl', function ($scope, searchService, logicService, apiService, parseService) {
+
+        console.log('in result controller.');
+
+        var self = this;
+
+        var category = logicService.lowerCaseThis(logicService.category);
+
+        self.cache_results = null;
+
+        $scope.search_term = logicService.search_term;
+
+        var triggerResults = function(category) {
+            console.log('in trigger results');
+
+            var category = category;
+
+            console.log($scope.search_term);
+
+            self.cache_results = logicService.getCacheItem($scope.search_term);
+
+            // If the cache item does not exist, make the API call.
+            if (!self.cache_results) {
+                // $scope.film_container_size = [];
+                apiService.search_term = $scope.search_term;
+                apiService.category = category;
+                self.container_size = [];
+                console.log('cache doesnt have item. making api call.');
+                apiService.getData(function(response) {
+                    console.log('in results function after api call.');
+                    console.log(response);
+                    $scope.results = response.data.results;
+                    $scope.results_length = $scope.results.length;
+                    console.log($scope.results);
+                    console.log(self.container_size);
+                    logicService.setCacheItem($scope.search_term, $scope.results);
+                    parseService.parseResults($scope.results, category);
+                }, function(err) {
+                    console.log(err.status);
+                });
+            } else {
+                console.log('item is cached.  retrieving values from cache.');
+                // console.log(self.cache_results);
+                $scope.results = self.cache_results;
+                parseService.parseResults($scope.results, category);
+            }
+        }
+
+        $scope.$watch('search_term', function() {
+            console.log('search_term value has a new value.');
+            $scope.search_term = logicService.search_term;
+            triggerResults(category);
+        });
+
+        $scope.$watch('films', function () {
+            $scope.films = parseService.film_list;
+        });
+
+
+        $scope.$watch('homeworlds', function () {
+            console.log('homeworlds has changed');
+            $scope.homeworlds = parseService.homeworlds;
+            console.log(parseService.homeworlds);
+            console.log($scope.homeworlds);
+        });
+
+        $scope.convertToLocal = function(some_date) {
+            return logicService.localizeThis(some_date);
+        };
+
+        $scope.convertWeight = function(mass) {
+            return logicService.weightThis(mass);
+        };
+
+        $scope.callUrl = function(url) {
+            console.log('we are going to call the api for ' + url);
+        }
+
+    })
+
+    // This is the controller for the People results
     .controller('peopleCtrl', function ($scope, searchService, logicService, apiService, parseService) {
 
         console.log('in people controller.');

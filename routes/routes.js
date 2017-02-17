@@ -16,11 +16,16 @@ swApp.config(function ($routeProvider) {
 
         .when('/people', {
             templateUrl: 'templates/peopleResult.htm',
-            controller: 'peopleCtrl'
+            controller: 'resultCtrl'
         })
 
         .when('/vehicles', {
             templateUrl: 'templates/vehicleResult.htm',
-            controller: 'vehicleCtrl'
+            controller: 'resultCtrl'
+        })
+
+        .when('/films', {
+            templateUrl: 'templates/filmResult.htm',
+            controller: 'resultCtrl'
         })
 });

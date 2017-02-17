@@ -1,11 +1,11 @@
 <div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
-<div class="flex_results" ng-repeat="obj in core_results">Result {{ $index + 1 }} of {{ core_results_length }}
+<div class="flex_results" ng-repeat="r in results">Result {{ $index + 1 }} of {{ results.length }}
     <div class="r_row">
         <div>
             Name
         </div>
         <div>
-            {{ obj.name }}
+            {{ r.name }}
         </div>
     </div>
     <div class="r_row">
@@ -13,7 +13,7 @@
             Eye Color:
         </div>
         <div>
-            {{ obj.eye_color }}
+            {{ r.eye_color }}
         </div>
     </div>
     <div class="r_row">
@@ -21,7 +21,7 @@
             Sex:
         </div>
         <div>
-            {{ obj.gender }}
+            {{ r.gender }}
         </div>
     </div>
     <div class="r_row">
@@ -29,7 +29,7 @@
             Hair Color:
         </div>
         <div>
-            {{ obj.hair_color }}
+            {{ r.hair_color }}
         </div>
     </div>
     <div class="r_row">
@@ -37,7 +37,7 @@
             Height:
         </div>
         <div>
-            {{ obj.height }}
+            {{ r.height }}
         </div>
     </div>
     <div class="r_row">
@@ -53,7 +53,7 @@
             Mass:
         </div>
         <div>
-            {{ convertWeight(obj.mass) }}
+            {{ convertWeight(r.mass) }}
         </div>
     </div>
     <div class="r_row">
@@ -61,7 +61,7 @@
             Skin Color:
         </div>
         <div>
-            {{ obj.skin_color }}
+            {{ r.skin_color }}
         </div>
     </div>
     <div class="r_row">
@@ -69,7 +69,7 @@
             DOB:
         </div>
         <div>
-            {{ obj.birth_year }}
+            {{ r.birth_year }}
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="f in films[$index]">
@@ -85,7 +85,7 @@
             Created:
         </div>
         <div>
-            {{ convertToLocal(obj.created) }}
+            {{ convertToLocal(r.created) }}
         </div>
     </div>
     <div class="r_row">
@@ -93,9 +93,7 @@
             Last Edited:
         </div>
         <div>
-            {{ convertToLocal(obj.edited) }}
+            {{ convertToLocal(r.edited) }}
         </div>
     </div>
 </div>
-
-
