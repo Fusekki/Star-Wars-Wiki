@@ -122,6 +122,8 @@ angular.module('swApp')
         self.item_number = 0;
         self.array_count = 0;
 
+        self.a_list = [];
+
         console.log('in parseService');
 
         self.categories_with_url = ["homeworld"];
@@ -166,6 +168,10 @@ angular.module('swApp')
 
             console.log('in ParseResults for ' + original_category);
 
+
+            if (self.a_list.length) {
+                self.a_list = [];
+            }
             if (self.film_list.length) {
                 self.film_list = [];
             }
@@ -219,25 +225,26 @@ angular.module('swApp')
                             apiService.getDataUrl(url, function(response) {
                                 // console.log('homeworld is not in cache');
                                 // Store the name for the resolved URL in a variable.
-                                $log.debug(response);
-                                console.log('in api success response for ' + original_category);
-                                console.log('currently doing category ' + category + ' in results.');
+                                // $log.debug(response);
+                                // console.log('in api success response for ' + original_category);
+                                // console.log('currently doing category ' + category + ' in results.');
 
-                                processCatUrl(category, response, self.homeworlds);
+                                self.processCatUrl(category, response, self.homeworlds);
                                 // Despite the category, Push the URL and result to the Cache
                                 logicService.setCacheItem(url, response);
                             }, function(err) {
                                 console.log(err.status);
                             });
                         } else {
-                            console.log('homeworld is in cache');
-                            processCatUrl(category, cache_results, self.homeworlds);
+                            // console.log('homeworld is in cache');
+                            self.processCatUrl(category, cache_results, self.homeworlds);
                         }
                     }
                 });
 
                 // Like films, for example
                 self.categories_with_array.forEach(function(category) {
+
                     // console.log(i);
                     if (result_item[category]) {
                         // console.log(result_item[category]);
@@ -253,7 +260,10 @@ angular.module('swApp')
                                 // console.log('total results to parse is ' + a_length);
                                 // console.log('the index of this result is ' + a_index);
                                 // console.log('triggering populateFilmArray');
-                                self.populateFilmArray(self.films, result_item, a_length, a_index);
+                                self.processCatArray(category, self.films, result_item, a_length, a_index);
+
+
+                                // self.populateFilmArray(self.films, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[2]):
                                 // pilots
@@ -285,22 +295,109 @@ angular.module('swApp')
                 });
             });
 
+
+
+
+
+        }
+        self.linkArraytoScope = function(category, array_to_process) {
+            console.log('in link array');
+            switch (category) {
+                case (self.categories_with_array[1]):
+                    console.log('films');
+                    /// films
+                    self.film_list = array_to_process;
+                    console.log(self.film_list);
+                    console.log(array_to_process);
+                    console.log('WATCH SHOULD BE TRIGGERED FROM THIS');
+                    break;
+            }
+        }
+        self.processCatArray = function(category, array_name, obj, a_length, a_index) {
+
+
+
+            // passing self.films
+
+            // var a_list = [];
+            var item_array = [];
+            var items_in_object = null;
+
+            console.log('in processcatararry for ' + category);
+            console.log(array_name);
+            console.log(obj);
+
+            console.log('total results to parse is ' + a_length);
+            console.log('the index of this result is ' + a_index);
+            // create the film_array with the designated length in a_length;
+            for (var x = 0; x < a_length; x++) {
+                self.film_list[x] = [];
+                // self.a_list[x] = [];
+            };
+            // console.log(self.film_list);
+            // console.log(self.item_number);
+            // console.log('There are a total of ' + items_to_parse + ' arrays.');
+            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
+
+            // var film_array = obj.films;
+            item_array = obj.films;
+
+            items_in_object = obj.films.length;
+            // console.log('There are ' + self.films_in_object + ' films for ' + obj.name);
+
+            item_array.forEach(function(url) {
+                console.log(url + ' for ' + obj.name);
+                // console.log('total results to parse is ' + a_length);
+                // console.log('the index of this result is ' + a_index);
+                var cache_results = logicService.getCacheItem(url);
+                // if the cache is not created, we need to make an API call.
+                if (!cache_results) {
+                    // console.log('films is not in cache');
+                    apiService.getDataUrl(url, function (response) {
+                        console.log('total results to parse is ' + a_length);
+                        console.log('the index of this result is ' + a_index);
+                        // Push the URL and result to the Cache
+                        logicService.setCacheItem(url, response.data);
+                        console.log(response.data.url);
+                        console.log(response.data.title);
+                        var trimmed_result = response.data;
+                        // self.populate_array(self.a_list, trimmed_result, a_index, "film");
+                        self.populate_array(self.film_list, trimmed_result, a_index, "film");
+                        console.log(self.a_list);
+
+                        // linkArraytoScope(category, self.a_list);
+                        // self.film_list = self.a_list;
+                        console.log(self.film_list);
+
+
+
+
+
+                    }, function (err) {
+                        console.log(err.status);
+                    });
+                } else {
+                    // console.log('films in cache');
+                    // console.log(cache_results);
+                    self.populate_array(a_list, cache_results, a_index, "film");
+                }
+            });
         }
 
-        var processCatUrl =  function(category, response, array_destination) {
+        self.processCatUrl =  function(category, response, array_destination) {
 
-            console.log('in processCatUrl');
+            // console.log('in processCatUrl');
 
-            console.log(response);
-            console.log(array_destination);
-            console.log(category);
-            console.log(self.categories_with_url[0]);
+            // console.log(response);
+            // console.log(array_destination);
+            // console.log(category);
+            // console.log(self.categories_with_url[0]);
 
             switch (category) {
                 case (self.categories_with_url[0]):
                     // homeworlds
-                    console.log('in ' + self.categories_with_url[0].toString());
-                    console.log(response);
+                    // console.log('in ' + self.categories_with_url[0].toString());
+                    // console.log(response);
                     var homeworld_name = response.data.name;
                     // self.homeworlds.push(homeworld_name);
                     array_destination.push({
@@ -310,6 +407,13 @@ angular.module('swApp')
                     break;
             }
         }
+
+        self.getData = function () {
+
+            return self.film_list;
+
+        }
+
 
         self.populateFilmArray = function(array_name, obj, a_length, a_index) {
 

@@ -56,6 +56,7 @@ angular.module('swApp')
 
         $scope.search_term = logicService.search_term;
 
+
         var triggerResults = function(category) {
             console.log('in trigger results');
 
@@ -93,14 +94,11 @@ angular.module('swApp')
         }
 
         $scope.$watch('search_term', function() {
-            console.log('search_term value has a new value.');
+            console.log('ITEM CHANGE');
             $scope.search_term = logicService.search_term;
             triggerResults(category);
         });
 
-        $scope.$watch('films', function () {
-            $scope.films = parseService.film_list;
-        });
 
 
         $scope.$watch('homeworlds', function () {
@@ -109,6 +107,15 @@ angular.module('swApp')
             console.log(parseService.homeworlds);
             console.log($scope.homeworlds);
         });
+
+        // $scope.$watch('apiService.getData()', function(newVal, oldVal){
+        //     console.log('data changes into: ', newVal)
+        // }, true);
+
+        $scope.$watch('films', function () {
+            console.log('film_list has changed');
+            $scope.films = parseService.film_list;
+        }, true);
 
         $scope.convertToLocal = function(some_date) {
             return logicService.localizeThis(some_date);
