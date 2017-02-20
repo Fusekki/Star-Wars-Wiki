@@ -119,6 +119,8 @@ angular.module('swApp')
     .service('parseService', function (apiService, logicService, $log) {
         var self = this;
 
+        self.new_search = true;
+
         self.item_number = 0;
         self.array_count = 0;
 
@@ -128,21 +130,32 @@ angular.module('swApp')
 
         self.categories_with_url = ["homeworld"];
 
-        self.categories_with_array = ["characters", "films", "pilots", "planets", "species", "starships", "vehicles"];
+        self.categories_with_array = ["characters", "films", "people", "pilots", "planets", "species", "starships", "vehicles"];
+
 
         // Used for all controllers. This stores the array that the $scope.films is wired to.
         self.films = [];
         self.films_in_object = 0;
         self.film_list = [];
 
-        // Used for people controller
+        // Used for people
         self.homeworlds = [];
+        self.species = [];
+        self.starships = [];
 
-        // Used for vehicle controller
+        // used for films
+        self.characters = [];
+        self.planets = [];
+
+
+        // Used for vehicle
         self.vehicles = [];
         self.pilots = [];
         self.pilot_list = [];
 
+        // Used for species
+
+        self.people = [];
 
         // whichever category the user specifies, there may be multiple results.
         // First, let's create the API call and then store all results in some array.
@@ -162,15 +175,26 @@ angular.module('swApp')
         // After all calls are done for one object, create a new $scope object that contains the results
         // (both from original, and include new variable(s) with the results of those API calls as well as arrays.
 
+
+        // This is called once per search.  It holds the entire results in results_to_parse.
         self.parseResults = function(results_to_parse, category) {
+
+            var results_length = results_to_parse.length;
 
             var original_category = category;
 
+            var category_list = logicService.getCategories();
+
             console.log('in ParseResults for ' + original_category);
+            console.log(results_length + ' total results to process.');
 
 
             if (self.a_list.length) {
                 self.a_list = [];
+            }
+
+            if (self.characters.length) {
+                self.characters = [];
             }
             if (self.film_list.length) {
                 self.film_list = [];
@@ -179,31 +203,106 @@ angular.module('swApp')
             if (self.pilot_list.length) {
                 self.pilot_list = [];
             }
-            console.log(results_to_parse);
+            // console.log(results_to_parse);
 
             if (self.homeworlds.length) {
-                // console.log('self.homeworlds has data. clearing.');
                 self.homeworlds = [];
             }
 
             if (self.films.length) {
-                // console.log('self.films has data. clearing.');
                 self.films = [];
-                // console.log(self.films);
+            }
+
+            if (self.people.length) {
+                self.people = [];
             }
 
             if (self.pilots.length) {
-                // console.log('self.pilots has data. clearing.');
                 self.pilots = [];
-                // console.log(self.pilots);
+            }
+
+            if (self.planets.length) {
+                self.planets = [];
+            }
+
+            if (self.species.length) {
+                self.species = [];
+            }
+
+            if (self.starships.length) {
+                self.starships = [];
+            }
+
+            console.log('creating arrays for results.');
+
+
+            switch (original_category) {
+                // 0 "people",
+                // 1 "films",
+                // 2 "starships",
+                // 3 "vehicles",
+                // 4 "species",
+                // 5 "planets"
+                case (category_list[0]):
+                    console.log('people');
+                    console.log('creating films, starships and vehicles arrays.');
+                    for (var x = 0; x < results_length; x++) {
+                        self.film_list[x] = [];
+                        self.species[x] = [];
+                        self.starships[x] = [];
+                        self.vehicles[x] = [];
+                    };
+                    break;
+                case (category_list[1]):
+                    console.log('films');
+                    console.log('creating characters, planets, species, starships and vehicles arrays.');
+                    for (var x = 0; x < results_length; x++) {
+                        self.characters[x] = [];
+                        self.planets[x] = [];
+                        self.species[x] = [];
+                        self.starships[x] = [];
+                        self.vehicles[x] = [];
+                    };
+
+                    break;
+
+                case (category_list[2]):
+                    console.log('starships');
+                    console.log('creating films and pilots arrays.');
+                    for (var x = 0; x < results_length; x++) {
+                        self.pilots[x] = [];
+                        self.film_list[x] = [];
+                    };
+
+                    break;
+                case (category_list[3]):
+                    console.log('vehicles');
+                    for (var x = 0; x < results_length; x++) {
+                        self.pilots[x] = [];
+                        self.film_list[x] = [];
+                    };
+
+                    break;
+
+                case (category_list[4]):
+                    console.log('species');
+                    for (var x = 0; x < results_length; x++) {
+                        self.people[x] = [];
+                        self.film_list[x] = [];
+                    };
+
+                    break;
+                case (category_list[5]):
+                    console.log('planets');
+
+                    break;
             }
 
             // We need to cycle through object returned in the event there are many.
             results_to_parse.forEach(function(result_item, i, arr) {
-                // console.log(result_item);
-                // console.log('total results to parse is ' + arr.length);
-                // console.log('the index of this result is ' + i);
+
                 console.log('in resultstoParse for ' + original_category);
+                console.log(result_item);
 
                 var a_length = arr.length;
                 var a_index = i;
@@ -217,18 +316,12 @@ angular.module('swApp')
                     if (result_item[category]) {
                         // make api call
                         var url = result_item[category];
-                        // console.log(url);
+                        console.log(url);
+                        console.log(url.length)
                         // Before any API calls, we need to check the cache.
                         var cache_results = logicService.getCacheItem(url);
-                        // console.log(cache_results);
                         if (!cache_results) {
                             apiService.getDataUrl(url, function(response) {
-                                // console.log('homeworld is not in cache');
-                                // Store the name for the resolved URL in a variable.
-                                // $log.debug(response);
-                                // console.log('in api success response for ' + original_category);
-                                // console.log('currently doing category ' + category + ' in results.');
-
                                 self.processCatUrl(category, response, self.homeworlds);
                                 // Despite the category, Push the URL and result to the Cache
                                 logicService.setCacheItem(url, response);
@@ -236,7 +329,6 @@ angular.module('swApp')
                                 console.log(err.status);
                             });
                         } else {
-                            // console.log('homeworld is in cache');
                             self.processCatUrl(category, cache_results, self.homeworlds);
                         }
                     }
@@ -245,161 +337,201 @@ angular.module('swApp')
                 // Like films, for example
                 self.categories_with_array.forEach(function(category) {
 
-                    // console.log(i);
                     if (result_item[category]) {
-                        // console.log(result_item[category]);
-                        // console.log(category);
+
+                        // 0 "characters",
+                        // 1 "films",
+                        // 2 "people"
+                        // 3 "pilots",
+                        // 4 "planets",
+                        // 5 "species",
+                        // 6 "starships",
+                        // 7 "vehicles"
+
                         switch (category) {
                             case (self.categories_with_array[0]):
                                 // characters
                                 console.log('in ' + self.categories_with_array[0].toString());
+                                self.processCatArray(category, self.characters, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[1]):
                                 // films
                                 console.log('in ' + self.categories_with_array[1].toString());
-                                // console.log('total results to parse is ' + a_length);
-                                // console.log('the index of this result is ' + a_index);
-                                // console.log('triggering populateFilmArray');
                                 self.processCatArray(category, self.films, result_item, a_length, a_index);
-
-
-                                // self.populateFilmArray(self.films, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[2]):
-                                // pilots
+                                // People
                                 console.log('in ' + self.categories_with_array[2].toString());
+                                self.processCatArray(category, self.people, result_item, a_length, a_index);
+                                break;
+                            case (self.categories_with_array[3]):
+                                // pilots
+                                console.log('in ' + self.categories_with_array[3].toString());
                                 console.log('total results to parse is ' + a_length);
                                 console.log('the index of this result is ' + a_index);
                                 console.log('triggering populatePilotArray');
-                                self.populatePilotArray(self.pilots, result_item, a_length, a_index);
-                                break;
-                            case (self.categories_with_array[3]):
-                                // planets
-                                console.log('in ' + self.categories_with_array[3].toString());
+                                // self.populatePilotArray(self.pilots, result_item, a_length, a_index);
+                                self.processCatArray(category, self.pilots, result_item, a_length, a_index);
+
                                 break;
                             case (self.categories_with_array[4]):
-                                // species
+                                // planets
                                 console.log('in ' + self.categories_with_array[4].toString());
                                 break;
                             case (self.categories_with_array[5]):
-                                // starships
+                                // species
                                 console.log('in ' + self.categories_with_array[5].toString());
+                                self.processCatArray(category, self.species, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[6]):
-                                // vehicles
+                                // starships
                                 console.log('in ' + self.categories_with_array[6].toString());
+                                self.processCatArray(category, self.starships, result_item, a_length, a_index);
                                 break;
+                            case (self.categories_with_array[7]):
+                                // vehicles
+                                console.log('in ' + self.categories_with_array[7].toString());
+                                break;
+
                         }
 
                     }
                 });
+                if (a_index === a_length - 1) {
+                console.log('detecting end of search!!!!!!!!!!!!!!!!!!!');
+                self.new_search = true;
+                }
             });
 
-
-
-
-
         }
-        self.linkArraytoScope = function(category, array_to_process) {
-            console.log('in link array');
-            switch (category) {
-                case (self.categories_with_array[1]):
-                    console.log('films');
-                    /// films
-                    self.film_list = array_to_process;
-                    console.log(self.film_list);
-                    console.log(array_to_process);
-                    console.log('WATCH SHOULD BE TRIGGERED FROM THIS');
-                    break;
-            }
-        }
+
         self.processCatArray = function(category, array_name, obj, a_length, a_index) {
 
 
+            console.log('process cat array start for ' + category);
+            console.log(self.species);
 
-            // passing self.films
-
-            // var a_list = [];
             var item_array = [];
             var items_in_object = null;
 
+            // 0 "characters",
+            // 1 "films",
+            // 2 "people"
+            // 3 "pilots",
+            // 4 "planets",
+            // 5 "species",
+            // 6 "starships",
+            // 7 "vehicles"
+
+
+
+            switch (category) {
+                case (self.categories_with_array[0]):
+                    // characters
+                    console.log('in ' + self.categories_with_array[0].toString());
+                    item_array = obj.characters;
+                    break;
+                case (self.categories_with_array[1]):
+                    // films
+                    console.log('in ' + self.categories_with_array[1].toString());
+                    item_array = obj.films;
+                    break;
+                case (self.categories_with_array[2]):
+                    // people
+                    console.log('in ' + self.categories_with_array[2].toString());
+                    item_array = obj.people;
+                    break;
+                case (self.categories_with_array[3]):
+                    // pilots
+                    console.log('in ' + self.categories_with_array[3].toString());
+                    item_array = obj.pilots;
+
+                    break;
+                case (self.categories_with_array[4]):
+                    // planets
+                    console.log('in ' + self.categories_with_array[4].toString());
+                    item_array = obj.planets;
+                    break;
+                case (self.categories_with_array[5]):
+                    // species
+                    console.log('in ' + self.categories_with_array[5].toString());
+                    item_array = obj.species;
+                    break;
+                case (self.categories_with_array[6]):
+                    // starships
+                    console.log('in ' + self.categories_with_array[6].toString());
+                    item_array = obj.starships;
+                    break;
+                case (self.categories_with_array[7]):
+                    // vehicles
+                    console.log('in ' + self.categories_with_array[7].toString());
+                    item_array = obj.vehicles;
+                    break;
+            }
+
             console.log('in processcatararry for ' + category);
-            console.log(array_name);
-            console.log(obj);
 
-            console.log('total results to parse is ' + a_length);
-            console.log('the index of this result is ' + a_index);
-            // create the film_array with the designated length in a_length;
-            for (var x = 0; x < a_length; x++) {
-                self.film_list[x] = [];
-                // self.a_list[x] = [];
-            };
-            // console.log(self.film_list);
-            // console.log(self.item_number);
-            // console.log('There are a total of ' + items_to_parse + ' arrays.');
-            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
-
-            // var film_array = obj.films;
-            item_array = obj.films;
-
-            items_in_object = obj.films.length;
-            // console.log('There are ' + self.films_in_object + ' films for ' + obj.name);
+            console.log(item_array);
 
             item_array.forEach(function(url) {
-                console.log(url + ' for ' + obj.name);
-                // console.log('total results to parse is ' + a_length);
-                // console.log('the index of this result is ' + a_index);
+
                 var cache_results = logicService.getCacheItem(url);
                 // if the cache is not created, we need to make an API call.
                 if (!cache_results) {
-                    // console.log('films is not in cache');
                     apiService.getDataUrl(url, function (response) {
-                        console.log('total results to parse is ' + a_length);
-                        console.log('the index of this result is ' + a_index);
                         // Push the URL and result to the Cache
                         logicService.setCacheItem(url, response.data);
-                        console.log(response.data.url);
-                        console.log(response.data.title);
                         var trimmed_result = response.data;
-                        // self.populate_array(self.a_list, trimmed_result, a_index, "film");
-                        self.populate_array(self.film_list, trimmed_result, a_index, "film");
-                        console.log(self.a_list);
+                        switch (category) {
+                            case (self.categories_with_array[1]):
+                                console.log('films');
+                                /// films
+                                self.populate_array(self.film_list, trimmed_result, a_index, "film");
+                                break;
+                            case (self.categories_with_array[2]):
+                                // people
+                                self.populate_array(self.people, trimmed_result, a_index, "people");
+                                break;
+                            case (self.categories_with_array[3]):
+                                // pilots
+                                self.populate_array(self.pilots, trimmed_result, a_index, "pilots");
 
-                        // linkArraytoScope(category, self.a_list);
-                        // self.film_list = self.a_list;
-                        console.log(self.film_list);
-
-
-
-
+                                break;
+                            case (self.categories_with_array[4]):
+                                console.log('planets');
+                                /// films
+                                self.populate_array(self.planets, trimmed_result, a_index, "planets");
+                                break;
+                            case (self.categories_with_array[5]):
+                                console.log('species');
+                                /// films
+                                self.populate_array(self.species, trimmed_result, a_index, "species");
+                                break;
+                        }
 
                     }, function (err) {
                         console.log(err.status);
                     });
                 } else {
-                    // console.log('films in cache');
-                    // console.log(cache_results);
-                    self.populate_array(a_list, cache_results, a_index, "film");
+                    console.log('films in cache');
+                    switch (category) {
+                        case (self.categories_with_array[1]):
+                            console.log('films');
+                            /// films
+                            self.populate_array(self.film_list, cache_results, a_index, "film");
+                            break;
+
+                    }
                 }
             });
         }
 
         self.processCatUrl =  function(category, response, array_destination) {
 
-            // console.log('in processCatUrl');
-
-            // console.log(response);
-            // console.log(array_destination);
-            // console.log(category);
-            // console.log(self.categories_with_url[0]);
-
             switch (category) {
                 case (self.categories_with_url[0]):
                     // homeworlds
-                    // console.log('in ' + self.categories_with_url[0].toString());
-                    // console.log(response);
                     var homeworld_name = response.data.name;
-                    // self.homeworlds.push(homeworld_name);
                     array_destination.push({
                         name: response.data.name,
                         url: response.data.url
@@ -408,110 +540,8 @@ angular.module('swApp')
             }
         }
 
-        self.getData = function () {
-
-            return self.film_list;
-
-        }
-
-
-        self.populateFilmArray = function(array_name, obj, a_length, a_index) {
-
-            console.log('total results to parse is ' + a_length);
-            console.log('the index of this result is ' + a_index);
-            // create the film_array with the designated length in a_length;
-            for (var x = 0; x < a_length; x++) {
-                self.film_list[x] = [];
-            };
-            // console.log(self.film_list);
-            // console.log(self.item_number);
-            // console.log('There are a total of ' + items_to_parse + ' arrays.');
-            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
-
-            var film_array = obj.films;
-            self.films_in_object = obj.films.length;
-            // console.log('There are ' + self.films_in_object + ' films for ' + obj.name);
-
-            film_array.forEach(function(film_url) {
-                // console.log(film_url + ' for ' + obj.name);
-                // console.log('total results to parse is ' + a_length);
-                // console.log('the index of this result is ' + a_index);
-                var cache_results = logicService.getCacheItem(film_url);
-                // if the cache is not created, we need to make an API call.
-                if (!cache_results) {
-                    // console.log('films is not in cache');
-                    apiService.getDataUrl(film_url, function (response) {
-                        // console.log('total results to parse is ' + a_length);
-                        // console.log('the index of this result is ' + a_index);
-                        // Push the URL and result to the Cache
-                        logicService.setCacheItem(film_url, response.data);
-                        // console.log(response.data.url);
-                        // console.log(response.data.title);
-                        var trimmed_result = response.data;
-                        self.populate_array(self.film_list, trimmed_result, a_index, "film");
-                        // console.log(self.film_list);
-
-                    }, function (err) {
-                        console.log(err.status);
-                    });
-                } else {
-                    // console.log('films in cache');
-                    // console.log(cache_results);
-                    self.populate_array(self.film_list, cache_results, a_index, "film");
-                }
-            });
-        }
-
-        self.populatePilotArray = function(array_name, obj, a_length, a_index) {
-
-            console.log(array_name);
-            console.log('total results to parse is ' + a_length);
-            console.log('the index of this result is ' + a_index);
-            // create the film_array with the designated length in a_length;
-            for (var x = 0; x < a_length; x++) {
-                self.pilot_list[x] = [];
-            };
-            // console.log(self.film_list);
-            // console.log(self.item_number);
-            // console.log('There are a total of ' + items_to_parse + ' arrays.');
-            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
-
-            var pilot_array = obj.pilots;
-            self.pilots_in_object = obj.pilots.length;
-            console.log('There are ' + self.pilots_in_object + ' pilots for ' + obj.name);
-
-            pilot_array.forEach(function(pilot_url) {
-                console.log(pilot_url + ' for ' + obj.name);
-                // console.log('total results to parse is ' + a_length);
-                // console.log('the index of this result is ' + a_index);
-                var cache_results = logicService.getCacheItem(pilot_url);
-                // if the cache is not created, we need to make an API call.
-                if (!cache_results) {
-                    // console.log('films is not in cache');
-                    apiService.getDataUrl(pilot_url, function (response) {
-                        // console.log('total results to parse is ' + a_length);
-                        // console.log('the index of this result is ' + a_index);
-                        // Push the URL and result to the Cache
-                        console.log(response);
-                        logicService.setCacheItem(pilot_url, response.data);
-
-                        // console.log(response.data.title);
-                        var trimmed_result = response.data;
-                        self.populate_array(self.pilot_list, trimmed_result, a_index, "pilot");
-                        // console.log(self.film_list);
-
-                    }, function (err) {
-                        console.log(err.status);
-                    });
-                } else {
-                    // console.log('films in cache');
-                    // console.log(cache_results);
-                    self.populate_array(self.pilot_list, cache_results, a_index, "pilot");
-                }
-            });
-        }
-
         self.populate_array = function(array, obj, idx, type) {
+            console.log('in populate_array function.');
             switch(type) {
                 case "film":
                     array[idx].push({
@@ -519,7 +549,27 @@ angular.module('swApp')
                         url: obj.url
                     });
                     break;
-                case "pilot":
+                case "pilots":
+                    array[idx].push({
+                        name: obj.name,
+                        url: obj.url
+                    });
+                    break;
+                case "species":
+                    array[idx].push({
+                        name: obj.name,
+                        url: obj.url
+                    });
+                    console.log(self.species);
+                    break;
+                case "people":
+                    array[idx].push({
+                        name: obj.name,
+                        url: obj.url
+                    });
+                    console.log(self.people);
+                    break;
+                case "planets":
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
@@ -529,267 +579,4 @@ angular.module('swApp')
         }
     })
 
-    .service('parseService1', function (apiService, logicService) {
-        var self = this;
 
-        self.item_number = 0;
-        self.array_count = 0;
-
-        console.log('in parseService');
-
-        self.categories_with_url = ["homeworld"];
-
-        self.categories_with_array = ["films", "pilots"];
-
-        // Used for all controllers. This stores the array that the $scope.films is wired to.
-        self.films = [];
-        self.films_in_object = 0;
-        self.film_list = [];
-
-        // Used for people controller
-        self.homeworlds = [];
-
-        // Used for vehicle controller
-        self.vehicles = [];
-        self.pilots = [];
-        self.pilot_list = [];
-
-
-
-
-
-
-        // whichever category the user specifies, there may be multiple results.
-        // First, let's create the API call and then store all results in some array.
-
-        // Call API, push results to array
-
-        // For each result, we need to check for specific fields that require additional API calls.
-        // These categories should be stored in an object.
-
-        // Once the call is completed, store the URLName in the cache with the returned info.
-
-        // If the category is an array object (such as films), push those items to a subarray.
-        // Otherwise, just push to a variable.
-        // Cycle through each item in subarray, call the API, store the URL into the cache.
-        // After, push the result to subarray.
-
-        // After all calls are done for one object, create a new $scope object that contains the results
-        // (both from original, and include new variable(s) with the results of those API calls as well as arrays.
-
-        self.parseResults = function(results_to_parse) {
-
-            if (self.film_list.length) {
-                self.film_list = [];
-            }
-
-            if (self.pilot_list.length) {
-                self.pilot_list = [];
-            }
-            console.log(results_to_parse);
-
-            if (self.homeworlds.length) {
-                // console.log('self.homeworlds has data. clearing.');
-                self.homeworlds = [];
-            }
-
-            if (self.films.length) {
-                // console.log('self.films has data. clearing.');
-                self.films = [];
-                // console.log(self.films);
-            }
-
-            if (self.pilots.length) {
-                // console.log('self.pilots has data. clearing.');
-                self.pilots = [];
-                // console.log(self.pilots);
-            }
-
-            // We need to cycle through object returned in the event there are many.
-            results_to_parse.forEach(function(result_item, i, arr) {
-                // console.log(result_item);
-                // console.log('total results to parse is ' + arr.length);
-                // console.log('the index of this result is ' + i);
-                var a_length = arr.length;
-                var a_index = i;
-
-                // let's define the film array based on the result's length.
-                // For each result, we need to check for specific fields that require additional API calls.
-                // These categories should be stored in an object.
-                // For each homeworld, for example
-                self.categories_with_url.forEach(function(category) {
-                    // console.log(category);
-                    if (result_item[category]) {
-                        // make api call
-                        var url = result_item[category];
-                        // console.log(url);
-                        // Before any API calls, we need to check the cache.
-                        var cache_results = logicService.getCacheItem(url);
-                        // console.log(cache_results);
-                        if (!cache_results) {
-                            apiService.getDataUrl(url, function(response) {
-                                // console.log('homeworld is not in cache');
-                                // Store the name for the resolved URL in a variable.
-                                console.log(response);
-                                var homeworld_name = response.data.name;
-                                // self.homeworlds.push(homeworld_name);
-                                self.homeworlds.push({
-                                    name: response.data.name,
-                                    url: response.data.url
-                                });
-                                // Push the URL and result to the Cache
-                                logicService.setCacheItem(url, response);
-                            }, function(err) {
-                                console.log(err.status);
-                            });
-                        } else {
-                            console.log('homeworld is in cache');
-                            var homeworld_name = cache_results.data.name;
-                            // self.homeworlds.push(homeworld_name);
-                            self.homeworlds.push({
-                                name: cache_results.data.name,
-                                url: cache_results.data.url
-                            });
-                        }
-                    }
-                });
-
-                // Like films, for example
-                self.categories_with_array.forEach(function(category) {
-                     // console.log(i);
-                    if (result_item[category]) {
-                        // console.log(result_item[category]);
-                        // console.log(category);
-                        switch (category) {
-                            case 'films':
-                                // console.log('total results to parse is ' + a_length);
-                                // console.log('the index of this result is ' + a_index);
-                                // console.log('triggering populateFilmArray');
-                                self.populateFilmArray(self.films, result_item, a_length, a_index);
-                                break;
-                            case 'pilots':
-                                console.log('total results to parse is ' + a_length);
-                                console.log('the index of this result is ' + a_index);
-                                console.log('triggering populatePilotArray');
-                                self.populatePilotArray(self.pilots, result_item, a_length, a_index);
-                                break;
-                        }
-                    }
-                });
-            });
-
-        }
-
-        self.populateFilmArray = function(array_name, obj, a_length, a_index) {
-
-            console.log('total results to parse is ' + a_length);
-            console.log('the index of this result is ' + a_index);
-            // create the film_array with the designated length in a_length;
-            for (var x = 0; x < a_length; x++) {
-                self.film_list[x] = [];
-            };
-            // console.log(self.film_list);
-            // console.log(self.item_number);
-            // console.log('There are a total of ' + items_to_parse + ' arrays.');
-            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
-
-            var film_array = obj.films;
-            self.films_in_object = obj.films.length;
-            // console.log('There are ' + self.films_in_object + ' films for ' + obj.name);
-
-            film_array.forEach(function(film_url) {
-                // console.log(film_url + ' for ' + obj.name);
-                // console.log('total results to parse is ' + a_length);
-                // console.log('the index of this result is ' + a_index);
-                var cache_results = logicService.getCacheItem(film_url);
-                // if the cache is not created, we need to make an API call.
-                if (!cache_results) {
-                    // console.log('films is not in cache');
-                    apiService.getDataUrl(film_url, function (response) {
-                        // console.log('total results to parse is ' + a_length);
-                        // console.log('the index of this result is ' + a_index);
-                        // Push the URL and result to the Cache
-                        logicService.setCacheItem(film_url, response.data);
-                        // console.log(response.data.url);
-                        // console.log(response.data.title);
-                        var trimmed_result = response.data;
-                        self.populate_array(self.film_list, trimmed_result, a_index, "film");
-                        // console.log(self.film_list);
-
-                    }, function (err) {
-                        console.log(err.status);
-                    });
-                } else {
-                    // console.log('films in cache');
-                    // console.log(cache_results);
-                    self.populate_array(self.film_list, cache_results, a_index, "film");
-                }
-            });
-        }
-
-        self.populatePilotArray = function(array_name, obj, a_length, a_index) {
-
-            console.log(array_name);
-            console.log('total results to parse is ' + a_length);
-            console.log('the index of this result is ' + a_index);
-            // create the film_array with the designated length in a_length;
-            for (var x = 0; x < a_length; x++) {
-                self.pilot_list[x] = [];
-            };
-            // console.log(self.film_list);
-            // console.log(self.item_number);
-            // console.log('There are a total of ' + items_to_parse + ' arrays.');
-            // console.log('This cycle is ' + self.item_number.toString() +'.  This is for ' + obj.name);
-
-            var pilot_array = obj.pilots;
-            self.pilots_in_object = obj.pilots.length;
-            console.log('There are ' + self.pilots_in_object + ' pilots for ' + obj.name);
-
-            pilot_array.forEach(function(pilot_url) {
-                console.log(pilot_url + ' for ' + obj.name);
-                // console.log('total results to parse is ' + a_length);
-                // console.log('the index of this result is ' + a_index);
-                var cache_results = logicService.getCacheItem(pilot_url);
-                // if the cache is not created, we need to make an API call.
-                if (!cache_results) {
-                    // console.log('films is not in cache');
-                    apiService.getDataUrl(pilot_url, function (response) {
-                        // console.log('total results to parse is ' + a_length);
-                        // console.log('the index of this result is ' + a_index);
-                        // Push the URL and result to the Cache
-                        console.log(response);
-                        logicService.setCacheItem(pilot_url, response.data);
-
-                        // console.log(response.data.title);
-                        var trimmed_result = response.data;
-                        self.populate_array(self.pilot_list, trimmed_result, a_index, "pilot");
-                        // console.log(self.film_list);
-
-                    }, function (err) {
-                        console.log(err.status);
-                    });
-                } else {
-                    // console.log('films in cache');
-                    // console.log(cache_results);
-                    self.populate_array(self.pilot_list, cache_results, a_index, "pilot");
-                }
-            });
-        }
-
-        self.populate_array = function(array, obj, idx, type) {
-            switch(type) {
-                case "film":
-                    array[idx].push({
-                        title: obj.title,
-                        url: obj.url
-                    });
-                    break;
-                case "pilot":
-                    array[idx].push({
-                        name: obj.name,
-                        url: obj.url
-                    });
-                    break;
-            }
-        }
-    })

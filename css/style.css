@@ -79,7 +79,8 @@ body {
     height: 1.5em;
 }
 
-.r_row div {
+.r_row div,
+.f_row div {
     float: left;
     overflow: hidden;
     padding: 3px 1.8%;

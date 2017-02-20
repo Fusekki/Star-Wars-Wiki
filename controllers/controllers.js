@@ -78,8 +78,8 @@ angular.module('swApp')
                     console.log(response);
                     $scope.results = response.data.results;
                     $scope.results_length = $scope.results.length;
-                    console.log($scope.results);
-                    console.log(self.container_size);
+                    // console.log($scope.results);
+                    // console.log(self.container_size);
                     logicService.setCacheItem($scope.search_term, $scope.results);
                     parseService.parseResults($scope.results, category);
                 }, function(err) {
@@ -102,10 +102,26 @@ angular.module('swApp')
 
 
         $scope.$watch('homeworlds', function () {
-            console.log('homeworlds has changed');
+            // console.log('homeworlds has changed');
             $scope.homeworlds = parseService.homeworlds;
-            console.log(parseService.homeworlds);
-            console.log($scope.homeworlds);
+            // console.log(parseService.homeworlds);
+            // console.log($scope.homeworlds);
+        });
+
+        $scope.$watch('species', function () {
+            $scope.species = parseService.species;
+        });
+
+        $scope.$watch('pilots', function () {
+            $scope.pilots = parseService.pilots;
+        });
+
+        $scope.$watch('people', function () {
+            $scope.people = parseService.people;
+        });
+
+        $scope.$watch('planets', function () {
+            $scope.planets = parseService.planets;
         });
 
         // $scope.$watch('apiService.getData()', function(newVal, oldVal){
@@ -151,20 +167,20 @@ angular.module('swApp')
             $scope.film_container_size = [];
             console.log('cache doesnt have item. making api call.');
             apiService.getData(function(response) {
-                $scope.core_results = response.data.results;
-                $scope.core_results_length = response.data.results.length;
+                $scope.results = response.data.results;
+                $scope.results_length = response.data.results.length;
                 // console.log($scope.core_results.length);
                 // console.log($scope.film_container_size);
-                logicService.setCacheItem($scope.search_term, $scope.core_results);
-                parseService.parseResults($scope.core_results);
+                logicService.setCacheItem($scope.search_term, $scope.results);
+                parseService.parseResults($scope.results);
             }, function(err) {
                 console.log(err.status);
             });
         } else {
             console.log('item is cached.  retrieving values from cache.');
             // console.log(self.cache_results);
-            $scope.core_results = self.cache_results;
-            parseService.parseResults($scope.core_results);
+            $scope.results = self.cache_results;
+            parseService.parseResults($scope.results);
         }
 
         $scope.$watch('films', function () {

@@ -10,44 +10,29 @@
     </div>
     <div class="r_row">
         <div>
-            Eye Color:
+            Eye Colors:
         </div>
         <div>
-            {{ r.eye_color }}
+            {{ r.eye_colors }}
         </div>
     </div>
     <div class="r_row">
         <div>
-            Hair Color:
+            Hair Colors:
         </div>
         <div>
-            {{ r.hair_color }}
+            {{ r.hair_colors }}
         </div>
     </div>
     <div class="r_row">
         <div>
-            Sex:
+            Skin Colors:
         </div>
         <div>
-            {{ r.gender }}
+            {{ r.skin_colors }}
         </div>
     </div>
-    <div class="r_row film_row_top" ng-repeat="s in species[$index]">
-        <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
-            Species:
-        </div>
-        <div class="push_column_right">
-            <a ng-click="callUrl(s.url)">{{ s.name }}</a>
-        </div>
-    </div>
-    <div class="r_row">
-        <div>
-            Height:
-        </div>
-        <div>
-            {{ r.height }}
-        </div>
-    </div>
+
     <div class="r_row">
         <div>
             Homeworld:
@@ -58,26 +43,18 @@
     </div>
     <div class="r_row">
         <div>
-            Mass:
+            Language
         </div>
         <div>
-            {{ convertWeight(r.mass) }}
-        </div>
-    </div>
-    <div class="r_row">
-        <div>
-            Skin Color:
-        </div>
-        <div>
-            {{ r.skin_color }}
+            {{ r.language }}
         </div>
     </div>
-    <div class="r_row">
-        <div>
-            DOB:
+    <div class="r_row film_row_top" ng-repeat="p in people[$index]">
+        <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
+            People:
         </div>
-        <div>
-            {{ r.birth_year }}
+        <div class="push_column_right">
+            <a ng-click="callUrl(f.url)">{{ p.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="f in films[$index]">
