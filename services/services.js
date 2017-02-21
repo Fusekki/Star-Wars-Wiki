@@ -555,12 +555,51 @@ angular.module('swApp')
                         console.log(err.status);
                     });
                 } else {
-                    console.log('films in cache');
+                    console.log(category + ' in cache');
                     switch (category) {
+                        case (self.categories_with_array[0]):
+                            console.log('characters');
+                            /// films
+                            self.populate_array(self.characters,cache_results, a_index, "characters");
+                            break;
                         case (self.categories_with_array[1]):
                             console.log('films');
                             /// films
                             self.populate_array(self.film_list, cache_results, a_index, "film");
+                            break;
+                        case (self.categories_with_array[2]):
+                            // people
+                            self.populate_array(self.people, cache_results, a_index, "people");
+                            break;
+                        case (self.categories_with_array[3]):
+                            // pilots
+                            self.populate_array(self.pilots, cache_results, a_index, "pilots");
+
+                            break;
+                        case (self.categories_with_array[4]):
+                            console.log('planets');
+                            /// films
+                            self.populate_array(self.planets, cache_results, a_index, "planets");
+                            break;
+                        case (self.categories_with_array[5]):
+                            console.log('residents');
+                            /// films
+                            self.populate_array(self.people, cache_results, a_index, "people");
+                            break;
+                        case (self.categories_with_array[6]):
+                            console.log('species');
+                            /// films
+                            self.populate_array(self.species, cache_results, a_index, "species");
+                            break;
+                        case (self.categories_with_array[7]):
+                            console.log('starships');
+                            /// films
+                            self.populate_array(self.starships, cache_results, a_index, "starships");
+                            break;
+                        case (self.categories_with_array[8]):
+                            console.log('vehicles');
+                            /// films
+                            self.populate_array(self.vehicles, cache_results, a_index, "vehicles");
                             break;
 
                     }

@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="340a9229-a764-473c-8e96-d77f96bf7186" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/planetResult.htm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/controllers.js" afterPath="$PROJECT_DIR$/controllers/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/routes.js" afterPath="$PROJECT_DIR$/routes/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/services.js" afterPath="$PROJECT_DIR$/services/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/filmResult.htm" afterPath="$PROJECT_DIR$/templates/filmResult.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/speciesResult.htm" afterPath="$PROJECT_DIR$/templates/speciesResult.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/starshipResult.htm" afterPath="$PROJECT_DIR$/templates/starshipResult.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vehicleResult.htm" afterPath="$PROJECT_DIR$/templates/vehicleResult.htm" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,9 +24,8 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-612">
-              <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <caret line="48" column="45" lean-forward="true" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+            <state relative-caret-position="-254">
+              <caret line="93" column="9" lean-forward="true" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
               <folding>
                 <element signature="e#5174#7133#0" expanded="false" />
                 <element signature="e#7294#9285#0" expanded="false" />
@@ -42,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1378">
-              <caret line="545" column="62" lean-forward="false" selection-start-line="545" selection-start-column="62" selection-end-line="545" selection-end-column="62" />
+            <state relative-caret-position="222">
+              <caret line="562" column="76" lean-forward="false" selection-start-line="562" selection-start-column="76" selection-end-line="562" selection-end-column="76" />
               <folding>
                 <element signature="e#2094#2554#0" expanded="false" />
               </folding>
@@ -94,7 +86,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="speciesResult.htm" pinned="false" current-in-tab="true">
+      <file leaf-file-name="speciesResult.htm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/speciesResult.htm">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1360">
@@ -203,10 +195,10 @@
         <option value="$PROJECT_DIR$/controllers/controllers.js" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/templates/planetResult.htm" />
-        <option value="$PROJECT_DIR$/services/services.js" />
         <option value="$PROJECT_DIR$/templates/starshipResult.htm" />
         <option value="$PROJECT_DIR$/templates/vehicleResult.htm" />
         <option value="$PROJECT_DIR$/templates/speciesResult.htm" />
+        <option value="$PROJECT_DIR$/services/services.js" />
       </list>
     </option>
   </component>
@@ -474,12 +466,12 @@
       <workItem from="1487520444807" duration="10677000" />
       <workItem from="1487532452800" duration="880000" />
       <workItem from="1487604192732" duration="15879000" />
-      <workItem from="1487693856992" duration="3315000" />
+      <workItem from="1487693856992" duration="3926000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184159000" />
+    <option name="totallyTimeSpent" value="184770000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -885,33 +877,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612">
-          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <caret line="48" column="45" lean-forward="true" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
-          <folding>
-            <element signature="e#5174#7133#0" expanded="false" />
-            <element signature="e#7294#9285#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/planetResult.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1564">
           <caret line="92" column="20" lean-forward="true" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1378">
-          <caret line="545" column="62" lean-forward="false" selection-start-line="545" selection-start-column="62" selection-end-line="545" selection-end-column="62" />
-          <folding>
-            <element signature="e#2094#2554#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -936,6 +906,27 @@
         <state relative-caret-position="1360">
           <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-254">
+          <caret line="93" column="9" lean-forward="true" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
+          <folding>
+            <element signature="e#5174#7133#0" expanded="false" />
+            <element signature="e#7294#9285#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="562" column="76" lean-forward="false" selection-start-line="562" selection-start-column="76" selection-end-line="562" selection-end-column="76" />
+          <folding>
+            <element signature="e#2094#2554#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
