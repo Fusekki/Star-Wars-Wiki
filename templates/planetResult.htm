@@ -77,7 +77,7 @@
             Residents
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(p.url)">{{ p.name }}</a>
+            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="f in films[$index]">
@@ -85,7 +85,7 @@
             Films:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(f.url)">{{ f.title }}</a>
+            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
         </div>
     </div>
     <div class="r_row move_up">

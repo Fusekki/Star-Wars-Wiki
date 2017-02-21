@@ -37,7 +37,7 @@
             Species:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(s.url)">{{ s.name }}</a>
+            <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
         </div>
     </div>
     <div class="r_row">
@@ -53,7 +53,7 @@
             Homeworld:
         </div>
         <div>
-            <a ng-click="callUrl(homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
+            <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
         </div>
     </div>
     <div class="r_row">
@@ -85,7 +85,7 @@
             Films:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(f.url)">{{ f.title }}</a>
+            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
         </div>
     </div>
     <div class="r_row move_up">

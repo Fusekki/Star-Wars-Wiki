@@ -37,7 +37,7 @@
             Characters:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(c.url)">{{ c.name }}</a>
+            <a ng-click="callUrl(c.name, c.url)">{{ c.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="p in planets[$index]">
@@ -45,7 +45,7 @@
             Planets:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(p.url)">{{ p.name }}</a>
+            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="s in species[$index]">
@@ -53,7 +53,7 @@
             Species:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(s.url)">{{ s.name }}</a>
+            <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="st in starships[$index]">
@@ -61,7 +61,7 @@
             Starships:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(st.url)">{{ st.name }}</a>
+            <a ng-click="callUrl(st.name, st.url)">{{ st.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="v in vehicles[$index]">
@@ -69,7 +69,7 @@
             Vehicles:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(v.url)">{{ v.name }}</a>
+            <a ng-click="callUrl(v.name, v.url)">{{ v.name }}</a>
         </div>
     </div>
     <div class="r_row">

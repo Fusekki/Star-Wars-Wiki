@@ -54,7 +54,7 @@
             Homeworld:
         </div>
         <div>
-            <a ng-click="callUrl(homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
+            <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
         </div>
     </div>
     <div class="r_row">
@@ -86,7 +86,7 @@
             People:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(f.url)">{{ p.name }}</a>
+            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="f in films[$index]">
@@ -94,7 +94,7 @@
             Films:
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(f.url)">{{ f.title }}</a>
+            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
         </div>
     </div>
     <div class="r_row move_up">

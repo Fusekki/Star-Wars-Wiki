@@ -83,12 +83,8 @@ angular.module('swApp')
 
         var self=this;
 
-        // console.log(logicService.search_term);
-
         self.category = logicService.lowerCaseThis(logicService.category);
         self.search_term = logicService.search_term;
-        // console.log(self.search_term);
-        // console.log(self.category);
         apiService.category = logicService.lowerCaseThis(self.category);
         apiService.search_term = self.search_term;
 
@@ -101,8 +97,6 @@ angular.module('swApp')
 
         self.category = logicService.lowerCaseThis(logicService.category);
         self.search_term = logicService.search_term;
-        // console.log(self.search_term);
-        // console.log(self.category);
 
         this.getData = function(callback, err) {
             $http.get('https://swapi.co/api/' + self.category + '/?search='+ self.search_term)
