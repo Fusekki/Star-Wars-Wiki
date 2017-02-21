@@ -130,7 +130,7 @@ angular.module('swApp')
 
         self.categories_with_url = ["homeworld"];
 
-        self.categories_with_array = ["characters", "films", "people", "pilots", "planets", "species", "starships", "vehicles"];
+        self.categories_with_array = ["characters", "films", "people", "pilots", "planets", "residents", "species", "starships", "vehicles"];
 
 
         // Used for all controllers. This stores the array that the $scope.films is wired to.
@@ -294,6 +294,10 @@ angular.module('swApp')
                     break;
                 case (category_list[5]):
                     console.log('planets');
+                    for (var x = 0; x < results_length; x++) {
+                        self.people[x] = [];
+                        self.film_list[x] = [];
+                    };
 
                     break;
             }
@@ -344,9 +348,10 @@ angular.module('swApp')
                         // 2 "people"
                         // 3 "pilots",
                         // 4 "planets",
-                        // 5 "species",
-                        // 6 "starships",
-                        // 7 "vehicles"
+                        // 5 "residents"
+                        // 6 "species",
+                        // 7 "starships",
+                        // 8 "vehicles"
 
                         switch (category) {
                             case (self.categories_with_array[0]):
@@ -377,21 +382,29 @@ angular.module('swApp')
                             case (self.categories_with_array[4]):
                                 // planets
                                 console.log('in ' + self.categories_with_array[4].toString());
+                                self.processCatArray(category, self.people, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[5]):
-                                // species
+                                // Residents
                                 console.log('in ' + self.categories_with_array[5].toString());
-                                self.processCatArray(category, self.species, result_item, a_length, a_index);
+                                self.processCatArray(category, self.people, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[6]):
-                                // starships
+                                // species
                                 console.log('in ' + self.categories_with_array[6].toString());
-                                self.processCatArray(category, self.starships, result_item, a_length, a_index);
+                                self.processCatArray(category, self.species, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[7]):
-                                // vehicles
+                                // starships
                                 console.log('in ' + self.categories_with_array[7].toString());
+                                self.processCatArray(category, self.starships, result_item, a_length, a_index);
                                 break;
+                            case (self.categories_with_array[8]):
+                                // vehicles
+                                console.log('in ' + self.categories_with_array[8].toString());
+                                self.processCatArray(category, self.vehicles, result_item, a_length, a_index);
+                                break;
+
 
                         }
 
@@ -414,14 +427,16 @@ angular.module('swApp')
             var item_array = [];
             var items_in_object = null;
 
+
             // 0 "characters",
             // 1 "films",
             // 2 "people"
             // 3 "pilots",
             // 4 "planets",
-            // 5 "species",
-            // 6 "starships",
-            // 7 "vehicles"
+            // 5 "residents"
+            // 6 "species",
+            // 7 "starships",
+            // 8 "vehicles"
 
 
 
@@ -453,20 +468,26 @@ angular.module('swApp')
                     item_array = obj.planets;
                     break;
                 case (self.categories_with_array[5]):
-                    // species
+                    // residents
                     console.log('in ' + self.categories_with_array[5].toString());
-                    item_array = obj.species;
+                    item_array = obj.residents;
                     break;
                 case (self.categories_with_array[6]):
-                    // starships
+                    // species
                     console.log('in ' + self.categories_with_array[6].toString());
-                    item_array = obj.starships;
+                    item_array = obj.species;
                     break;
                 case (self.categories_with_array[7]):
-                    // vehicles
+                    // starships
                     console.log('in ' + self.categories_with_array[7].toString());
+                    item_array = obj.starships;
+                    break;
+                case (self.categories_with_array[8]):
+                    // vehicles
+                    console.log('in ' + self.categories_with_array[8].toString());
                     item_array = obj.vehicles;
                     break;
+
             }
 
             console.log('in processcatararry for ' + category);
@@ -483,6 +504,11 @@ angular.module('swApp')
                         logicService.setCacheItem(url, response.data);
                         var trimmed_result = response.data;
                         switch (category) {
+                            case (self.categories_with_array[0]):
+                                console.log('characters');
+                                /// films
+                                self.populate_array(self.characters, trimmed_result, a_index, "characters");
+                                break;
                             case (self.categories_with_array[1]):
                                 console.log('films');
                                 /// films
@@ -503,10 +529,26 @@ angular.module('swApp')
                                 self.populate_array(self.planets, trimmed_result, a_index, "planets");
                                 break;
                             case (self.categories_with_array[5]):
+                                console.log('residents');
+                                /// films
+                                self.populate_array(self.people, trimmed_result, a_index, "people");
+                                break;
+                            case (self.categories_with_array[6]):
                                 console.log('species');
                                 /// films
                                 self.populate_array(self.species, trimmed_result, a_index, "species");
                                 break;
+                            case (self.categories_with_array[7]):
+                                console.log('starships');
+                                /// films
+                                self.populate_array(self.starships, trimmed_result, a_index, "starships");
+                                break;
+                            case (self.categories_with_array[8]):
+                                console.log('vehicles');
+                                /// films
+                                self.populate_array(self.vehicles, trimmed_result, a_index, "vehicles");
+                                break;
+
                         }
 
                     }, function (err) {
@@ -543,6 +585,12 @@ angular.module('swApp')
         self.populate_array = function(array, obj, idx, type) {
             console.log('in populate_array function.');
             switch(type) {
+                case "characters":
+                    array[idx].push({
+                        name: obj.name,
+                        url: obj.url
+                    });
+                    break;
                 case "film":
                     array[idx].push({
                         title: obj.title,
@@ -570,6 +618,18 @@ angular.module('swApp')
                     console.log(self.people);
                     break;
                 case "planets":
+                    array[idx].push({
+                        name: obj.name,
+                        url: obj.url
+                    });
+                    break;
+                case "starships":
+                    array[idx].push({
+                        name: obj.name,
+                        url: obj.url
+                    });
+                    break;
+                case "vehicles":
                     array[idx].push({
                         name: obj.name,
                         url: obj.url

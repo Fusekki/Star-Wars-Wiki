@@ -124,9 +124,18 @@ angular.module('swApp')
             $scope.planets = parseService.planets;
         });
 
-        // $scope.$watch('apiService.getData()', function(newVal, oldVal){
-        //     console.log('data changes into: ', newVal)
-        // }, true);
+        $scope.$watch('characters', function () {
+            $scope.characters = parseService.characters;
+        });
+
+        $scope.$watch('starships', function () {
+            $scope.starships = parseService.starships;
+        });
+
+        $scope.$watch('vehicles', function () {
+            $scope.vehicles = parseService.vehicles;
+        });
+
 
         $scope.$watch('films', function () {
             console.log('film_list has changed');

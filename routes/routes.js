@@ -19,6 +19,11 @@ swApp.config(function ($routeProvider) {
             controller: 'resultCtrl'
         })
 
+        .when('/planets', {
+            templateUrl: 'templates/planetResult.htm',
+            controller: 'resultCtrl'
+        })
+
         .when('/species', {
             templateUrl: 'templates/speciesResult.htm',
             controller: 'resultCtrl'

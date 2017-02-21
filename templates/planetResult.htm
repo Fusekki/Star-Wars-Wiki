@@ -2,7 +2,7 @@
 <div class="flex_results" ng-repeat="r in results">Result {{ $index + 1 }} of {{ results.length }}
     <div class="r_row">
         <div>
-            Name
+            Name:
         </div>
         <div>
             {{ r.name }}
@@ -10,83 +10,74 @@
     </div>
     <div class="r_row">
         <div>
-            Eye Colors:
+            Diameter:
         </div>
         <div>
-            {{ r.eye_colors }}
-        </div>
-    </div>
-    <div class="r_row">
-        <div>
-            Hair Colors:
-        </div>
-        <div>
-            {{ r.hair_colors }}
+            {{ r.diameter }} km
         </div>
     </div>
     <div class="r_row">
         <div>
-            Skin Colors:
+            Day Length:
         </div>
         <div>
-            {{ r.skin_colors }}
-        </div>
-    </div>
-    <div class="r_row">
-        <div>
-            Classification:
-        </div>
-        <div>
-            {{ r.classification }}
+            {{ r.rotation_period }} hrs
         </div>
     </div>
     <div class="r_row">
         <div>
-            Designation:
+            Orbital Period:
         </div>
         <div>
-            {{ r.designation }}
-        </div>
-    </div>
-
-    <div class="r_row">
-        <div>
-            Homeworld:
-        </div>
-        <div>
-            <a ng-click="callUrl(homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
+            {{ r.orbital_period }}
         </div>
     </div>
     <div class="r_row">
         <div>
-            Language
+            Gravity:
         </div>
         <div>
-            {{ r.language }}
-        </div>
-    </div>
-    <div class="r_row">
-        <div>
-            Avg Height:
-        </div>
-        <div>
-            {{ r.average_height }} cm
+            {{ r.gravity }} Gs
         </div>
     </div>
     <div class="r_row">
         <div>
-            Avg Lifespan:
+            Population:
         </div>
         <div>
-            {{ r.average_lifespan }} years
+            {{ r.population }} avg.
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
+            Climate:
+        </div>
+        <div>
+            {{ r.climate }}
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
+            Terrain:
+        </div>
+        <div>
+            {{ r.terrain }}
+        </div>
+    </div>
+    <div class="r_row">
+        <div>
+            Surface Water:
+        </div>
+        <div>
+            {{ r.surface_water }}% of planet's surface
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="p in people[$index]">
         <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
-            People:
+            Residents
         </div>
         <div class="push_column_right">
-            <a ng-click="callUrl(f.url)">{{ p.name }}</a>
+            <a ng-click="callUrl(p.url)">{{ p.name }}</a>
         </div>
     </div>
     <div class="r_row film_row_top" ng-repeat="f in films[$index]">
