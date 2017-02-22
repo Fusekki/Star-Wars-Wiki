@@ -184,47 +184,47 @@ angular.module('swApp')
 
 
             if (self.a_list.length) {
-                self.a_list = [];
+                self.a_list.length = 0;
             }
 
             if (self.characters.length) {
-                self.characters = [];
+                self.characters.length = 0;
             }
             if (self.film_list.length) {
-                self.film_list = [];
+                self.film_list.length  = 0;
             }
 
             if (self.pilot_list.length) {
-                self.pilot_list = [];
+                self.pilot_list.length = 0;
             }
             // console.log(results_to_parse);
 
             if (self.homeworlds.length) {
-                self.homeworlds = [];
+                self.homeworlds.length = 0;
             }
 
             if (self.films.length) {
-                self.films = [];
+                self.films.length = 0;
             }
 
             if (self.people.length) {
-                self.people = [];
+                self.people.length = 0;
             }
 
             if (self.pilots.length) {
-                self.pilots = [];
+                self.pilots.length = 0;
             }
 
             if (self.planets.length) {
-                self.planets = [];
+                self.planets.length = 0;
             }
 
             if (self.species.length) {
-                self.species = [];
+                self.species.length = 0;
             }
 
             if (self.starships.length) {
-                self.starships = [];
+                self.starships.length = 0;
             }
 
             console.log('creating arrays for results.');
@@ -320,9 +320,9 @@ angular.module('swApp')
                         var cache_results = logicService.getCacheItem(url);
                         if (!cache_results) {
                             apiService.getDataUrl(url, function(response) {
-                                self.processCatUrl(category, response, self.homeworlds);
+                                self.processCatUrl(category, response.data, self.homeworlds);
                                 // Despite the category, Push the URL and result to the Cache
-                                logicService.setCacheItem(url, response);
+                                logicService.setCacheItem(url, response.data);
                             }, function(err) {
                                 console.log(err.status);
                             });
@@ -376,7 +376,7 @@ angular.module('swApp')
                             case (self.categories_with_array[4]):
                                 // planets
                                 console.log('in ' + self.categories_with_array[4].toString());
-                                self.processCatArray(category, self.people, result_item, a_length, a_index);
+                                self.processCatArray(category, self.planets, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[5]):
                                 // Residents
@@ -454,7 +454,6 @@ angular.module('swApp')
                     // pilots
                     console.log('in ' + self.categories_with_array[3].toString());
                     item_array = obj.pilots;
-
                     break;
                 case (self.categories_with_array[4]):
                     // planets
@@ -515,7 +514,6 @@ angular.module('swApp')
                             case (self.categories_with_array[3]):
                                 // pilots
                                 self.populate_array(self.pilots, trimmed_result, a_index, "pilots");
-
                                 break;
                             case (self.categories_with_array[4]):
                                 console.log('planets');
@@ -601,15 +599,16 @@ angular.module('swApp')
             });
         }
 
-        self.processCatUrl =  function(category, response, array_destination) {
+        self.processCatUrl =  function(category, obj, array_destination) {
+            console.log(obj);
 
             switch (category) {
                 case (self.categories_with_url[0]):
                     // homeworlds
-                    var homeworld_name = response.data.name;
+                    var homeworld_name = obj.name;
                     array_destination.push({
-                        name: response.data.name,
-                        url: response.data.url
+                        name: obj.name,
+                        url: obj.url
                     });
                     break;
             }

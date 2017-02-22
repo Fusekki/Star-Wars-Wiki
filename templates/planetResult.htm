@@ -8,7 +8,7 @@
             {{ r.name }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.diameter !== 'unknown' && r.diameter !== '0'">
         <div>
             Diameter:
         </div>
@@ -16,7 +16,7 @@
             {{ r.diameter }} km
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.rotation_period !== 'unknown'">
         <div>
             Day Length:
         </div>
@@ -24,7 +24,7 @@
             {{ r.rotation_period }} hrs
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.orbital_period !== 'unknown'">
         <div>
             Orbital Period:
         </div>
@@ -32,7 +32,7 @@
             {{ r.orbital_period }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.gravity !== 'unknown' || r.gravity !== 'N/A' ">
         <div>
             Gravity:
         </div>
@@ -40,7 +40,7 @@
             {{ r.gravity }} Gs
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.population !== 'unknown'">
         <div>
             Population:
         </div>
@@ -48,7 +48,7 @@
             {{ r.population }} avg.
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.climate !== 'unknown'">
         <div>
             Climate:
         </div>
@@ -64,7 +64,7 @@
             {{ r.terrain }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.surface_water !== 'unknown'">
         <div>
             Surface Water:
         </div>

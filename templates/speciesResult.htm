@@ -8,7 +8,7 @@
             {{ r.name }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.eye_colors !== 'n/a'">
         <div>
             Eye Colors:
         </div>
@@ -16,7 +16,7 @@
             {{ r.eye_colors }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.hair_colors !== 'n/a'">
         <div>
             Hair Colors:
         </div>
@@ -24,7 +24,7 @@
             {{ r.hair_colors }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.skin_colors !== 'n/a'">
         <div>
             Skin Colors:
         </div>
@@ -32,7 +32,7 @@
             {{ r.skin_colors }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.classification !== 'unknown'">
         <div>
             Classification:
         </div>
@@ -48,8 +48,7 @@
             {{ r.designation }}
         </div>
     </div>
-
-    <div class="r_row">
+    <div class="r_row" ng-show="homeworlds.length && homeworlds[$index].name !== 'unknown'">
         <div>
             Homeworld:
         </div>
@@ -57,7 +56,7 @@
             <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.language !== 'n/a'">
         <div>
             Language
         </div>
@@ -65,7 +64,7 @@
             {{ r.language }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.average_height !== 'n/a'">
         <div>
             Avg Height:
         </div>
@@ -73,7 +72,7 @@
             {{ r.average_height }} cm
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="r.average_lifespan !== 'unknown years'">
         <div>
             Avg Lifespan:
         </div>
