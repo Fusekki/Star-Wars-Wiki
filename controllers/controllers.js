@@ -167,4 +167,14 @@ angular.module('swApp')
             $location.path("/" + new_url_string);
         };
 
+        $scope.checkValue = function(receivedValue) {
+            console.log(receivedValue);
+
+            console.log(logicService.checkValue(receivedValue));
+
+            return logicService.checkValue(receivedValue);
+
+        };
+
+
     })

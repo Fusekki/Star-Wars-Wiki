@@ -15,6 +15,8 @@ angular.module('swApp')
 
         var categories = ["people", "films", "starships", "vehicles", "species", "planets"];
 
+        var values_to_not_show = ["unknown", "N/A", "n/a", "unknown years"];
+
         var capitalize = function(word) {
             return word.charAt(0).toUpperCase() + word.slice(1);
         };
@@ -72,6 +74,13 @@ angular.module('swApp')
 
             weightThis: function(mass) {
                 return convertToLbs(mass);
+            },
+
+            checkValue: function(returnedValue) {
+                if (values_to_not_show.includes(returnedValue)) {
+                    return false;
+                }
+                return true;
             }
 
         };
