@@ -40,7 +40,7 @@
             {{ r.crew }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.cargo_capacity)">
         <div>
             Cargo Capacity
         </div>
@@ -56,7 +56,7 @@
             {{ r.hyperdrive_rating }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.MGLT)">
         <div>
            Speed
         </div>
@@ -64,7 +64,7 @@
             {{ r.MGLT }} (in Megalights per hour)
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.max_atmosphering_speed)">
         <div>
             Max Speed:
         </div>
@@ -80,7 +80,7 @@
             {{ r.length }} meters
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.consumables)">
         <div>
             Consumables
         </div>
@@ -88,7 +88,7 @@
             {{ r.consumables }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.cost_in_credits)">
         <div>
             Cost:
         </div>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.passengers)">
         <div>
             Passenger Capacity (additional):
         </div>

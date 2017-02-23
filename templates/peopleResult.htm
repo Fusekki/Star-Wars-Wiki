@@ -8,7 +8,7 @@
             {{ r.name }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row"  ng-show="checkValue(r.eye_color)">
         <div>
             Eye Color:
         </div>
@@ -16,7 +16,7 @@
             {{ r.eye_color }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row"  ng-show="checkValue(r.hair_color)">
         <div>
             Hair Color:
         </div>
@@ -56,7 +56,7 @@
             <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.mass)">
         <div>
             Mass:
         </div>
@@ -72,7 +72,7 @@
             {{ r.skin_color }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row" ng-show="checkValue(r.birth_year)">
         <div>
             DOB:
         </div>

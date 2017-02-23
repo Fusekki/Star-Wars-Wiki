@@ -15,7 +15,7 @@ angular.module('swApp')
 
         var categories = ["people", "films", "starships", "vehicles", "species", "planets"];
 
-        var values_to_not_show = ["unknown", "N/A", "n/a", "unknown years"];
+        var values_to_not_show = ["unknown", "N/A", "n/a", "unknown years", "none"];
 
         var capitalize = function(word) {
             return word.charAt(0).toUpperCase() + word.slice(1);
@@ -109,12 +109,20 @@ angular.module('swApp')
 
         this.getData = function(callback, err) {
             $http.get('https://swapi.co/api/' + self.category + '/?search='+ self.search_term)
-                 .then(callback,err);
+                .then(callback,err)
+                .finally(function() {
+                        console.log('DONE LOADING');
+                    }
+                )
         }
 
         this.getDataUrl = function(url, callback, err) {
             $http.get(url)
-                .then(callback,err);
+                .then(callback,err)
+                .finally(function() {
+                    console.log('DONE LOADING');
+                }
+            )
         }
 
     })
@@ -509,47 +517,46 @@ angular.module('swApp')
                             case (self.categories_with_array[0]):
                                 console.log('characters');
                                 /// films
-                                self.populate_array(self.characters, trimmed_result, a_index, "characters");
+                                self.populate_array(self.characters, trimmed_result, a_index, self.categories_with_array[0]);
                                 break;
                             case (self.categories_with_array[1]):
                                 console.log('films');
                                 /// films
-                                self.populate_array(self.film_list, trimmed_result, a_index, "film");
+                                self.populate_array(self.film_list, trimmed_result, a_index, self.categories_with_array[1]);
                                 break;
                             case (self.categories_with_array[2]):
                                 // people
-                                self.populate_array(self.people, trimmed_result, a_index, "people");
+                                self.populate_array(self.people, trimmed_result, a_index, self.categories_with_array[2]);
                                 break;
                             case (self.categories_with_array[3]):
                                 // pilots
-                                self.populate_array(self.pilots, trimmed_result, a_index, "pilots");
+                                self.populate_array(self.pilots, trimmed_result, a_index, self.categories_with_array[3]);
                                 break;
                             case (self.categories_with_array[4]):
                                 console.log('planets');
                                 /// films
-                                self.populate_array(self.planets, trimmed_result, a_index, "planets");
+                                self.populate_array(self.planets, trimmed_result, a_index, self.categories_with_array[4]);
                                 break;
                             case (self.categories_with_array[5]):
                                 console.log('residents');
                                 /// films
-                                self.populate_array(self.people, trimmed_result, a_index, "people");
+                                self.populate_array(self.people, trimmed_result, a_index, self.categories_with_array[5]);
                                 break;
                             case (self.categories_with_array[6]):
                                 console.log('species');
                                 /// films
-                                self.populate_array(self.species, trimmed_result, a_index, "species");
+                                self.populate_array(self.species, trimmed_result, a_index, self.categories_with_array[6]);
                                 break;
                             case (self.categories_with_array[7]):
                                 console.log('starships');
                                 /// films
-                                self.populate_array(self.starships, trimmed_result, a_index, "starships");
+                                self.populate_array(self.starships, trimmed_result, a_index, self.categories_with_array[7]);
                                 break;
                             case (self.categories_with_array[8]):
                                 console.log('vehicles');
                                 /// films
-                                self.populate_array(self.vehicles, trimmed_result, a_index, "vehicles");
+                                self.populate_array(self.vehicles, trimmed_result, a_index, self.categories_with_array[8]);
                                 break;
-
                         }
 
                     }, function (err) {
@@ -561,46 +568,46 @@ angular.module('swApp')
                         case (self.categories_with_array[0]):
                             console.log('characters');
                             /// films
-                            self.populate_array(self.characters,cache_results, a_index, "characters");
+                            self.populate_array(self.characters,cache_results, a_index, self.categories_with_array[0]);
                             break;
                         case (self.categories_with_array[1]):
                             console.log('films');
                             /// films
-                            self.populate_array(self.film_list, cache_results, a_index, "film");
+                            self.populate_array(self.film_list, cache_results, a_index, self.categories_with_array[1]);
                             break;
                         case (self.categories_with_array[2]):
                             // people
-                            self.populate_array(self.people, cache_results, a_index, "people");
+                            self.populate_array(self.people, cache_results, a_index, self.categories_with_array[2]);
                             break;
                         case (self.categories_with_array[3]):
                             // pilots
-                            self.populate_array(self.pilots, cache_results, a_index, "pilots");
+                            self.populate_array(self.pilots, cache_results, a_index, self.categories_with_array[3]);
 
                             break;
                         case (self.categories_with_array[4]):
                             console.log('planets');
                             /// films
-                            self.populate_array(self.planets, cache_results, a_index, "planets");
+                            self.populate_array(self.planets, cache_results, a_index, self.categories_with_array[4]);
                             break;
                         case (self.categories_with_array[5]):
                             console.log('residents');
                             /// films
-                            self.populate_array(self.people, cache_results, a_index, "people");
+                            self.populate_array(self.people, cache_results, a_index, self.categories_with_array[5]);
                             break;
                         case (self.categories_with_array[6]):
                             console.log('species');
                             /// films
-                            self.populate_array(self.species, cache_results, a_index, "species");
+                            self.populate_array(self.species, cache_results, a_index, self.categories_with_array[6]);
                             break;
                         case (self.categories_with_array[7]):
                             console.log('starships');
                             /// films
-                            self.populate_array(self.starships, cache_results, a_index, "starships");
+                            self.populate_array(self.starships, cache_results, a_index, self.categories_with_array[7]);
                             break;
                         case (self.categories_with_array[8]):
                             console.log('vehicles');
                             /// films
-                            self.populate_array(self.vehicles, cache_results, a_index, "vehicles");
+                            self.populate_array(self.vehicles, cache_results, a_index, self.categories_with_array[8]);
                             break;
 
                     }
@@ -626,51 +633,51 @@ angular.module('swApp')
         self.populate_array = function(array, obj, idx, type) {
             console.log('in populate_array function.');
             switch(type) {
-                case "characters":
+                case self.categories_with_array[0]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
                     break;
-                case "film":
+                case self.categories_with_array[1]:
                     array[idx].push({
                         title: obj.title,
                         url: obj.url
                     });
                     break;
-                case "pilots":
+                case self.categories_with_array[2]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
                     break;
-                case "species":
+                case self.categories_with_array[3]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
                     console.log(self.species);
                     break;
-                case "people":
+                case self.categories_with_array[4]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
                     console.log(self.people);
                     break;
-                case "planets":
+                case self.categories_with_array[5]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
                     break;
-                case "starships":
+                case self.categories_with_array[6]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
                     break;
-                case "vehicles":
+                case self.categories_with_array[7]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url

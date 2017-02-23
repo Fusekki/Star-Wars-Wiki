@@ -19,7 +19,7 @@ $('.navbar-collapse ul li a').click(function() {
 
 
 //MODULE
-var swApp = angular.module('swApp', ['ui.bootstrap', 'ngRoute', 'ngResource']);
+var swApp = angular.module('swApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'angularSpinners']);
 // swApp.config(['$resourceProvider', function($resourceProvider) {
 //     // Don't strip trailing slashes from calculated URLs
 //     $resourceProvider.defaults.stripTrailingSlashes = false;

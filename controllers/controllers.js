@@ -150,27 +150,29 @@ angular.module('swApp')
             console.log('----------------------------------------------------------------------');
             console.log('we are going to call the api for ' + url);
             console.log(name);
-            var url_string = url.toString();
-            var end_slice = url_string.lastIndexOf('/');
-            var temp_slice = url_string.substr(0, end_slice);
-            console.log(temp_slice);
-            var new_end_slice = temp_slice.lastIndexOf('/')
-            var new_temp_slice = temp_slice.substr(0, new_end_slice);
-            console.log(new_temp_slice);
-            var new_new_end_slice = new_temp_slice.lastIndexOf('/') + 1;
-            var new_url_string = new_temp_slice.substr(new_new_end_slice, new_temp_slice.length);
-            console.log(new_url_string);
-            // var category =  url.splice(19, x);
-            logicService.category = new_url_string;
-            $scope.category = new_url_string;
+            // var url_string = url.toString();
+            var _slice = url.lastIndexOf('/');
+            var _url = url.substr(0, _slice);
+            var __slice = _url.lastIndexOf('/')
+            var __url = _url.substr(0, __slice);
+            var ___slice = __url.lastIndexOf('/') + 1;
+            var category = url.substr(0, _slice)
+                    .substr(0, __slice)
+                    .substr(___slice, __url.length);
+
+            console.log(category);
+
+
+            logicService.category = category;
+            $scope.category = category;
             logicService.search_term = name;
-            $location.path("/" + new_url_string);
+            $location.path("/" + category);
         };
 
         $scope.checkValue = function(receivedValue) {
-            console.log(receivedValue);
-
-            console.log(logicService.checkValue(receivedValue));
+            // console.log(receivedValue);
+            //
+            // console.log(logicService.checkValue(receivedValue));
 
             return logicService.checkValue(receivedValue);
 
