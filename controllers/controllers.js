@@ -51,7 +51,7 @@ angular.module('swApp')
         var self = this;
 
         var category = logicService.lowerCaseThis(logicService.category);
-        console.log(category);
+        // console.log(category);
 
         self.cache_results = null;
 
@@ -64,7 +64,7 @@ angular.module('swApp')
 
             var category = category;
 
-            console.log($scope.search_term);
+            // console.log($scope.search_term);
 
             self.cache_results = logicService.getCacheItem($scope.search_term);
 
@@ -77,7 +77,7 @@ angular.module('swApp')
                 // console.log('cache doesnt have item. making api call.');
                 apiService.getData(function(response) {
                     // console.log('in results function after api call.');
-                    console.log(response);
+                    // console.log(response);
                     $scope.results = response.data.results;
                     $scope.results_length = $scope.results.length;
                     // console.log($scope.results);
