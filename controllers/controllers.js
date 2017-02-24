@@ -4,7 +4,7 @@ angular.module('swApp')
 
     .controller('homeCtrl', function ($scope, $location, logicService) {
 
-        console.log('in home ctrl');
+        // console.log('in home ctrl');
 
         $scope.categories = logicService.getCategories();
 
@@ -25,7 +25,7 @@ angular.module('swApp')
     // This is the controller for the realms page
     .controller('searchCtrl', function ($scope, $location, logicService) {
 
-        console.log('in search ctrl');
+        // console.log('in search ctrl');
 
         $scope.category = logicService.category;
 
@@ -46,7 +46,7 @@ angular.module('swApp')
     // This is the controller for the People results
     .controller('resultCtrl', function ($scope, searchService, logicService, apiService, parseService, $location) {
 
-        console.log('in result controller.');
+        // console.log('in result controller.');
 
         var self = this;
 
@@ -57,9 +57,10 @@ angular.module('swApp')
 
         $scope.search_term = logicService.search_term;
 
+        $scope.loading = false;
 
         var triggerResults = function(category) {
-            console.log('in trigger results');
+            // console.log('in trigger results');
 
             var category = category;
 
@@ -73,29 +74,31 @@ angular.module('swApp')
                 apiService.search_term = $scope.search_term;
                 apiService.category = category;
                 self.container_size = [];
-                console.log('cache doesnt have item. making api call.');
+                // console.log('cache doesnt have item. making api call.');
                 apiService.getData(function(response) {
-                    console.log('in results function after api call.');
+                    // console.log('in results function after api call.');
                     console.log(response);
                     $scope.results = response.data.results;
                     $scope.results_length = $scope.results.length;
                     // console.log($scope.results);
                     // console.log(self.container_size);
                     logicService.setCacheItem($scope.search_term, $scope.results);
+                    // This is the only call to the parseService made.
                     parseService.parseResults($scope.results, category);
                 }, function(err) {
                     console.log(err.status);
                 });
             } else {
-                console.log('item is cached.  retrieving values from cache.');
-                // console.log(self.cache_results);
+                // console.log('item is cached.  retrieving values from cache.');
+                // This is the only call to the parseService made.
                 $scope.results = self.cache_results;
                 parseService.parseResults($scope.results, category);
+                logicService.setSpinner(false);
             }
         }
 
         $scope.$watch('search_term', function() {
-            console.log('ITEM CHANGE');
+            // console.log('ITEM CHANGE');
             $scope.search_term = logicService.search_term;
             triggerResults(category);
         });
@@ -132,9 +135,19 @@ angular.module('swApp')
             $scope.vehicles = parseService.vehicles;
         });
 
+        $scope.$watch(function () {
+            // console.log(logicService.getSpinner());
+            $scope.loading = logicService.getSpinner();
+            // return logicService.getSpinner();
+        // }, function (newVal, oldVal) {
+        //     if ( newVal !== oldVal ) {
+        //         $scope.loading = newVal;
+        //         console.log('value has changed for LOADING');
+        //     }
+        });
 
         $scope.$watch('films', function () {
-            console.log('film_list has changed');
+            // console.log('film_list has changed');
             $scope.films = parseService.film_list;
         }, true);
 
@@ -147,9 +160,9 @@ angular.module('swApp')
         };
 
         $scope.callUrl = function(name, url) {
-            console.log('----------------------------------------------------------------------');
-            console.log('we are going to call the api for ' + url);
-            console.log(name);
+            // console.log('----------------------------------------------------------------------');
+            // console.log('we are going to call the api for ' + url);
+            // console.log(name);
             // var url_string = url.toString();
             var _slice = url.lastIndexOf('/');
             var _url = url.substr(0, _slice);
@@ -160,7 +173,7 @@ angular.module('swApp')
                     .substr(0, __slice)
                     .substr(___slice, __url.length);
 
-            console.log(category);
+            // console.log(category);
 
 
             logicService.category = category;
@@ -170,10 +183,6 @@ angular.module('swApp')
         };
 
         $scope.checkValue = function(receivedValue) {
-            // console.log(receivedValue);
-            //
-            // console.log(logicService.checkValue(receivedValue));
-
             return logicService.checkValue(receivedValue);
 
         };
