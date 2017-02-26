@@ -2,6 +2,12 @@
 body {
     background-color: black;
     color: white;
+    /*background: #000 url(hoth-battle-collage.jpg) no-repeat;*/
+    /*background-size: cover;*/
+}
+
+.bg {
+    width: 100%;
 }
 
 .margin-top {
@@ -24,6 +30,50 @@ body {
     margin-bottom: 10px;
     border-radius: 2em;
     transition: all 2s;
+    /*position: absolute;*/
+}
+
+.categories li:nth-of-type(1) {
+    position: absolute;
+    right: 21px;
+    top: 129px;
+    height: 130px;
+    width: 69px;
+}
+.categories li:nth-of-type(2) {
+    position: absolute;
+    left: 151px;
+    top: 159px;
+    height: 30px;
+    width: 60px;
+}
+.categories li:nth-of-type(3) {
+    position: absolute;
+    left: 21px;
+    top: 42px;
+    height: 51px;
+    width: 114px;
+}
+.categories li:nth-of-type(4) {
+    position: absolute;
+    right: 22px;
+    top: 39px;
+    height: 89px;
+    width: 61px;
+}
+.categories li:nth-of-type(5) {
+    position: absolute;
+    top: 182px;
+    height: 70px;
+    width: 60px;
+    left: 41px;
+}
+.categories li:nth-of-type(6) {
+    position: absolute;
+    right: 118px;
+    top: 125px;
+    height: 35px;
+    width: 186px;
 }
 
 .categories li:hover {
@@ -125,3 +175,5 @@ body {
     top: 20%;
     left: calc(50% - 30px);
 }
+
+

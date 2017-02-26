@@ -736,14 +736,14 @@ angular.module('swApp')
                         name: obj.name,
                         url: obj.url
                     });
-                    console.log(self.species);
+                    // console.log(self.species);
                     break;
                 case self.categories_with_array[4]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
-                    console.log(self.people);
+                    // console.log(self.people);
                     break;
                 case self.categories_with_array[5]:
                     array[idx].push({

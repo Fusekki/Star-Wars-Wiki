@@ -20,12 +20,13 @@ angular.module('swApp')
         $scope.capitalize = function(word) {
             return logicService.capitalizeThis(word);
         };
+
     })
 
     // This is the controller for the realms page
     .controller('searchCtrl', function ($scope, $location, logicService) {
 
-        // console.log('in search ctrl');
+        console.log('in search ctrl');
 
         $scope.category = logicService.category;
 
@@ -66,7 +67,7 @@ angular.module('swApp')
 
             // console.log($scope.search_term);
 
-            self.cache_results = logicService.getCacheItem($scope.search_term);
+            self.cache_results = logicService.getCacheItem(category + ':' + $scope.search_term);
 
             // If the cache item does not exist, make the API call.
             if (!self.cache_results) {
@@ -82,7 +83,7 @@ angular.module('swApp')
                     $scope.results_length = $scope.results.length;
                     // console.log($scope.results);
                     // console.log(self.container_size);
-                    logicService.setCacheItem($scope.search_term, $scope.results);
+                    logicService.setCacheItem(category + ':' + $scope.search_term, $scope.results);
                     // This is the only call to the parseService made.
                     parseService.parseResults($scope.results, category);
                 }, function(err) {

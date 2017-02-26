@@ -24,3 +24,6 @@ var swApp = angular.module('swApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'a
 //     // Don't strip trailing slashes from calculated URLs
 //     $resourceProvider.defaults.stripTrailingSlashes = false;
 // }]);
+
+
+
