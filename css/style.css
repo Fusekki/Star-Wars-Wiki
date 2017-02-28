@@ -25,7 +25,6 @@ body {
 .categories li {
     padding: 2px;
     list-style: none;
-    border: 2px solid white;
     text-align: center;
     margin-bottom: 10px;
     border-radius: 2em;
@@ -40,6 +39,27 @@ body {
     height: 130px;
     width: 69px;
 }
+
+/*.categories li:nth-of-type(1):before {*/
+    /*opacity: 0;*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: -6px;*/
+    /*background-image: url(asset4.svg);*/
+    /*background-repeat: no-repeat;*/
+    /*transition:opacity 1s ease-in-out;*/
+    /*height: 100%;*/
+
+/*}*/
+
+.categories li:nth-of-type(1):hover:before,
+.categories li:nth-of-type(1):focus:before {
+    opacity: 1;
+}
+
 .categories li:nth-of-type(2) {
     position: absolute;
     left: 151px;
@@ -56,11 +76,34 @@ body {
 }
 .categories li:nth-of-type(4) {
     position: absolute;
-    right: 22px;
+    right: 29px;
     top: 39px;
     height: 89px;
-    width: 61px;
+    width: 45px;
+    transition: opacity 4s;
 }
+
+/*.categories li:nth-of-type(4):before {*/
+    /*opacity: 0;*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*background-image: url(at-at.svg);*/
+    /*background-repeat: no-repeat;*/
+    /*transition: opacity 1s ease-in-out;*/
+/*}*/
+.categories li:nth-of-type(4):hover:before,
+.categories li:nth-of-type(4):focus:before {
+    opacity: 1;
+}
+
+/*#categoryChoice:after {*/
+    /*content: 'Select a category';*/
+/*}*/
+
 .categories li:nth-of-type(5) {
     position: absolute;
     top: 182px;
@@ -68,6 +111,26 @@ body {
     width: 60px;
     left: 41px;
 }
+
+/*.categories li:nth-of-type(5):before {*/
+    /*opacity: 0;*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*background-image: url(r2.svg);*/
+    /*background-repeat: no-repeat;*/
+    /*transition: opacity 1s ease-in-out;*/
+
+/*}*/
+
+.categories li:nth-of-type(5):hover:before,
+.categories li:nth-of-type(5):focus:before {
+    opacity: 1;
+}
+
 .categories li:nth-of-type(6) {
     position: absolute;
     right: 118px;
@@ -76,10 +139,29 @@ body {
     width: 186px;
 }
 
-.categories li:hover {
-    background: yellow;
-    font-color: black;
+.cat-text {
+    text-align: center;
 }
+
+
+.hologram {
+    position: absolute;
+    width: 90%;
+    top: 41px;
+    left: 17px;
+    opacity: 0;
+}
+
+
+
+#categoryChoice {
+    /*text-align: center;*/
+}
+
+/*.categories li:hover {*/
+    /*background: yellow;*/
+    /*font-color: black;*/
+/*}*/
 
 
 .yellow_text {

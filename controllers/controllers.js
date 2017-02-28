@@ -21,6 +21,20 @@ angular.module('swApp')
             return logicService.capitalizeThis(word);
         };
 
+        $scope.highlightCategory = function(e) {
+            var text = $scope.capitalize(e.target.id);
+            console.log(text);
+            $("#categoryChoice").text(text);
+            // var someElement = document.getElementById('categoryChoice');
+            // someElement.text('New pseudo content here!');
+
+        }
+
+        $scope.leaveCategory = function() {
+            console.log('left');
+            $("#categoryChoice").text("Select a category:");
+        }
+
     })
 
     // This is the controller for the realms page
