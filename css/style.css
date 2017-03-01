@@ -1,3 +1,26 @@
+@-webkit-keyframes borderBlink {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: white
+    }
+}
+@keyframes borderBlink {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: white
+    }
+}
+
+.borderBlink{
+    border:1px dashed white;
+    -webkit-animation: borderBlink 1s step-end infinite;
+    animation: borderBlink 1s step-end infinite;
+    /* add 'border-color: transparent' if you wish no border to show initially */
+}
 
 body {
     background-color: black;
@@ -29,6 +52,7 @@ body {
     margin-bottom: 10px;
     border-radius: 2em;
     transition: all 2s;
+    /*border: 1px inset white;*/
     /*position: absolute;*/
 }
 
@@ -150,7 +174,13 @@ body {
     top: 41px;
     left: 17px;
     opacity: 0;
+    transition: opacity 1s;
 }
+
+.hologram_show {
+    opacity: 1;
+}
+
 
 
 

@@ -23,16 +23,17 @@ angular.module('swApp')
 
         $scope.highlightCategory = function(e) {
             var text = $scope.capitalize(e.target.id);
-            console.log(text);
+            var un_text = e.target.id;
             $("#categoryChoice").text(text);
-            // var someElement = document.getElementById('categoryChoice');
-            // someElement.text('New pseudo content here!');
+            var $el = $('#h_' + un_text);
+            $el.addClass('hologram_show');
+        };
 
-        }
-
-        $scope.leaveCategory = function() {
-            console.log('left');
+        $scope.leaveCategory = function(e) {
             $("#categoryChoice").text("Select a category:");
+            var un_text = e.target.id;
+            var $el = $('#h_' + un_text);
+            $el.removeClass('hologram_show');
         }
 
     })
