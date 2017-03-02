@@ -23,17 +23,13 @@ angular.module('swApp')
 
         $scope.highlightCategory = function(e) {
             var text = $scope.capitalize(e.target.id);
-            var un_text = e.target.id;
-            $("#categoryChoice").text(text);
-            var $el = $('#h_' + un_text);
-            $el.addClass('hologram_show');
+            $("#category_text").text(text);
+            $("#category_text").addClass('animated pulse yellow_text');
         };
 
         $scope.leaveCategory = function(e) {
-            $("#categoryChoice").text("Select a category:");
-            var un_text = e.target.id;
-            var $el = $('#h_' + un_text);
-            $el.removeClass('hologram_show');
+            $("#category_text").text("Select a category:");
+            $("#category_text").removeClass('animated pulse yellow_text');
         }
 
     })

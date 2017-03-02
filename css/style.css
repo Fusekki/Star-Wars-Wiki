@@ -1,36 +1,21 @@
-@-webkit-keyframes borderBlink {
-    from, to {
-        border-color: transparent
-    }
-    50% {
-        border-color: white
-    }
-}
-@keyframes borderBlink {
-    from, to {
-        border-color: transparent
-    }
-    50% {
-        border-color: white
-    }
-}
-
-.borderBlink{
-    border:1px dashed white;
-    -webkit-animation: borderBlink 1s step-end infinite;
-    animation: borderBlink 1s step-end infinite;
-    /* add 'border-color: transparent' if you wish no border to show initially */
-}
 
 body {
     background-color: black;
     color: white;
-    /*background: #000 url(hoth-battle-collage.jpg) no-repeat;*/
-    /*background-size: cover;*/
 }
 
 .bg {
     width: 100%;
+    height: 217px;
+}
+
+.black {
+    background: black;
+    opacity: 0.25;
+    height: 217px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .margin-top {
@@ -40,9 +25,10 @@ body {
 .categories {
     margin: 0 auto;
     max-width: 250px;
-
     column-count: 2;
     padding-left: 0;
+    height: 90%;
+
 }
 
 .categories li {
@@ -52,147 +38,23 @@ body {
     margin-bottom: 10px;
     border-radius: 2em;
     transition: all 2s;
-    /*border: 1px inset white;*/
-    /*position: absolute;*/
+    height: 100px;
+    background: white;
 }
 
-.categories li:nth-of-type(1) {
-    position: absolute;
-    right: 21px;
-    top: 129px;
-    height: 130px;
-    width: 69px;
+.category_img {
+    margin: 0 auto;
+    height: 100%;
 }
 
-/*.categories li:nth-of-type(1):before {*/
-    /*opacity: 0;*/
-    /*content: "";*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*right: -6px;*/
-    /*background-image: url(asset4.svg);*/
-    /*background-repeat: no-repeat;*/
-    /*transition:opacity 1s ease-in-out;*/
-    /*height: 100%;*/
-
-/*}*/
-
-.categories li:nth-of-type(1):hover:before,
-.categories li:nth-of-type(1):focus:before {
-    opacity: 1;
-}
-
-.categories li:nth-of-type(2) {
-    position: absolute;
-    left: 151px;
-    top: 159px;
-    height: 30px;
-    width: 60px;
-}
-.categories li:nth-of-type(3) {
-    position: absolute;
-    left: 21px;
-    top: 42px;
-    height: 51px;
-    width: 114px;
-}
-.categories li:nth-of-type(4) {
-    position: absolute;
-    right: 29px;
-    top: 39px;
-    height: 89px;
-    width: 45px;
-    transition: opacity 4s;
-}
-
-/*.categories li:nth-of-type(4):before {*/
-    /*opacity: 0;*/
-    /*content: "";*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*background-image: url(at-at.svg);*/
-    /*background-repeat: no-repeat;*/
-    /*transition: opacity 1s ease-in-out;*/
-/*}*/
-.categories li:nth-of-type(4):hover:before,
-.categories li:nth-of-type(4):focus:before {
-    opacity: 1;
-}
-
-/*#categoryChoice:after {*/
-    /*content: 'Select a category';*/
-/*}*/
-
-.categories li:nth-of-type(5) {
-    position: absolute;
-    top: 182px;
-    height: 70px;
-    width: 60px;
-    left: 41px;
-}
-
-/*.categories li:nth-of-type(5):before {*/
-    /*opacity: 0;*/
-    /*content: "";*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*background-image: url(r2.svg);*/
-    /*background-repeat: no-repeat;*/
-    /*transition: opacity 1s ease-in-out;*/
-
-/*}*/
-
-.categories li:nth-of-type(5):hover:before,
-.categories li:nth-of-type(5):focus:before {
-    opacity: 1;
-}
-
-.categories li:nth-of-type(6) {
-    position: absolute;
-    right: 118px;
-    top: 125px;
-    height: 35px;
-    width: 186px;
+.categories li:hover {
+    background: #809fff;
 }
 
 .cat-text {
+    /*color: #809fff;*/
     text-align: center;
 }
-
-
-.hologram {
-    position: absolute;
-    width: 90%;
-    top: 41px;
-    left: 17px;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-.hologram_show {
-    opacity: 1;
-}
-
-
-
-
-#categoryChoice {
-    /*text-align: center;*/
-}
-
-/*.categories li:hover {*/
-    /*background: yellow;*/
-    /*font-color: black;*/
-/*}*/
-
 
 .yellow_text {
     color: yellow;
@@ -208,17 +70,6 @@ body {
     margin-bottom: 0;
 }
 
-/*.flex_results * {*/
-    /*border: 1px solid red;*/
-/*}*/
-
-/*.flex_results div:nth-of-type(1) {*/
-     /*color: white;*/
-/*}*/
-
-/*.flex_results div:nth-of-type(2) {*/
-    /*color: yellow;*/
-/*}*/
 
 .hidden_element {
     visibility: hidden;
@@ -268,11 +119,6 @@ body {
     width: 75%;
 }
 
-/*.r_row div,*/
-/*.f_row div {*/
-
-    /*width: 25%;*/
-/*}*/
 
 .r_row .push_column_right:last-of-type {
     top-margin: -2em;

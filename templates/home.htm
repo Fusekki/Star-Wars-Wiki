@@ -3,25 +3,15 @@
         <span class="indent">
             <h4>Welcome to the Star Wars WIKI</h4>
         </span>
-
-        <img src="img/hoth-battle-collage.jpg" class="bg img-responsive" alt="Hoth Battle Collage">
-
-        <img src="img/luke.png" id="h_people" class="hologram bg" alt="Luke">
-        <img src="img/films.png" id="h_films" class="hologram bg" alt="Luke">
-        <img src="img/snowspeeder.png" id="h_starships" class="hologram bg" alt="Luke">
-        <img src="img/atat.png" id="h_vehicles" class="hologram bg" alt="Luke">
-        <img src="img/species.png" id="h_species" class="hologram bg" alt="Luke">
-        <img src="img/planet.png" id="h_planets" class="hologram bg" alt="Luke">
-        <!--<img src="img/hoth-battle-collage.jpg" class="bg img-responsive" alt="Hoth Battle Collage">-->
-        <!--<img src="img/hoth-battle-collage.jpg" class="bg img-responsive" alt="Hoth Battle Collage">-->
-        <!--<img src="img/hoth-battle-collage.jpg" class="bg img-responsive" alt="Hoth Battle Collage">-->
-        <!--<img src="img/hoth-battle-collage.jpg" class="bg img-responsive" alt="Hoth Battle Collage">-->
-        <!--<img src="img/hoth-battle-collage.jpg" class="bg img-responsive" alt="Hoth Battle Collage">-->
         <br>
         <ul class="categories">
-            <li ng-repeat="category in categories" ng-click="categoryChoice($event)" id="{{category}}" class="borderBlink" ng-mouseenter="highlightCategory($event)" ng-mouseleave="leaveCategory($event)"></li>
+            <li ng-repeat="category in categories" ng-click="categoryChoice($event)" id="{{category}}" ng-mouseenter="highlightCategory($event)" ng-mouseleave="leaveCategory($event)">
+                <img src="img/{{category}}.svg"  class="img-responsive category_img" alt="{{category}} picture">
+            </li>
+
         </ul>
         <div class="cat-text">
-        <span id="categoryChoice">Select a category:</span>
+        <span id="categoryChoice">
+            <h4 id="category_text">Select a category</h4></span>
         </div>
     </div>
