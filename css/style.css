@@ -4,6 +4,10 @@ body {
     color: white;
 }
 
+.subtitle,
+.title {
+    text-align: center;
+ }
 .bg {
     width: 100%;
     height: 217px;

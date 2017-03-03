@@ -73,7 +73,7 @@ angular.module('swApp')
                 api_count++;
                 if (api_count === 1) {
                     spinner = true;
-                    console.log('activating spinner');
+                    // console.log('activating spinner');
                 }
                 return true;
             },
@@ -82,7 +82,7 @@ angular.module('swApp')
                 api_count--;
                 if (!api_count) {
                     spinner = false;
-                    console.log('deactivating spinner');
+                    // console.log('deactivating spinner');
                     return false;
                 }
                 return true;
@@ -136,8 +136,10 @@ angular.module('swApp')
         self.search_term = logicService.search_term;
         apiService.category = logicService.lowerCaseThis(self.category);
         apiService.search_term = self.search_term;
+     })
 
-    })
+
+
 
     .service('apiService', function($http, logicService) {
 
@@ -159,10 +161,10 @@ angular.module('swApp')
                 .finally(function() {
                         // console.log('DONE LOADING');
                         if (logicService.decrementApiCount()) {
-                            console.log('successfully decremented API count.');
-                            console.log('API count now at '+ logicService.getApiCount());
+                            // console.log('successfully decremented API count.');
+                            // console.log('API count now at '+ logicService.getApiCount());
                         } else {
-                            console.log('API count is reached zero.  Trigger spinner to stop.');
+                            // console.log('API count is reached zero.  Trigger spinner to stop.');
                             // logicService.spinner = false;
                             logicService.setSpinner(false);
                         }
@@ -174,24 +176,24 @@ angular.module('swApp')
         this.getDataUrl = function(url, callback, err) {
             // console.log('starting API call');
             if (logicService.incrementApiCount()) {
-                console.log('succesfully increased API count.');
-                console.log('API total is now at ' + logicService.getApiCount() );
+                // console.log('succesfully increased API count.');
+                // console.log('API total is now at ' + logicService.getApiCount() );
             }
             $http.get(url)
                 .then(callback,err)
                 .finally(function() {
-                    // console.log('DONE LOADING');
-                    if (logicService.decrementApiCount()) {
-                        console.log('successfully decremented API count.');
-                        console.log('API count now at '+ logicService.getApiCount());
-                    } else {
-                        // console.log('API count is reached zero.  Trigger spinner to stop.');
-                        // logicService.spinner = false;
-                        // logicService.setSpinner(false);
-                    }
+                        // console.log('DONE LOADING');
+                        if (logicService.decrementApiCount()) {
+                            // console.log('successfully decremented API count.');
+                            // console.log('API count now at '+ logicService.getApiCount());
+                        } else {
+                            // console.log('API count is reached zero.  Trigger spinner to stop.');
+                            // logicService.spinner = false;
+                            // logicService.setSpinner(false);
+                        }
 
-                }
-            )
+                    }
+                )
         }
 
     })
@@ -206,7 +208,7 @@ angular.module('swApp')
 
         self.a_list = [];
 
-        console.log('in parseService');
+        // console.log('in parseService');
 
         self.categories_with_url = ["homeworld"];
 
@@ -766,5 +768,23 @@ angular.module('swApp')
             }
         }
     })
+
+    // uncomment this service to use it to easily build the arrays for the autocomplete
+    // .service('masterApiService', function($http) {
+    //     // console.log('in api service');
+    //     var self = this;
+    //
+    //
+    //     this.getAllData = function(callback, err) {
+    //         // var url = 'https://swapi.co/api/planets';
+    //         var url = "http://swapi.co/api/planets/?page=8";
+    //         console.log('starting API call');
+    //         console.log(url);
+    //         $http.get(url)
+    //             .then(callback,err)
+    //     }
+    //
+    // })
+
 
 
