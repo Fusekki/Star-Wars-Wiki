@@ -235,5 +235,15 @@ angular.module('swApp')
 
         };
 
+        $scope.checkTerm = function() {
+            if (!$scope.search_term) {
+                console.log('rturn true');
+                return false;
+            } else {
+                console.log('rturn false');
+                return true;
+            }
+        }
+
 
     })

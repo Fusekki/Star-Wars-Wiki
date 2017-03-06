@@ -293,10 +293,6 @@ angular.module('swApp')
                 return data;
             }
         };
-
-
-
-
     })
 
 
