@@ -1,6 +1,6 @@
 <div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
 <spinner name="loadSpinner" class="spinner" show="loading" img-src="img/Loading-GIF-Image-10.gif"></spinner>
-<div class="flex_results" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">Result {{ $index + 1 }} of {{ results.length }}
+<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">Result {{ $index + 1 }} of {{ results.length }}
     <div class="f_row">
         <div>
             Title
