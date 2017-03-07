@@ -164,13 +164,13 @@ body {
 .f_row div:nth-of-type(1) {
     /*color: white;*/
     color: rgba(4, 134, 226, 1);
-    width: 30%;
+    width: 25%;
 }
 .r_row div:nth-of-type(2),
 .f_row div:nth-of-type(2) {
     /*color: yellow;*/
     color: #0e98fb;
-    width: 70%;
+    width: 75%;
 }
 
 
