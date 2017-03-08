@@ -6,10 +6,16 @@
         </span>
         <br>
         <ul class="categories">
-            <li ng-repeat="category in categories" ng-click="categoryChoice($event)" id="{{category}}" ng-mouseenter="highlightCategory($event)" ng-mouseleave="leaveCategory($event)">
-                <img ng-src="img/{{ category }}.svg" class="img-responsive category_img" alt="{{category}} picture">
-            </li>
-
+            <div ng-repeat="category in categories">
+                <!--<div>-->
+                    <li ng-click="categoryChoice($event)" id="{{category}}" ng-mouseenter="highlightCategory($event)" ng-mouseleave="leaveCategory($event)">
+                        <img ng-src="img/{{ category }}.svg" class="img-responsive category_img" alt="{{category}} picture">
+                        <div class="text_overlay_wrapper">
+                          <span class="text_overlay">{{ category }}</span>
+                        </div>
+                    </li>
+                <!--</div>-->
+            </div>
         </ul>
         <div class="cat-text">
         <span id="categoryChoice">
