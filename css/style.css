@@ -8,6 +8,16 @@
 /*rgb 4,134,226*/
 /*rgba(4, 134, 226, 1)*/
 
+a,
+a:focus,
+a:hover,
+a:active {
+    color: hsla(325, 51%, 57%, 1);
+    font-weight: bold;
+}
+
+
+
 
 @font-face {
     font-family: "Distant Galaxy";
@@ -84,28 +94,21 @@ body {
     display: inherit;
 }
 
-/*.categories div div {*/
-    /*margin: 5px;*/
-    /*border: 2px solid #4c96ca;*/
-    /*border-radius: 0;*/
-    /*display: inherit;*/
-/*}*/
-
 
 .categories * li {
     padding: 5px;
     list-style: none;
     text-align: center;
     margin: 5px;
-    /*margin: 10px auto 10px;*/
-    /*margin: 0 auto;*/
-    /*border-radius: 2em;*/
     transition: transform 0.25s;
     height: 100px;
-    background: hsla(189, 59%, 79%, .75);
+    background: hsla(189, 59%, 79%, .4);
     border: 4px solid #4c96ca;
     width: 125px;
     float: left;
+    user-select: none;
+
+
 }
 
 .category_img {
@@ -114,21 +117,51 @@ body {
     transition: opacity .5s;
 }
 
-.categories li:hover {
-    /*background: #809fff;*/
-    transform: scale(1.05);
+.text_overlay {
+    text-align: center;
+    font-family: "Distant Galaxy", sans-serif;
+    font-size: 13px;
+    color: hsla(48, 89%, 82%, 1);
+    opacity: 0;
+    transition: opacity 0.5s;
+
+
+}
+
+.text_overlay_wrapper {
+    margin: 0 !important;
+    border: 0 !important;
+    position: relative;
+    top: -57px;
+    transition: all 0.5s;
+
+}
+
+.bg_underlay {
+    position: relative;
+    top: -109px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.75;
+    transition: opacity .25s
 }
 
 .categories li:hover img {
     opacity: 0.2;
 }
 
+.categories li:hover .text_overlay_wrapper {
+    transform: scale(1.5);
+}
+
 .categories li:hover * .text_overlay {
     opacity: 1;
 }
 
+
+
 .cat-text {
-    /*color: #809fff;*/
     text-align: center;
 }
 
@@ -148,6 +181,19 @@ body {
     text-align: left;
     margin-left: 10px;
     margin-bottom: 0;
+    border: 4px solid #4c96ca;
+    background: hsla(189, 59%, 79%, .4);
+    border-radius: 2em;
+    padding: 10px 5px;
+}
+
+.results_hdr {
+    color: white;
+    border: 4px solid #4c96ca;
+    background: hsla(189, 59%, 79%, .4);
+    margin: 2px 12px 6px 12px;
+    padding: 2px;
+
 }
 
 
@@ -158,7 +204,7 @@ body {
 
 .push_column_right {
     clear: left;
-    margin-left: 25%;
+    margin-left: 35%;
     position: relative;
     top: -2em;
 }
@@ -171,40 +217,41 @@ body {
     display: none;
 }
 
-.display_none::after {
-    clear: both;
-}
-
-
 .r_row {
     height: 1.5em;
-    flex-grow: 1;
+    /*flex-grow: 1;*/
+    display: inline;
 }
+
 
 .r_row div,
 .f_row div {
-    float: left;
-    overflow: hidden;
+    /*float: left;*/
+    /*overflow: hidden;*/
     padding: 3px 1.8%;
 }
 
+
 .r_row div:nth-of-type(1),
 .f_row div:nth-of-type(1) {
-    /*color: white;*/
-    color: rgba(4, 134, 226, 1);
-    width: 25%;
+    color: white;
+    float: left;
+    /*color: rgba(4, 134, 226, 1);*/
+    width: 35%;
 }
 .r_row div:nth-of-type(2),
 .f_row div:nth-of-type(2) {
-    /*color: yellow;*/
-    color: #0e98fb;
-    width: 75%;
+    color: yellow;
+    float: left;
+    /*color: #0e98fb;*/
+    width: 65%;
 }
 
 
 .r_row .push_column_right:last-of-type {
-    top-margin: -2em;
+    /*margin-top: -2em;*/
 }
+
 
 .dimmed_results {
     opacity: 0.15;
@@ -221,20 +268,13 @@ body {
     width: 100%;
 }
 
-.text_overlay {
-    text-align: center;
-    font-family: "Distant Galaxy", sans-serif;
-    font-size: 19px;
-    color: hsla(48, 89%, 82%, 1);
-    opacity: 0;
-
+.clear {
+    clear: both;
 }
 
-.text_overlay_wrapper {
-    margin: 0 !important;
-    border: 0 !important;
-    position: relative;
-    top: -57px;
-}
+
+
+
+
 
 

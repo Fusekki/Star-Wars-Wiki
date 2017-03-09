@@ -1,6 +1,7 @@
 <div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
 <spinner name="loadSpinner" class="spinner" show="loading" img-src="img/Loading-GIF-Image-10.gif"></spinner>
-<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">Result {{ $index + 1 }} of {{ results.length }}
+<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">
+    <span class="results_hdr">Result {{ $index + 1 }} of {{ results.length }}</span>
     <div class="r_row">
         <div>
             Name
@@ -25,7 +26,7 @@
             {{ r.starship_class }}
         </div>
     </div>
-    <div class="r_row">
+    <div class="f_row">
         <div>
             Manufacturer
         </div>
@@ -33,6 +34,7 @@
             {{ r.manufacturer }}
         </div>
     </div>
+    <!--<br class="clear" />-->
     <div class="r_row">
         <div>
             Crew
@@ -43,28 +45,31 @@
     </div>
     <div class="r_row" ng-show="checkValue(r.cargo_capacity)">
         <div>
-            Cargo Capacity
+            Cargo:
         </div>
         <div>
-            {{ r.cargo_capacity }}
+            {{ r.cargo_capacity }} kg
         </div>
     </div>
-    <div class="r_row">
+    <!--<br class="clear" ng-show="checkValue(r.cargo_capacity)" />-->
+    <div class="r_row" ng-show="checkValue(r.hyperdrive_rating)">
         <div>
-            Hyperdrive rating:
+            Hyperdrive:
         </div>
         <div>
             {{ r.hyperdrive_rating }}
         </div>
     </div>
+    <!--<br class="clear" ng-show="checkValue(r.hyperdrive_rating)"/>-->
     <div class="r_row" ng-show="checkValue(r.MGLT)">
         <div>
            Speed
         </div>
         <div>
-            {{ r.MGLT }} (in Megalights per hour)
+            {{ r.MGLT }} (Megalights per hour)
         </div>
     </div>
+    <!--<br class="clear" ng-show="checkValue(r.MGLT)" />-->
     <div class="r_row" ng-show="checkValue(r.max_atmosphering_speed)">
         <div>
             Max Speed:
@@ -73,7 +78,7 @@
             {{ r.max_atmosphering_speed }} (atmoshpheric)
         </div>
     </div>
-    <div class="r_row">
+    <div class="r_row"  ng-show="checkValue(r.length)">
         <div>
             Length
         </div>
@@ -105,10 +110,9 @@
             <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
         </div>
     </div>
-
     <div class="r_row" ng-show="checkValue(r.passengers)">
         <div>
-            Passenger Capacity (additional):
+            Passengers:
         </div>
         <div>
             {{ r.passengers }}

@@ -11,9 +11,15 @@ angular.module('swApp')
         $scope.categoryChoice = function(e) {
             if (e.target.parentElement.id) {
                 $scope.category = e.target.parentElement.id;
-            } else {
+                console.log(e.target.parentElement.id);
+            } else if (e.target.id) {
                 $scope.category = e.target.id;
+                console.log(e.target.id);
+            } else {
+                console.log(e.target.textContent);
+                $scope.category = e.target.textContent;
             }
+
             $location.path("/search");
         };
 
@@ -29,6 +35,7 @@ angular.module('swApp')
             var text = $scope.capitalize(e.target.id);
             $("#category_text").text(text);
             $("#category_text").addClass('animated pulse yellow_text');
+            console.log(text);
         };
 
         $scope.leaveCategory = function(e) {

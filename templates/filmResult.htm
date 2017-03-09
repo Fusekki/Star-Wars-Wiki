@@ -1,6 +1,7 @@
 <div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
 <spinner name="loadSpinner" class="spinner" show="loading" img-src="img/Loading-GIF-Image-10.gif"></spinner>
-<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">Result {{ $index + 1 }} of {{ results.length }}
+<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">
+    <span class="results_hdr">Result {{ $index + 1 }} of {{ results.length }}</span>
     <div class="f_row">
         <div>
             Title
@@ -9,7 +10,7 @@
             Star Wars Episode {{ r.episode_id}} : {{ r.title }}
         </div>
     </div>
-    <div class="f_row">
+    <div class="r_row">
         <div>
             Director:
         </div>
@@ -17,7 +18,7 @@
             {{ r.director }}
         </div>
     </div>
-    <div class="f_row">
+    <div class="r_row">
         <div>
             Producers:
         </div>
@@ -25,6 +26,7 @@
             {{ r.producer }}
         </div>
     </div>
+    <br class="clear" ng-show="r.producer.length > 26"/>
     <div class="f_row">
         <div>
             Opening Crawl:

@@ -303,7 +303,7 @@ angular.module('swApp')
 
         var categories = ["people", "films", "starships", "vehicles", "species", "planets"];
 
-        var values_to_not_show = ["unknown", "N/A", "n/a", "unknown years", "none"];
+        var values_to_not_show = ["unknown", "N/A", "n/a", "unknown years", "none", "0"];
 
         var api_count = null;
 
