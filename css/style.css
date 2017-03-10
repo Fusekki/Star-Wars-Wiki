@@ -43,6 +43,7 @@ a:active {
 body {
     background-color: black;
     color: white;
+    font-family: 'Lato', sans-serif;
 }
 
 .subtitle,
@@ -75,8 +76,6 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 0 auto;
-    column-count: 2;
     padding-left: 0;
     height: 380px;
     width: 306px;
@@ -84,8 +83,6 @@ body {
     border-radius: 1em;
     background: hsla(209, 69%, 30%, .75);
     margin-left: -8px;
-
-
 }
 .categories div {
     margin: 5px;
@@ -179,7 +176,6 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     text-align: left;
-    margin-left: 10px;
     margin-bottom: 0;
     border: 4px solid #4c96ca;
     background: hsla(189, 59%, 79%, .4);
@@ -270,6 +266,60 @@ body {
 
 .clear {
     clear: both;
+}
+
+
+/*iphone 5 LS*/
+
+@media only screen and (min-width: 568px) and (orientation: landscape) {
+
+    .categories {
+        flex-direction: row;
+        height: 100%;
+        width: 455px;
+        margin: 0 auto;
+
+    }
+
+}
+
+@media only screen and (min-width: 375px) and (orientation: portrait)
+{
+
+    .categories {
+        margin: 0 auto;
+
+
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (orientation: portrait)
+{
+    body {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 26px;
+    }
+    .categories {
+        margin: 0 auto;
+        width: 450px;
+    }
+
+    .categories li {
+        width: 197px;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (orientation: landscape)
+{
+    .margin-top {
+        margin-top: 10em;
+    }
+
 }
 
 

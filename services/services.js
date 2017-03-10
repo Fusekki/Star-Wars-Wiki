@@ -301,6 +301,8 @@ angular.module('swApp')
 
         // console.log('in logic service');
 
+        var window_sizes = ['xs', 'xs+', 'sm', 'sm+', 'med', 'med+', 'lrg', 'lrg+'];
+
         var categories = ["people", "films", "starships", "vehicles", "species", "planets"];
 
         var values_to_not_show = ["unknown", "N/A", "n/a", "unknown years", "none", "0"];
@@ -308,6 +310,7 @@ angular.module('swApp')
         var api_count = null;
 
         var spinner = null;
+
 
         var capitalize = function(word) {
             return word.charAt(0).toUpperCase() + word.slice(1);
@@ -336,9 +339,71 @@ angular.module('swApp')
             myCache.put(cache, items);
         };
 
+
+        // iPhone 5 portrait: min-device-width: 320px
+        // iPhone 5 landscape: 320px and orientation: landscape
+        //
+        // iPhone 6 portrait: min-device-width: 376px
+        // iPhone 6 landscape: 375px and orientation: landscape
+        //
+        // iPhone 6P portrait: min-device-width: 414px
+        // iPhone 6P landscape: 414px and orientation: landscape
+        //
+        // iPad portrait: min-device-width: 768px
+        // iPad landscape: 768px and orientation: landscape
+
+        var checkWindowSize = function() {
+            if (window.matchMedia("(min-width : 768px)").matches) {
+            // iPhone6P
+                if (window.matchMedia("orientation : portrait").matches) {
+                    return window_sizes[6];
+                }
+                else {
+                    return window_sizes[8]
+                }
+            }
+            else if (window.matchMedia("(min-width : 414px)").matches) {
+                // iPhone6P
+                if (window.matchMedia("orientation : portrait").matches) {
+                    return window_sizes[4];
+                }
+                else {
+                    return window_sizes[5]
+                }
+
+            }
+            else if (window.matchMedia("(min-width : 375px)").matches) {
+                // iPhone6
+                if (window.matchMedia("orientation: portrait").matches) {
+                    return window_sizes[2];
+                }
+                else {
+                    return window_sizes[3]
+                }
+
+            }
+            else if (window.matchMedia("(min-width: 320px)").matches) {
+               // iPhone5
+                if (window.matchMedia("orientation: portrait").matches) {
+                    return window_sizes[0];
+                }
+                else {
+                    return window_sizes[1]
+                }
+
+            }
+
+
+
+        };
+
         // Public variables
 
         return {
+
+            getWindowSize: function() {
+                return checkWindowSize();
+            },
 
             getSpinner: function() {
                 return spinner;

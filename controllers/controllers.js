@@ -81,16 +81,22 @@ angular.module('swApp')
             switch ($scope.category) {
                 case "films":
                     return $scope.entries.films;
+                    break;
                 case "people":
                     return $scope.entries.people;
+                    break;
                 case "starships":
                     return $scope.entries.starships;
+                    break;
                 case "vehicles":
                     return $scope.entries.vehicles;
+                    break;
                 case "species":
                     return $scope.entries.species;
+                    break;
                 case "planets":
                     return $scope.entries.planets;
+                    break;
             }
         };
 
@@ -100,6 +106,9 @@ angular.module('swApp')
 
     // This is the controller for the People results
     .controller('resultCtrl', function ($scope, searchService, logicService, apiService, parseService, $location) {
+
+
+        var screen_size = logicService.getWindowSize();
 
         // console.log('in result controller.');
 
@@ -244,13 +253,107 @@ angular.module('swApp')
 
         $scope.checkTerm = function() {
             if (!$scope.search_term) {
-                console.log('rturn true');
+                console.log('return true');
                 return false;
             } else {
-                console.log('rturn false');
+                console.log('return false');
                 return true;
             }
-        }
+        };
+
+        $scope.checkLineLength = function(line_length) {
+
+            console.log(line_length);
+
+            switch (screen_size) {
+                case "xs":
+                    console.log('xs screen size');
+                    if (line_length >= 26) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+                    // return $scope.entries.films;
+                    break;
+                case "xs+":
+                    console.log('xs+ screen size');
+                    if (line_length >= 50) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+                    // return $scope.entries.films;
+                    break;
+                case "sm":
+                    console.log('small screen size');
+                    if (line_length >= 32) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+                    break;
+                case "sm+":
+                    console.log('small+ screen size');
+                    if (line_length >= 68) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+                    break;
+                case "med":
+                    console.log('med screen size');
+                    if (line_length >= 40) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+
+                    break;
+                case "med+":
+                    console.log('med+ screen size');
+                    if (line_length >= 72) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+                    break;
+                case "lrg":
+                    console.log('lrg screen size');
+                    if (line_length >= 73) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+                    break;
+                case "lrg+":
+                    console.log('lrg+ screen size');
+                    if (line_length >= 104) {
+                        console.log('return true');
+                        return true
+                    } else {
+                        console.log('return false');
+                        return false;
+                    }
+                    break;
+
+            }
+
+
+        };
 
 
     })

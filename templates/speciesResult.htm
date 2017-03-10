@@ -18,7 +18,7 @@
             {{ r.eye_colors }}
         </div>
     </div>
-    <br class="clear" ng-show="r.eye_colors.length > 26"/>
+    <br class="clear" ng-show="checkLineLength(r.eye_colors.length)"/>
     <div class="r_row" ng-show="checkValue(r.hair_colors)">
         <div>
             Hair Colors:
@@ -27,7 +27,7 @@
             {{ r.hair_colors }}
         </div>
     </div>
-    <br class="clear" ng-show="r.hair_colors.length > 26"/>
+    <br class="clear" ng-show="checkLineLength(r.hair_colors.length)"/>
     <div class="r_row" ng-show="checkValue(r.skin_colors)">
         <div>
             Skin Colors:
@@ -36,7 +36,7 @@
             {{ r.skin_colors }}
         </div>
     </div>
-    <br class="clear" ng-show="r.skin_colors.length > 26"/>
+    <br class="clear" ng-show="checkLineLength(r.skin_colors.length)"/>
     <div class="r_row" ng-show="checkValue(r.classification)">
         <div>
             Classification:
