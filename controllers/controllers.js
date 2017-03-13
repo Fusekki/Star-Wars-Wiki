@@ -71,7 +71,7 @@ angular.module('swApp')
         $scope.submit = function() {
             if ($scope.category) {
                 var pathCategory = logicService.lowerCaseThis($scope.category);
-                $location.path("/" + pathCategory);
+                $location.path("/results");
                 // console.log($scope.search_term);
             }
 
@@ -110,11 +110,13 @@ angular.module('swApp')
 
         var screen_size = logicService.getWindowSize();
 
-        // console.log('in result controller.');
+
+
+        console.log('in result controller.');
 
         var self = this;
 
-        var category = logicService.lowerCaseThis(logicService.category);
+        $scope.category = logicService.lowerCaseThis(logicService.category);
         // console.log(category);
 
         self.cache_results = null;
@@ -122,6 +124,22 @@ angular.module('swApp')
         $scope.search_term = logicService.search_term;
 
         $scope.loading = false;
+
+        $scope.getTemplateUrl = function() {
+            console.log('here');
+            if ($scope.category == "films")
+                return 'templates/filmResult.htm';
+            if ($scope.category == "people")
+                return 'templates/peopleResult.htm';
+            if ($scope.category == "planet")
+                return 'templates/planetResult.htm';
+            if ($scope.category == "species")
+                return 'templates/speciesResult.htm';
+            if ($scope.category == "starships")
+                return 'templates/starshipResult.htm';
+            if ($scope.category == "vehicles")
+                return 'templates/vehicleResult.htm';
+        };
 
         var triggerResults = function(category) {
             // console.log('in trigger results');
@@ -164,7 +182,7 @@ angular.module('swApp')
         $scope.$watch('search_term', function() {
             // console.log('ITEM CHANGE');
             $scope.search_term = logicService.search_term;
-            triggerResults(category);
+            triggerResults($scope.category);
         });
 
         $scope.$watch('homeworlds', function () {
@@ -237,13 +255,16 @@ angular.module('swApp')
                     .substr(0, __slice)
                     .substr(___slice, __url.length);
 
-            // console.log(category);
+            console.log(category);
+            console.log(name);
 
 
             logicService.category = category;
             $scope.category = category;
             logicService.search_term = name;
-            $location.path("/" + category);
+            $scope.search_term = name;
+            // $location.path("/" + category);
+            $location.path("/results");
         };
 
         $scope.checkValue = function(receivedValue) {

@@ -1,110 +1,112 @@
-<div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>
-<spinner name="loadSpinner" class="spinner" show="loading" img-src="img/Loading-GIF-Image-10.gif"></spinner>
-<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">
-    <span class="results_hdr">Result {{ $index + 1 }} of {{ results.length }}</span>
-    <div class="r_row">
-        <div>
-            Name:
+<!--<div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>-->
+<!--<spinner name="loadSpinner" class="spinner" show="loading" img-src="img/Loading-GIF-Image-10.gif"></spinner>-->
+<!--<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">-->
+    <!--<span class="results_hdr">Result {{ $index + 1 }} of {{ results.length }}</span>-->
+    <div class="results_inner_wrapper">
+        <div class="r_row">
+            <div>
+                Name:
+            </div>
+            <div>
+                {{ r.name }}
+            </div>
         </div>
-        <div>
-            {{ r.name }}
+        <!--<div class="r_row" ng-show="r.diameter !== 'unknown' && r.diameter !== '0'">-->
+        <div class="r_row" ng-show="checkValue(r.diameter)">
+            <div>
+                Diameter:
+            </div>
+            <div>
+                {{ r.diameter }} km
+            </div>
+        </div>
+        <div class="r_row" ng-show="checkValue(r.rotation_period)">
+            <div>
+                Rotation:
+            </div>
+            <div>
+                {{ r.rotation_period }} hrs
+            </div>
+        </div>
+        <div class="r_row" ng-show="checkValue(r.orbital_period)">
+            <div>
+                Orbital Period:
+            </div>
+            <div>
+                {{ r.orbital_period }}
+            </div>
+        </div>
+        <div class="r_row" ng-show="checkValue(r.gravity)">
+            <div>
+                Gravity:
+            </div>
+            <div>
+                {{ r.gravity }} Gs
+            </div>
+        </div>
+        <div class="r_row" ng-show="checkValue(r.population)">
+            <div>
+                Population:
+            </div>
+            <div>
+                ~ {{ r.population }}
+            </div>
+        </div>
+        <div class="r_row" ng-show="checkValue(r.climate)">
+            <div>
+                Climate:
+            </div>
+            <div>
+                {{ r.climate }}
+            </div>
+        </div>
+        <div class="r_row">
+            <div>
+                Terrain:
+            </div>
+            <div>
+                {{ r.terrain }}
+            </div>
+        </div>
+        <div class="r_row" ng-show="checkValue(r.surface_water)">
+            <div>
+                Surface Water:
+            </div>
+            <div>
+                {{ r.surface_water }}% of planet's surface
+            </div>
+        </div>
+        <div class="r_row film_row_top" ng-repeat="p in people[$index]">
+            <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
+                Residents
+            </div>
+            <div class="push_column_right">
+                <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
+            </div>
+        </div>
+        <div class="r_row film_row_top" ng-repeat="f in films[$index]">
+            <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
+                Films:
+            </div>
+            <div class="push_column_right">
+                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
+            </div>
+        </div>
+        <div class="r_row move_up">
+            <div>
+                Created:
+            </div>
+            <div>
+                {{ convertToLocal(r.created) }}
+            </div>
+        </div>
+        <div class="r_row">
+            <div>
+                Edited:
+            </div>
+            <div>
+                {{ convertToLocal(r.edited) }}
+            </div>
         </div>
     </div>
-    <!--<div class="r_row" ng-show="r.diameter !== 'unknown' && r.diameter !== '0'">-->
-    <div class="r_row" ng-show="checkValue(r.diameter)">
-        <div>
-            Diameter:
-        </div>
-        <div>
-            {{ r.diameter }} km
-        </div>
-    </div>
-    <div class="r_row" ng-show="checkValue(r.rotation_period)">
-        <div>
-            Rotation:
-        </div>
-        <div>
-            {{ r.rotation_period }} hrs
-        </div>
-    </div>
-    <div class="r_row" ng-show="checkValue(r.orbital_period)">
-        <div>
-            Orbital Period:
-        </div>
-        <div>
-            {{ r.orbital_period }}
-        </div>
-    </div>
-    <div class="r_row" ng-show="checkValue(r.gravity)">
-        <div>
-            Gravity:
-        </div>
-        <div>
-            {{ r.gravity }} Gs
-        </div>
-    </div>
-    <div class="r_row" ng-show="checkValue(r.population)">
-        <div>
-            Population:
-        </div>
-        <div>
-            ~ {{ r.population }}
-        </div>
-    </div>
-    <div class="r_row" ng-show="checkValue(r.climate)">
-        <div>
-            Climate:
-        </div>
-        <div>
-            {{ r.climate }}
-        </div>
-    </div>
-    <div class="r_row">
-        <div>
-            Terrain:
-        </div>
-        <div>
-            {{ r.terrain }}
-        </div>
-    </div>
-    <div class="r_row" ng-show="checkValue(r.surface_water)">
-        <div>
-            Surface Water:
-        </div>
-        <div>
-            {{ r.surface_water }}% of planet's surface
-        </div>
-    </div>
-    <div class="r_row film_row_top" ng-repeat="p in people[$index]">
-        <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
-            Residents
-        </div>
-        <div class="push_column_right">
-            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
-        </div>
-    </div>
-    <div class="r_row film_row_top" ng-repeat="f in films[$index]">
-        <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
-            Films:
-        </div>
-        <div class="push_column_right">
-            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-        </div>
-    </div>
-    <div class="r_row move_up">
-        <div>
-            Created:
-        </div>
-        <div>
-            {{ convertToLocal(r.created) }}
-        </div>
-    </div>
-    <div class="r_row">
-        <div>
-            Edited:
-        </div>
-        <div>
-            {{ convertToLocal(r.edited) }}
-        </div>
-    </div>
-</div>
+<!--</div>-->
