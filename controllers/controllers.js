@@ -131,7 +131,7 @@ angular.module('swApp')
                 return 'templates/filmResult.htm';
             if ($scope.category == "people")
                 return 'templates/peopleResult.htm';
-            if ($scope.category == "planet")
+            if ($scope.category == "planets")
                 return 'templates/planetResult.htm';
             if ($scope.category == "species")
                 return 'templates/speciesResult.htm';
