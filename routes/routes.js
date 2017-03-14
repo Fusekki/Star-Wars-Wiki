@@ -14,10 +14,13 @@ swApp.config(function ($routeProvider) {
             controller: 'searchCtrl'
         })
         .when('/results', {
-            templateUrl: 'results.htm',
+            templateUrl: 'templates/results.htm',
             controller: 'resultCtrl'
         })
-
+        .when('/restart', {
+            templateUrl: 'templates/home.htm',
+            controller: 'homeCtrl'
+        })
         // .when('/people', {
         //     templateUrl: 'templates/peopleResult.htm',
         //     controller: 'resultCtrl'

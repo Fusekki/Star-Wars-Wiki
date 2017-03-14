@@ -20,10 +20,32 @@ $('.navbar-collapse ul li a').click(function() {
 
 //MODULE
 var swApp = angular.module('swApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'angularSpinners']);
-// swApp.config(['$resourceProvider', function($resourceProvider) {
-//     // Don't strip trailing slashes from calculated URLs
-//     $resourceProvider.defaults.stripTrailingSlashes = false;
-// }]);
+
+
+swApp.run(function ($rootScope, $route, $window, $location) {
+    var windowElement = angular.element($window);
+    windowElement.on('beforeunload', function (event) {
+
+        // do whatever you want in here before the page unloads.
+        // the following line of code will prevent reload or navigating away.
+        event.preventDefault();
+        return "The page will reload and all data will be lost";
+        // $location.path('/');
+    });
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        // console.log('$locationChangeSuccess changed!', new Date());
+        // $location.path('/');
+        // console.log(event);
+        // console.log(next);
+        // console.log(current);
+
+        if (!current) {
+            $location.path('/');
+        }
+
+
+    });
+});
 
 
 

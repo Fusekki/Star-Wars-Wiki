@@ -339,6 +339,10 @@ angular.module('swApp')
             myCache.put(cache, items);
         };
 
+        // var reloadPage = function() {
+        //     console.log('trigger reload');
+        // };
+
 
         // iPhone 5 portrait: min-device-width: 320px
         // iPhone 5 landscape: 320px and orientation: landscape
@@ -475,6 +479,9 @@ angular.module('swApp')
                 }
                 return true;
             }
+            // pageReload: function() {
+            //     reloadPage();
+            // }
 
         };
     })

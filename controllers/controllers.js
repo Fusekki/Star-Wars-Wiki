@@ -43,6 +43,7 @@ angular.module('swApp')
             $("#category_text").removeClass('animated pulse yellow_text');
         }
 
+
         // uncomment this function and add masterApiService to dependencies to get lists for autocomplete
         // masterApiService.getAllData(function(response) {
         //     console.log('in results function after api call.');
@@ -107,10 +108,7 @@ angular.module('swApp')
     // This is the controller for the People results
     .controller('resultCtrl', function ($scope, searchService, logicService, apiService, parseService, $location) {
 
-
         var screen_size = logicService.getWindowSize();
-
-
 
         console.log('in result controller.');
 
