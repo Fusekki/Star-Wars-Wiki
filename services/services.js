@@ -14,7 +14,7 @@ angular.module('swApp')
 
         var data =  {
             films: [
-                'A Bew Hope',
+                'A New Hope',
                 'The Empire Strikes Back',
                 'Return of the Jedi',
                 'The Phantom Menace',
@@ -764,6 +764,8 @@ angular.module('swApp')
                 var a_length = arr.length;
                 var a_index = i;
 
+                var current_count = a_index;
+
                 // let's define the film array based on the result's length.
                 // For each result, we need to check for specific fields that require additional API calls.
                 // These categories should be stored in an object.
@@ -771,6 +773,7 @@ angular.module('swApp')
                 self.categories_with_url.forEach(function(category) {
                     // console.log(category);
                     if (result_item[category]) {
+                        current_count++;
                         // make api call
                         var url = result_item[category];
                         // console.log(url);
@@ -795,6 +798,7 @@ angular.module('swApp')
                 self.categories_with_array.forEach(function(category) {
 
                     if (result_item[category]) {
+                        current_count++;
 
                         // 0 "characters",
                         // 1 "films",
@@ -863,10 +867,13 @@ angular.module('swApp')
 
                     }
                 });
-                // if (a_index === a_length - 1) {
-                // // console.log('detecting end of search!!!!!!!!!!!!!!!!!!!');
+                console.log(current_count);
+                console.log(a_length);
+                if (current_count == a_length - 1) {
+                console.log('detecting end of search!!!!!!!!!!!!!!!!!!!');
+
                 // self.new_search = true;
-                // }
+                }
             });
 
         }

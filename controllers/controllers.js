@@ -106,9 +106,36 @@ angular.module('swApp')
     })
 
     // This is the controller for the People results
-    .controller('resultCtrl', function ($scope, searchService, logicService, apiService, parseService, $location) {
+    .controller('resultCtrl', function ($rootScope, $scope, searchService, logicService, apiService, parseService, $location, $timeout) {
 
         var screen_size = logicService.getWindowSize();
+
+        var setBackgroundSize = function() {
+            console.log($('.results_inner_wrapper').height());
+            // console.log(height);
+
+        }
+
+        // $timeout(function(){
+        //     console.log("Running after the digest cycle");
+        //     setBackgroundSize();
+        // },0,false);
+
+        // function postDigest(callback){
+        //     var unregister = $rootScope.$watch(function(){
+        //         unregister();
+        //         $timeout(function(){
+        //             callback();
+        //             postDigest(callback);
+        //         },0,false);
+        //     });
+        // }
+        //
+        // postDigest(function(){
+        //     console.log('do something');
+        // })
+
+        // setBackgroundSize();
 
         console.log('in result controller.');
 
@@ -124,7 +151,7 @@ angular.module('swApp')
         $scope.loading = false;
 
         $scope.getTemplateUrl = function() {
-            console.log('here');
+            // console.log('here');
             if ($scope.category == "films")
                 return 'templates/filmResult.htm';
             if ($scope.category == "people")
@@ -174,6 +201,8 @@ angular.module('swApp')
                 $scope.results = self.cache_results;
                 parseService.parseResults($scope.results, category);
                 logicService.setSpinner(false);
+                console.log($('.results_inner_wrapper').height());
+
             }
         }
 
@@ -218,6 +247,16 @@ angular.module('swApp')
         $scope.$watch(function () {
             // console.log(logicService.getSpinner());
             $scope.loading = logicService.getSpinner();
+            if (!$scope.loading) {
+                console.log('done with spinner');
+                var height = $('.results_inner_wrapper').height() + 35;
+                // var width = $('.results_inner_wrapper').width() + 18;
+                $('.bg_result_underlay').css('top', '-' + height - 11  +'px');
+                $('.bg_result_underlay').height(height - 6 + 'px');
+                // $('.bg_result_underlay').width(width + 'px');
+
+
+            }
             // return logicService.getSpinner();
         // }, function (newVal, oldVal) {
         //     if ( newVal !== oldVal ) {
