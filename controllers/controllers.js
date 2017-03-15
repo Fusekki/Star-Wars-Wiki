@@ -201,7 +201,7 @@ angular.module('swApp')
                 $scope.results = self.cache_results;
                 parseService.parseResults($scope.results, category);
                 logicService.setSpinner(false);
-                console.log($('.results_inner_wrapper').height());
+                // console.log($('.results_inner_wrapper').height());
 
             }
         }
@@ -251,8 +251,9 @@ angular.module('swApp')
                 console.log('done with spinner');
                 var height = $('.results_inner_wrapper').height() + 35;
                 // var width = $('.results_inner_wrapper').width() + 18;
-                $('.bg_result_underlay').css('top', '-' + height - 11  +'px');
+                // $('.bg_result_underlay').css('top', '-' + height - 11  +'px');
                 $('.bg_result_underlay').height(height - 6 + 'px');
+                // $('.margin-top').height(height + 'px');
                 // $('.bg_result_underlay').width(width + 'px');
 
 
@@ -325,102 +326,94 @@ angular.module('swApp')
 
             switch (screen_size) {
                 case "xs":
-                    console.log('xs screen size');
+                    // console.log('xs screen size');
                     if (line_length >= 26) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
                     // return $scope.entries.films;
                     break;
                 case "xs+":
-                    console.log('xs+ screen size');
+                    // console.log('xs+ screen size');
                     if (line_length >= 50) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
                     // return $scope.entries.films;
                     break;
                 case "sm":
-                    console.log('small screen size');
+                    // console.log('small screen size');
                     if (line_length >= 32) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
                     break;
                 case "sm+":
-                    console.log('small+ screen size');
+                    // console.log('small+ screen size');
                     if (line_length >= 68) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
                     break;
                 case "med":
-                    console.log('med screen size');
+                    // console.log('med screen size');
                     if (line_length >= 40) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
 
                     break;
                 case "med+":
-                    console.log('med+ screen size');
+                    // console.log('med+ screen size');
                     if (line_length >= 72) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
                     break;
                 case "lrg":
-                    console.log('lrg screen size');
+                    // console.log('lrg screen size');
                     if (line_length >= 73) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
                     break;
                 case "lrg+":
-                    console.log('lrg+ screen size');
+                    // console.log('lrg+ screen size');
                     if (line_length >= 104) {
-                        console.log('return true');
+                        // console.log('return true');
                         return true
                     } else {
-                        console.log('return false');
+                        // console.log('return false');
                         return false;
                     }
                     break;
-
             }
-
-
         };
-
-
     })
 
     .controller('errorCtrl', function ($scope, $timeout, $location) {
-
         // console.log('in error ctrl');
-
-
         $scope.counter = 5;
         var stopped;
 

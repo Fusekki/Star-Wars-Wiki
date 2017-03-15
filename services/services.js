@@ -867,13 +867,13 @@ angular.module('swApp')
 
                     }
                 });
-                console.log(current_count);
-                console.log(a_length);
-                if (current_count == a_length - 1) {
-                console.log('detecting end of search!!!!!!!!!!!!!!!!!!!');
-
-                // self.new_search = true;
-                }
+                // console.log(current_count);
+                // console.log(a_length);
+                // if (current_count == a_length - 1) {
+                // console.log('detecting end of search!!!!!!!!!!!!!!!!!!!');
+                //
+                // // self.new_search = true;
+                // }
             });
 
         }
