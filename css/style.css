@@ -294,6 +294,10 @@ form {
     clear: both;
 }
 
+#redirection_notice {
+    line-height: 1em;
+}
+
 
 /*iphone 5 LS*/
 

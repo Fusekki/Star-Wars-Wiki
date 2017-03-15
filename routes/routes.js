@@ -21,11 +21,17 @@ swApp.config(function ($routeProvider) {
             templateUrl: 'templates/home.htm',
             controller: 'homeCtrl'
         })
-        // .when('/people', {
-        //     templateUrl: 'templates/peopleResult.htm',
-        //     controller: 'resultCtrl'
-        // })
-        //
+        .when('/error', {
+            templateUrl: 'templates/error.htm',
+            controller: 'errorCtrl'
+        })
+        .when('/home', {
+            templateUrl: 'templates/home.htm',
+            controller: 'homeCtrl'
+        })
+
+
+
         // .when('/planets', {
         //     templateUrl: 'templates/planetResult.htm',
         //     controller: 'resultCtrl'

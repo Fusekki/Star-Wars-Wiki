@@ -376,3 +376,30 @@ angular.module('swApp')
 
 
     })
+
+    .controller('errorCtrl', function ($scope, $timeout, $location) {
+
+        // console.log('in error ctrl');
+
+
+        $scope.counter = 5;
+        var stopped;
+
+        var countdown = function() {
+            stopped = $timeout(function() {
+                // console.log($scope.counter);
+                $scope.counter--;
+                if ($scope.counter == 0) {
+                    $('#redirection_notice').addClass('animated fadeIn');
+                    $timeout(function() {
+                            $location.path('/');
+                        }, 1000);
+                } else
+                    countdown();
+            }, 1000);
+        };
+
+        countdown();
+
+
+        })
