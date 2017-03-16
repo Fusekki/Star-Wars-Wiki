@@ -8,6 +8,28 @@
 /*rgb 4,134,226*/
 /*rgba(4, 134, 226, 1)*/
 
+/*Layout details*/
+
+/*.margin-top is 6em height*/
+
+/*.marin-top contents = 20px height*/
+
+/*flex results 2em top margin*/
+
+/*results_inner_wrapper 18px for top padding and border*/
+
+
+
+
+/*6em*/
+/*20px*/
+/*2em*/
+/*2em*/
+
+/*18px*/
+
+
+
 a,
 a:focus,
 a:hover,
@@ -303,16 +325,77 @@ form {
     line-height: 1em;
 }
 
+
+/*first bg image*/
+/*margin-top : 6em*/
+/*results text : 20px*/
+/*flex result margin top 2em*/
+/*flex result border top 4px*/
+/*hdr 40px total*/
+/*flex result padding 10px top 10px bottom*/
+
+
+
+
+/*.marin-top contents = 20px height*/
+
+/*flex results 2em top margin + 10px padding + 4px border*/
+
+/*hdr 32px*/
+
+
+
+
+/*results_inner_wrapper 18px for top padding and border*/
+
 .bg_result_underlay {
     position: absolute;
     z-index: -1;
     width: 93%;
     opacity: 0.1;
-    margin-left: 10px;
+    margin-left: 2px;
     border-radius: 1em;
     height: 0;
-    top: 190px;
+    /*top: 190px;*/
+    /*top: calc(6em + 20px + 2em + 40px);*/
+
+    /*top: calc(6em + 20px + 2em + 40px + 18px);*/
+    top: calc(6em + 20px + 2em + 4px + 40px + 10px);
+
 }
+
+/*.bg result underlay height (297.59)*/
+
+
+/*4 px +  1em for bottom padding and bottom margin*/
+/*.flex results  has margin 2em height*/
+/*hdr has height 44px*/
+/*result_inner_wrapper 4px* + 1em
+
+
+
+/*flex results 2em top margin*/
+/*flex_result 10px padding*/
+/*flex result 4px border*/
+
+
+/*results_inner_wrapper 18px for top padding and border*/
+
+/*.flex_results .bg_result_underlay:not(nth-of-type(1)) {*/
+    /*opacity : 1;*/
+    /*top: calc(6em + 20px + 2em + 40px + 18px + 344px + 4px + 2em + 10px + 40px);*/
+
+    /*!*margin-top: 6em*!*/
+    /*!*margin-top contents 20px;*!*/
+    /*!*flex results top margin 2em*!*/
+   /*!*results_inner_wrapper 18px*!*/
+    /*!*height of previous background: 297.59px*!*/
+    /*!*flex-results 14px bottom*!*/
+    /*!*flex-results top margin 2em*!*/
+    /*!*results hdr 40px;*!*/
+
+/*}*/
+
 
 
 /*iphone 5 LS*/

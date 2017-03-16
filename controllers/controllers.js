@@ -249,21 +249,24 @@ angular.module('swApp')
             $scope.loading = logicService.getSpinner();
             if (!$scope.loading) {
                 console.log('done with spinner');
-                var height = $('.results_inner_wrapper').height() + 35;
-                // var width = $('.results_inner_wrapper').width() + 18;
-                // $('.bg_result_underlay').css('top', '-' + height - 11  +'px');
-                $('.bg_result_underlay').height(height - 6 + 'px');
-                // $('.margin-top').height(height + 'px');
-                // $('.bg_result_underlay').width(width + 'px');
+                // Using .css('height') vs height().  .css includes border and padding.
+                var height = $('.results_inner_wrapper').css('height');
+                console.log(height);
+                $('.bg_result_underlay:first-of-type').height(height);
+                console.log($scope.results_length);
+                // Need to cycle through each result and do calculations
+                for (var x = 2; x <= $scope.results_length; x++) {
 
+                    console.log($('.results_inner_wrapper:nth-of-type(' + x + ')'));
+                    console.log( $('.bg_result_underlay:nth-of-type(' + x + ')').height(height));
+                    // need to perform calculations based off the number of results.
+                    // get height of next result
+                    var h = $('.results_inner_wrapper:nth-of-type(x)').css('height');
+                    // Apply height to bg element.
+                    $('.bg_result_underlay:nth-of-type(x)').height(height);
+                }
 
             }
-            // return logicService.getSpinner();
-        // }, function (newVal, oldVal) {
-        //     if ( newVal !== oldVal ) {
-        //         $scope.loading = newVal;
-        //         console.log('value has changed for LOADING');
-        //     }
         });
 
         $scope.$watch('films', function () {
