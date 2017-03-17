@@ -303,7 +303,7 @@ form {
 
 
 .dimmed_results {
-    opacity: 0.15;
+    opacity: 0.1;
 }
 
 .spinner {
@@ -410,6 +410,10 @@ form {
 
     }
 
+    .bg_result_underlay {
+        width: 96%;
+    }
+
 }
 
 /*iPhone 6 Portrait*/
@@ -424,6 +428,22 @@ form {
     .flex_results {
         width: 95%;
         margin: 2em auto;
+    }
+
+    .bg_result_underlay {
+        width: 89%;
+    }
+
+}
+
+/*iPhone 6 LS*/
+
+@media only screen and (min-width: 375px) and (orientation: landscape)
+{
+
+
+    .bg_result_underlay {
+        width: 97%;
     }
 
 }
@@ -449,6 +469,10 @@ form {
     form {
         width: 50%;
     }
+
+    .bg_result_underlay {
+        width: 92%;
+    }
 }
 
 @media only screen and (min-width: 768px) and (orientation: landscape)
@@ -457,8 +481,16 @@ form {
         margin-top: 10em;
     }
 
+    .bg_result_underlay {
+        width: 98%;
+        top: calc(10em + 20px + 2em + 4px + 40px + 10px);
+    }
+}
 
-
+@media only screen and (min-width: 769px) {
+    .bg_result_underlay {
+        width: 99%;
+    }
 }
 
 

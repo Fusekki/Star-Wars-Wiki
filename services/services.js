@@ -363,7 +363,7 @@ angular.module('swApp')
                     return window_sizes[6];
                 }
                 else {
-                    return window_sizes[8]
+                    return window_sizes[7]
                 }
             }
             else if (window.matchMedia("(min-width : 414px)").matches) {

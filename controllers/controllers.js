@@ -255,15 +255,69 @@ angular.module('swApp')
                 $('.bg_result_underlay:first-of-type').height(height);
                 console.log($scope.results_length);
                 // Need to cycle through each result and do calculations
-                for (var x = 2; x <= $scope.results_length; x++) {
-
-                    console.log($('.results_inner_wrapper:nth-of-type(' + x + ')'));
-                    console.log( $('.bg_result_underlay:nth-of-type(' + x + ')').height(height));
+                for (var x = 0; x <= $scope.results_length - 1; x++) {
                     // need to perform calculations based off the number of results.
                     // get height of next result
-                    var h = $('.results_inner_wrapper:nth-of-type(x)').css('height');
+                    console.log(screen_size);
+                    switch (screen_size) {
+                        case 'xs':
+                        case 'xs+':
+                        case 'sm':
+                        case 'sm+':
+                        case 'med':
+                        case 'med+':
+                        case 'lrg':
+                            console.log('smaller');
+                            var h = $('.results_inner_wrapper').eq(x).css('height');
+                            var top = $('.bg_result_underlay').eq(x).css('top');
+                            // var top = $('.bg_result_underlay').eq(x).offset();
+                            var h_new = $('.results_inner_wrapper').eq(x + 1).css('height');
+
+                            // console.log(h);
+                            // console.log(top);
+                            // console.log($('.bg_result_underlay').eq(x + 1));
+                            var new_top = top + ' + ' + h + ' + 14px + 2em + 14px + 40px';
+                            // console.log(new_top);
+                            $('.bg_result_underlay').eq(x + 1).css('top', 'calc(' + new_top + ')');
+                            $('.bg_result_underlay').eq(x + 1).css('height', h_new);
+                            break;
+                        case 'lrg+':
+                            console.log('bigger');
+                            var h = $('.results_inner_wrapper').eq(x).css('height');
+                            var top = $('.bg_result_underlay').eq(x).css('top');
+                            // var top = $('.bg_result_underlay').eq(x).offset();
+                            var h_new = $('.results_inner_wrapper').eq(x + 1).css('height');
+
+                            // console.log(h);
+                            // console.log(top);
+                            // console.log($('.bg_result_underlay').eq(x + 1));
+                            var new_top = top + ' + ' + h + ' + 14px + 2em + 14px + 40px';
+                            // console.log(new_top);
+                            $('.bg_result_underlay').eq(x + 1).css('top', 'calc(' + new_top + ')');
+                            $('.bg_result_underlay').eq(x + 1).css('height', h_new);
+                            break;
+
+                    }
+
+                    // calculation:
+
+                    /*!*margin-top: 6em*!*/
+                    /*!*margin-top contents 20px;*!*/
+                    /*!*flex results top margin 2em*!*/
+                    /*!*results_inner_wrapper 18px*!*/
+                    /*!*height of previous background: 297.59px*!*/
+
+                    // previous item height
+                    //
+                    /*!*flex-results 14px bottom*!*/
+                    // +10 px padding
+                    /*!*flex-results top margin 2em*!*/
+                    /*!*results hdr 40px;*!*/
+
                     // Apply height to bg element.
-                    $('.bg_result_underlay:nth-of-type(x)').height(height);
+                    // $('.bg_result_underlay').eq(x).height(height);
+                    //
+                    // 14px + 2em + 14px + 40px
                 }
 
             }
