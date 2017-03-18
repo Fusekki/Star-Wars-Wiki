@@ -311,6 +311,19 @@ angular.module('swApp')
 
         var spinner = null;
 
+        // Start Debug
+        // Set to false to hide debugging window.
+        var debug = true;
+
+        var orientation = screen.orientation.type;
+
+        var checkScreenPixels = function() {
+            return screen.width + ' x ' + screen.height;
+
+        };
+
+        // end debugging tools.
+
 
         var capitalize = function(word) {
             return word.charAt(0).toUpperCase() + word.slice(1);
@@ -339,6 +352,14 @@ angular.module('swApp')
             myCache.put(cache, items);
         };
 
+        // Listen for orientation changes
+        window.addEventListener("orientationchange", function() {
+            // Announce the new orientation number
+            orientation = screen.orientation.type;
+            console.log(orientation);
+            // alert(screen.orientation);
+        }, false);
+
         // var reloadPage = function() {
         //     console.log('trigger reload');
         // };
@@ -355,6 +376,7 @@ angular.module('swApp')
         //
         // iPad portrait: min-device-width: 768px
         // iPad landscape: 768px and orientation: landscape
+
 
         var checkWindowSize = function() {
             if (window.matchMedia("(min-width : 768px)").matches) {
@@ -405,9 +427,25 @@ angular.module('swApp')
 
         return {
 
+            // Debug area
+
+            getOrientation: function() {
+              return orientation;
+            },
+
+            isDebug: function() {
+                return debug;
+            },
+
+            getScreenPixels: function() {
+                return checkScreenPixels();
+            },
+
             getWindowSize: function() {
                 return checkWindowSize();
             },
+
+            // End Debug area.
 
             getSpinner: function() {
                 return spinner;

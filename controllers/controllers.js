@@ -4,6 +4,30 @@ angular.module('swApp')
 
     .controller('homeCtrl', function ($scope, $location, logicService) {
 
+        // Debug Tools Area
+
+
+        $scope.$watch('debug', function() {
+            $scope.debug = logicService.isDebug();
+        });
+
+
+        $scope.$watch('screen_size', function() {
+            $scope.screen_size = logicService.getWindowSize();
+        });
+
+
+        $scope.$watch('screen_pixels', function() {
+            $scope.screen_pixels = logicService.getScreenPixels();
+        });
+
+
+        $scope.$watch('screen_orientation', function() {
+            $scope.screen_orientation = logicService.getOrientation();
+        });
+
+        // End Debug tools.
+
         // console.log('in home ctrl');
 
         $scope.categories = logicService.getCategories();
@@ -108,34 +132,10 @@ angular.module('swApp')
     // This is the controller for the People results
     .controller('resultCtrl', function ($rootScope, $scope, searchService, logicService, apiService, parseService, $location, $timeout) {
 
-        var screen_size = logicService.getWindowSize();
-
         var setBackgroundSize = function() {
             console.log($('.results_inner_wrapper').height());
             // console.log(height);
-
         }
-
-        // $timeout(function(){
-        //     console.log("Running after the digest cycle");
-        //     setBackgroundSize();
-        // },0,false);
-
-        // function postDigest(callback){
-        //     var unregister = $rootScope.$watch(function(){
-        //         unregister();
-        //         $timeout(function(){
-        //             callback();
-        //             postDigest(callback);
-        //         },0,false);
-        //     });
-        // }
-        //
-        // postDigest(function(){
-        //     console.log('do something');
-        // })
-
-        // setBackgroundSize();
 
         console.log('in result controller.');
 
@@ -205,6 +205,7 @@ angular.module('swApp')
 
             }
         }
+
 
         $scope.$watch('search_term', function() {
             // console.log('ITEM CHANGE');
