@@ -27,10 +27,10 @@ swApp.run(function ($rootScope, $route, $window, $location) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         console.log(next.$$route.controller);
         if (next.$$route.controller == "homeCtrl" || next.$$route.controller == undefined) {
-            console.log('here');
-            console.log(next);
-            console.log(event);
-            console.log(current);
+            // console.log('here');
+            // console.log(next);
+            // console.log(event);
+            // console.log(current);
             $location.path('/');
         } else if (!current) {
             $location.path('/error');

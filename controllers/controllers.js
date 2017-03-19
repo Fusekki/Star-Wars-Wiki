@@ -2,13 +2,13 @@
 
 angular.module('swApp')
 
-    .controller('homeCtrl', function ($scope, $location, logicService) {
+    .controller('homeCtrl', function ($scope, $location, logicService, debugService) {
 
         // Debug Tools Area
 
 
         $scope.$watch('debug', function() {
-            $scope.debug = logicService.isDebug();
+            $scope.debug = debugService.isDebug();
         });
 
 
@@ -18,12 +18,24 @@ angular.module('swApp')
 
 
         $scope.$watch('screen_pixels', function() {
-            $scope.screen_pixels = logicService.getScreenPixels();
+            $scope.screen_pixels = debugService.getScreenPixels();
         });
 
 
-        $scope.$watch('screen_orientation', function() {
+        // $scope.$watch('screen_orientation', function() {
+        //     $scope.screen_orientation = logicService.getOrientation();
+        // });
+
+        $scope.$on('orientation_change', function() {
+            console.log('in broadcast');
             $scope.screen_orientation = logicService.getOrientation();
+            // console.log(logicService.getOrientation());
+            // console.log($scope.screen_orientation);
+            $scope.screen_size = logicService.getWindowSize();
+            // console.log($scope.screen_size);
+            $scope.screen_pixels = debugService.getScreenPixels();
+            // Need to add digest otherwise the view does not update
+            $scope.$digest();
         });
 
         // End Debug tools.
@@ -130,7 +142,10 @@ angular.module('swApp')
     })
 
     // This is the controller for the People results
-    .controller('resultCtrl', function ($rootScope, $scope, searchService, logicService, apiService, parseService, $location, $timeout) {
+    .controller('resultCtrl', function ($rootScope, $scope, searchService, logicService, apiService, parseService, $location, debugService) {
+
+
+        var screen_size = logicService.getWindowSize();
 
         var setBackgroundSize = function() {
             console.log($('.results_inner_wrapper').height());
@@ -187,7 +202,7 @@ angular.module('swApp')
                     // console.log(response);
                     $scope.results = response.data.results;
                     $scope.results_length = $scope.results.length;
-                    // console.log($scope.results);
+                    console.log($scope.results);
                     // console.log(self.container_size);
                     logicService.setCacheItem(category + ':' + $scope.search_term, $scope.results);
                     // This is the only call to the parseService made.
@@ -331,6 +346,10 @@ angular.module('swApp')
 
         $scope.convertToLocal = function(some_date) {
             return logicService.localizeThis(some_date);
+        };
+
+        $scope.convertToLocalDate = function(some_date) {
+            return logicService.localizeThisDate(some_date);
         };
 
         $scope.convertWeight = function(mass) {

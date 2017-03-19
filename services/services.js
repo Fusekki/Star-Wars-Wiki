@@ -296,7 +296,7 @@ angular.module('swApp')
     })
 
 
-    .service('logicService', function (myCache) {
+    .service('logicService', function (myCache, $rootScope) {
         var self = this;
 
         // console.log('in logic service');
@@ -311,16 +311,18 @@ angular.module('swApp')
 
         var spinner = null;
 
+        self.orientation = screen.orientation.angle;
+
         // Start Debug
         // Set to false to hide debugging window.
-        var debug = true;
-
-        var orientation = screen.orientation.type;
-
-        var checkScreenPixels = function() {
-            return screen.width + ' x ' + screen.height;
-
-        };
+        // var debug = true;
+        //
+        // var orientation = screen.orientation.type;
+        //
+        // var checkScreenPixels = function() {
+        //     return screen.width + ' x ' + screen.height;
+        //
+        // };
 
         // end debugging tools.
 
@@ -335,6 +337,10 @@ angular.module('swApp')
 
         var convertToLocal = function(some_date) {
             return new Date(some_date).toLocaleString().replace(/(.*)\D\d+/, '$1');
+        };
+
+        var convertToLocalDate = function(some_date) {
+            return new Date(some_date).toLocaleDateString();
         };
 
         var convertToLbs = function (mass) {
@@ -353,12 +359,21 @@ angular.module('swApp')
         };
 
         // Listen for orientation changes
-        window.addEventListener("orientationchange", function() {
+
+        $(window).on("orientationchange",function(){
             // Announce the new orientation number
-            orientation = screen.orientation.type;
-            console.log(orientation);
-            // alert(screen.orientation);
-        }, false);
+            self.orientation = screen.orientation.angle;
+            console.log(self.orientation);
+            $rootScope.$broadcast('orientation_change');
+        });
+
+        // window.addEventListener("orientationchange", function() {
+        //     // Announce the new orientation number
+        //     self.orientation = screen.orientation.angle;
+        //     console.log(self.orientation);
+        //     $rootScope.$broadcast('orientation_change');
+        //     // alert(screen.orientation);
+        // });
 
         // var reloadPage = function() {
         //     console.log('trigger reload');
@@ -430,17 +445,17 @@ angular.module('swApp')
             // Debug area
 
             getOrientation: function() {
-              return orientation;
+              return screen.orientation.angle;
             },
-
-            isDebug: function() {
-                return debug;
-            },
-
-            getScreenPixels: function() {
-                return checkScreenPixels();
-            },
-
+            //
+            // isDebug: function() {
+            //     return debug;
+            // },
+            //
+            // getScreenPixels: function() {
+            //     return checkScreenPixels();
+            // },
+            //
             getWindowSize: function() {
                 return checkWindowSize();
             },
@@ -505,6 +520,10 @@ angular.module('swApp')
 
             localizeThis: function(some_date) {
                 return convertToLocal(some_date);
+            },
+
+            localizeThisDate: function(some_date) {
+                return convertToLocalDate(some_date);
             },
 
             weightThis: function(mass) {
@@ -1020,28 +1039,23 @@ angular.module('swApp')
                                 self.populate_array(self.pilots, trimmed_result, a_index, self.categories_with_array[3]);
                                 break;
                             case (self.categories_with_array[4]):
-                                // console.log('planets');
-                                /// films
+                                // planets
                                 self.populate_array(self.planets, trimmed_result, a_index, self.categories_with_array[4]);
                                 break;
                             case (self.categories_with_array[5]):
-                                // console.log('residents');
-                                /// films
+                                // people
                                 self.populate_array(self.people, trimmed_result, a_index, self.categories_with_array[5]);
                                 break;
                             case (self.categories_with_array[6]):
-                                // console.log('species');
-                                /// films
+                                // species
                                 self.populate_array(self.species, trimmed_result, a_index, self.categories_with_array[6]);
                                 break;
                             case (self.categories_with_array[7]):
-                                // console.log('starships');
-                                /// films
+                                // starships
                                 self.populate_array(self.starships, trimmed_result, a_index, self.categories_with_array[7]);
                                 break;
                             case (self.categories_with_array[8]):
-                                // console.log('vehicles');
-                                /// films
+                                // vehicles
                                 self.populate_array(self.vehicles, trimmed_result, a_index, self.categories_with_array[8]);
                                 break;
                         }
@@ -1170,6 +1184,12 @@ angular.module('swApp')
                         url: obj.url
                     });
                     break;
+                case self.categories_with_array[8]:
+                    array[idx].push({
+                        name: obj.name,
+                        url: obj.url
+                    });
+                    break;
             }
         }
     })
@@ -1190,6 +1210,47 @@ angular.module('swApp')
     //     }
     //
     // })
+
+    .service('debugService', function () {
+
+
+
+        // Set to false to hide debugging window.
+        var debug = true;
+
+        var orientation = screen.orientation.type;
+
+        var checkScreenPixels = function() {
+            return screen.width + ' x ' + screen.height;
+
+        };
+
+
+        // Public variables
+
+        return {
+
+            // Debug area
+
+            getOrientation: function() {
+                return orientation;
+            },
+
+            isDebug: function() {
+                return debug;
+            },
+
+            getScreenPixels: function() {
+                return checkScreenPixels();
+            }
+
+            // End Debug area.
+
+
+
+        };
+    })
+
 
 
 

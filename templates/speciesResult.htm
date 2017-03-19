@@ -1,11 +1,7 @@
-<!--<div class="col-xs-10">Results for <span class="yellow_text">"{{ search_term }}"</span></div><br>-->
-<!--<spinner name="loadSpinner" class="spinner" show="loading" img-src="img/Loading-GIF-Image-10.gif"></spinner>-->
-<!--<div class="flex_results blue_text ng-cloak" ng-repeat="r in results" ng-class="{ dimmed_results: loading }">-->
-    <!--<span class="results_hdr">Result {{ $index + 1 }} of {{ results.length }}</span>-->
     <div class="results_inner_wrapper">
         <div class="r_row">
             <div>
-                Name
+                Name:
             </div>
             <div>
                 {{ r.name }}
@@ -19,7 +15,6 @@
                 {{ r.eye_colors }}
             </div>
         </div>
-        <br class="clear" ng-show="checkLineLength(r.eye_colors.length)"/>
         <div class="r_row" ng-show="checkValue(r.hair_colors)">
             <div>
                 Hair Colors:
@@ -28,7 +23,6 @@
                 {{ r.hair_colors }}
             </div>
         </div>
-        <br class="clear" ng-show="checkLineLength(r.hair_colors.length)"/>
         <div class="r_row" ng-show="checkValue(r.skin_colors)">
             <div>
                 Skin Colors:
@@ -37,7 +31,6 @@
                 {{ r.skin_colors }}
             </div>
         </div>
-        <br class="clear" ng-show="checkLineLength(r.skin_colors.length)"/>
         <div class="r_row" ng-show="checkValue(r.classification)">
             <div>
                 Classification:
@@ -86,21 +79,21 @@
                 {{ r.average_lifespan }} years
             </div>
         </div>
-        <div class="r_row film_row_top" ng-repeat="p in people[$index]">
-            <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
+        <div class="r_row">
+            <div class="flex_col_justify_top">
                 People:
             </div>
-            <div class="push_column_right">
-                <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
-            </div>
         </div>
-        <div class="r_row film_row_top" ng-repeat="f in films[$index]">
-            <div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">
+        <div class="flex_col_justify_top left-padding"  ng-repeat="p in people[$index]">
+            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
+        </div>
+        <div class="r_row" >
+            <div class="flex_col_justify_top">
                 Films:
             </div>
-            <div class="push_column_right">
-                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-            </div>
+        </div>
+        <div class="left-padding" ng-repeat="f in films[$index]">
+            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
         </div>
         <div class="r_row move_up">
             <div>
@@ -119,4 +112,3 @@
             </div>
         </div>
     </div>
-<!--</div>-->
