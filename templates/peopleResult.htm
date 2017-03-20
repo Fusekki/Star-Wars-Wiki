@@ -1,86 +1,50 @@
-    <div class="results_inner_wrapper">
-        <div class="r_row">
-            <div>
-                Name:
-            </div>
-            <div>
-                {{ r.name }}
-            </div>
-        </div>
-        <div class="r_row"  ng-show="checkValue(r.eye_color)">
-            <div>
-                Eye Color:
-            </div>
-            <div>
-                {{ r.eye_color }}
-            </div>
-        </div>
-        <div class="r_row"  ng-show="checkValue(r.hair_color)">
-            <div>
-                Hair Color:
-            </div>
-            <div>
-                {{ r.hair_color }}
+<div class="results_inner_wrapper">
+        <div id="hdr_name" class="r_row">
+            <div class="trapezoid">
+                <h4 id="person_name">{{ r.name }}</h4>
             </div>
         </div>
         <div class="r_row">
-            <div>
-                Sex:
+            <div class="col-xs-6">
+                {{ r.eye_color }} eyes
             </div>
-            <div>
+            <div class="col-xs-6" ng-show="checkValue(r.hair_color)">
+                {{ r.hair_color }} hair
+            </div>
+        </div>
+        <div class="r_row">
+            <div class="col-xs-6">
                 {{ r.gender }}
             </div>
-        </div>
-        <div class="r_row" ng-repeat="s in species[$index]">
-            <div class="flex_col_justify_top">
-                Species:
-            </div>
-            <div>
+            <div class="col-xs-6" ng-repeat="s in species[$index]">
                 <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
             </div>
         </div>
         <div class="r_row">
-            <div>
-                Height:
+            <div class="col-xs-6">
+                {{ convertHeight(r.height) }}
             </div>
-            <div>
-                {{ r.height }}
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(homeworlds[$index].name)">
-            <div>
-                Homeworld:
-            </div>
-            <div>
-                <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
-            </div>
-        </div>
-
-        <div class="r_row" ng-show="checkValue(r.mass)">
-            <div>
-                Mass:
-            </div>
-            <div>
+            <div class="col-xs-6">
                 {{ convertWeight(r.mass) }}
             </div>
         </div>
         <div class="r_row">
-            <div>
-                Skin Color:
+            <div class="col-xs-6">
+                {{ r.skin_color }} skin
             </div>
-            <div>
-                {{ r.skin_color }}
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.birth_year)">
-            <div>
-                DOB:
-            </div>
-            <div>
-                {{ r.birth_year }}
+            <div class="col-xs-6">
+                Born {{ r.birth_year }}
             </div>
         </div>
-        <div class="r_row" >
+        <div class="system_note ng-show="checkValue(homeworlds[$index].name)">
+            <div class="col-xs-6">
+                Homeworld:
+            </div>
+            <div class="col-xs-6">
+                <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
+            </div>
+        </div>
+        <div class="system_note" >
             <div class="flex_col_justify_top">
                 Films:
             </div>
@@ -88,19 +52,19 @@
         <div class="left-padding" ng-repeat="f in films[$index]">
             <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
         </div>
-        <div class="r_row move_up">
+        <div class="system_note">
             <div>
                 Created:
             </div>
-            <div>
+            <div class="left-padding">
                 {{ convertToLocal(r.created) }}
             </div>
         </div>
-        <div class="r_row">
+        <div class="system_note">
             <div>
                 Edited:
             </div>
-            <div>
+            <div class="left-padding">
                 {{ convertToLocal(r.edited) }}
             </div>
         </div>

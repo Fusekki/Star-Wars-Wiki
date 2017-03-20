@@ -356,6 +356,10 @@ angular.module('swApp')
             return logicService.weightThis(mass);
         };
 
+        $scope.convertHeight = function(height) {
+            return logicService.heightThis(height);
+        }
+
         $scope.callUrl = function(name, url) {
             // console.log('----------------------------------------------------------------------');
             // console.log('we are going to call the api for ' + url);

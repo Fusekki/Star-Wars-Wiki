@@ -105,7 +105,7 @@ body {
     padding-left: 0;
     height: 380px;
     width: 306px;
-    border: 4px solid #4c96ca;
+    border: 4px solid hsla(205, 54%, 55%, 0.55);
     border-radius: 1em;
     background: hsla(209, 69%, 30%, .75);
     margin-top: 10px;
@@ -113,7 +113,7 @@ body {
 }
 .categories div {
     margin: 5px;
-    border: 2px solid #4c96ca;
+    border: 2px solid hsla(205, 54%, 55%, 0.55);
     border-radius: 1em;
     display: inherit;
 }
@@ -127,7 +127,7 @@ body {
     /*transition: transform 0.25s;*/
     height: 100px;
     background: hsla(189, 59%, 79%, .4);
-    border: 4px solid #4c96ca;
+    border: 4px solid hsla(205, 54%, 55%, 0.55);
     width: 125px;
     float: left;
     user-select: none;
@@ -234,7 +234,7 @@ form {
     flex-direction: column;
     /*flex-wrap: wrap;*/
     /*text-align: left;*/
-    padding: 1em;
+    padding: 0px 1em 1em 1em;
     border-radius: 1em;
     /*background: url('../img/computer_bg_lrg.jpg');*/
 
@@ -246,7 +246,11 @@ form {
 
 
 .left-padding {
-    padding-left: 5px;
+    padding-left: 20px !important;
+}
+
+.left-half {
+    padding-left: 50%;
 }
 
 .push_column_right {
@@ -272,6 +276,15 @@ form {
 
 }
 
+.system_note div {
+    color: white;
+    padding-left: 0;
+}
+
+.system_note div:nth-of-type(2) {
+    color: yellow;
+}
+
 
 .r_row div,
 .f_row div {
@@ -283,7 +296,7 @@ form {
 
 .r_row div:nth-of-type(1),
 .f_row div:nth-of-type(1) {
-    color: white;
+    color: yellow;
     /*float: left;*/
     /*color: rgba(4, 134, 226, 1);*/
     /*width: 35%;*/
@@ -306,6 +319,40 @@ form {
 .dimmed_results {
     opacity: 0.1;
 }
+
+.trapezoid {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    /*width: 100px;*/
+    height: 0;
+    border: 50px solid rgba(0,0,0,0);
+    border-top: 0 solid;
+    border-bottom: 33px solid hsla(189, 59%, 79%, .4);
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    color: rgba(0,0,0,1);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+}
+
+#hdr_name {
+    margin-bottom: 10px;
+}
+
+#item_name {
+    color: yellow;
+    /*border: 4px solid #4c96ca;*/
+    /*background: hsla(189, 59%, 79%, .4);*/
+    /*margin: 2px 12px 6px 12px;*/
+    /*padding: 2px 5px;*/
+    /*border-radius: 1em;*/
+    text-align: center;
+}
+
+#item_name h4 {
+    margin: 2px;
+}
+
 
 .spinner {
     position: absolute;

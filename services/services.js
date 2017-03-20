@@ -350,6 +350,19 @@ angular.module('swApp')
             return lbs + " lbs " + oz +  " oz";
         };
 
+        var convertToFeet = function (height) {
+            // console.log(height);
+            // var feet = parseInt(height * 0.032808);
+            // console.log(feet);
+            // var inches = (height % 0.032808) * 0.39370;
+            // console.log(inches);
+            // return feet + "' " + inches + '"';
+            var actualFeet = ((height * 0.393700) / 12);
+            var feet = Math.floor(actualFeet);
+            var inches = Math.round((actualFeet - feet) * 12);
+            return feet + "'" + inches + '"';
+        }
+
         var getCacheItem = function (item) {
             return myCache.get(item);
         };
@@ -508,6 +521,10 @@ angular.module('swApp')
 
             getCategories: function() {
                 return categories;
+            },
+
+            heightThis: function(height) {
+                return convertToFeet(height);
             },
 
             capitalizeThis: function(word) {

@@ -1,109 +1,90 @@
     <div class="results_inner_wrapper">
-        <div class="r_row">
-            <div>
-                Name
-            </div>
-            <div>
-                {{ r.name }}
+        <div id="hdr_name" class="r_row">
+            <div class="trapezoid">
+                <h4 id="item_name">{{ r.name }}</h4>
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Class
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.vehicle_class }}
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Model
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.model }}
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Cargo Capacity
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.cargo_capacity }}
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Consumables
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.consumables }}
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Cost
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.cost_in_credits }} credits
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Crew:
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.crew }}
             </div>
         </div>
-        <!--<div class="r_row film_row_top" ng-repeat="f in films[$index]">-->
-            <!--<div class="flex_col_justify_top" ng-class="{ hidden_element: $index > 0 } ">-->
-                <!--Films:-->
-            <!--</div>-->
-            <!--<div class="push_column_right">-->
-                <!--<a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>-->
-            <!--</div>-->
-        <!--</div>-->
-        <div class="r_row" >
-            <div class="flex_col_justify_top">
-                Films:
-            </div>
-        </div>
-        <div class="left-padding" ng-repeat="f in films[$index]">
-            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-        </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Length
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.length }} meters
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Manufacturer:
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.manufacturer }}
             </div>
         </div>
-        <div class="r_row">
-            <div>
-                Max Atmospheric Speed:
+        <div class="system_note">
+            <div class="col-xs-6">
+                Max Speed:
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.max_atmosphering_speed }}
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Passengers:
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ r.passengers }}
             </div>
         </div>
-        <div class="r_row" >
+        <div class="system_note" >
             <div class="flex_col_justify_top" ng-show="pilots[$index].length">
                 Pilots:
             </div>
@@ -111,19 +92,27 @@
         <div class="left-padding" ng-show="pilots[$index].length" ng-repeat="p in pilots[$index]">
             <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note" ng-repeat="f in films[$index]" >
+            <div class="col-xs-6" ng-class="{ hidden_element: $index > 0 } ">
+                Films:
+            </div>
+            <div class="col-xs-6" >
+                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
+            </div>
+        </div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Created:
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ convertToLocal(r.created) }}
             </div>
         </div>
-        <div class="r_row">
-            <div>
+        <div class="system_note">
+            <div class="col-xs-6">
                 Edited:
             </div>
-            <div>
+            <div class="col-xs-6">
                 {{ convertToLocal(r.edited) }}
             </div>
         </div>
