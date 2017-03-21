@@ -1,98 +1,102 @@
     <div class="results_inner_wrapper">
-        <div class="f_row">
-            <div>
-                Title
-            </div>
-            <div>
-                Star Wars Episode {{ r.episode_id}} : {{ r.title }}
+        <div id="hdr_name" class="r_row">
+            <div class="trapezoid">
+                <h4 id="item_name" ng-class="r.title.length > 23 ? 'long_title' : 'medium_title'">{{ r.title }}</h4>
             </div>
         </div>
-        <div class="r_row">
-            <div>
-                Director:
+        <div class="result_top">
+            <h5>Details:</h5>
+            <div class="r_row left_justify">
+                <div class="col-xs-12 crew">
+                    <span>Directed by </span> <span>{{ r.director }}</span>
+                </div>
             </div>
-            <div>
-                {{ r.director }}
+            <div class="r_row left_justify">
+                <div class="col-xs-12 crew">
+                    <span>Produced by </span><span>{{ r.producer }}</span>
+                </div>
             </div>
-        </div>
-        <div class="r_row">
-            <div>
-                Producers:
-            </div>
-            <div>
-                {{ r.producer }}
-            </div>
-        </div>
-        <div class="f_row">
-            <div>
-                Opening Crawl:
-            </div>
-            <div>
-                {{ r.opening_crawl }}
+            <div class="r_row left_justify">
+                <div class="col-xs-12 crew">
+                    <span>Released on </span> <span>{{ convertToLocalDate(r.release_date) }}</span>
+                </div>
             </div>
         </div>
-        <div class="r_row film_row_top">
-            <div class="flex_col_justify_top">
-                Characters:
+        <div class="result_middle">
+            <h5>Story:</h5>
+            <div class="f_row">
+                <div class="white_text">
+                    Opening Crawl:
+                </div>
+                <div class="yellow_text">
+                    "{{ r.opening_crawl }}"
+                </div>
             </div>
         </div>
-        <div class="flex_col_justify_top left-padding"  ng-repeat="c in characters[$index]">
-            <a ng-click="callUrl(c.name, c.url)">{{ c.name }}</a>
-        </div>
-        <div class="r_row film_row_top">
-            <div class="flex_col_justify_top">
-                Planets:
+        <div class="result_middle">
+            <h5>Featured:</h5>
+
+            <div class="r_row film_row_top">
+                <div class=" justify-center white_text">
+                    Characters:
+                </div>
+            </div>
+            <div class=" justify-center"  ng-repeat="c in characters[$index]">
+                <a ng-click="callUrl(c.name, c.url)">{{ c.name }}</a>
+            </div>
+
+            <div class="r_row film_row_top" >
+                <div class=" justify-center white_text top_padding">
+                    Planets:
+                </div>
+            </div>
+            <div class="justify-center" ng-repeat="p in planets[$index]">
+                <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
+            </div>
+
+            <div class="justify-center" >
+                <div class=" justify-center white_text top_padding">
+                    Species:
+                </div>
+            </div>
+            <div class="justify-center " ng-repeat="s in species[$index]">
+                <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
+            </div>
+
+            <div class="r_row film_row_top">
+                <div class=" justify-center white_text top_padding">
+                    Starships:
+                </div>
+            </div>
+            <div class="justify-center" ng-repeat="st in starships[$index]">
+                <a ng-click="callUrl(st.name, st.url)">{{ st.name }}</a>
+            </div>
+
+            <div class="r_row film_row_top">
+                <div class=" justify-center white_text top_padding">
+                    Vehicles:
+                </div>
+            </div>
+            <div class="justify-center" ng-repeat="v in vehicles[$index]">
+                <a ng-click="callUrl(st.name, st.url)">{{ v.name }}</a>
             </div>
         </div>
-        <div class="left-padding" ng-repeat="p in planets[$index]">
-            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
-        </div>
-        <div class="r_row film_row_top" >
-            <div class="flex_col_justify_top">
-                Species:
+        <div class="result_bottom">
+            <div class="system_note">
+                <div>
+                    Created:
+                </div>
+                <div>
+                    {{ convertToLocal(r.created) }}
+                </div>
             </div>
-        </div>
-        <div class="left-padding" ng-repeat="s in species[$index]">
-            <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
-        </div>
-        <div class="r_row film_row_top">
-            <div class="flex_col_justify_top">
-                Starships:
-            </div>
-        </div>
-        <div class="left-padding" ng-repeat="st in starships[$index]">
-            <a ng-click="callUrl(st.name, st.url)">{{ st.name }}</a>
-        </div>
-        <div class="r_row film_row_top">
-            <div class="flex_col_justify_top">
-                Vehicles:
-            </div>
-        </div>
-        <div class="left-padding" ng-repeat="v in vehicles[$index]">
-            <a ng-click="callUrl(st.name, st.url)">{{ v.name }}</a>
-        </div>
-        <div class="r_row">
-            <div>
-                Released:
-            </div>
-            <div>
-                {{ convertToLocalDate(r.release_date) }}
-            </div>
-        </div>
-        <div class="r_row">
-            <div>
-                Created:
-            </div>
-            <div>
-                {{ convertToLocal(r.created) }}
-            </div>
-        </div>
-        <div class="r_row">
-            <div>
-                Edited:
-            </div>
-            <div>
-                {{ convertToLocal(r.edited) }}
+            <div class="system_note">
+                <div>
+                    Edited:
+                </div>
+                <div>
+                    {{ convertToLocal(r.edited) }}
+                </div>
             </div>
         </div>
     </div>

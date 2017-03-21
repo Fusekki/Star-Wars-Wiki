@@ -8,6 +8,8 @@
 /*rgb 4,134,226*/
 /*rgba(4, 134, 226, 1)*/
 
+/*#1d3c7c*/
+
 /*Layout details*/
 
 /*.margin-top is 6em height*/
@@ -200,6 +202,10 @@ form {
     color: yellow;
 }
 
+.white_text {
+    color: white;
+}
+
 .blue_text {
     color: rgba(4, 134, 226, 1);
 }
@@ -249,6 +255,10 @@ form {
     padding-left: 20px !important;
 }
 
+.justify-center {
+    text-align: center !important;
+}
+
 .left-half {
     padding-left: 50%;
 }
@@ -262,6 +272,11 @@ form {
 
 .flex_col_justify_top {
     vertical-align: top;
+}
+
+.top_padding {
+    padding-top: 5px !important;
+
 }
 
 .display_none {
@@ -296,7 +311,7 @@ form {
 
 .r_row div:nth-of-type(1),
 .f_row div:nth-of-type(1) {
-    color: yellow;
+    /*color: yellow;*/
     /*float: left;*/
     /*color: rgba(4, 134, 226, 1);*/
     /*width: 35%;*/
@@ -304,7 +319,7 @@ form {
 }
 .r_row div:nth-of-type(2),
 .f_row div:nth-of-type(2) {
-    color: yellow;
+    /*color: yellow;*/
     /*float: left;*/
     /*color: #0e98fb;*/
     /*width: 65%;*/
@@ -349,10 +364,63 @@ form {
     text-align: center;
 }
 
+.long_title,
+.medium_title {
+    padding: 3px 0;
+}
+
+.long_title {
+    font-size: 12px;
+}
+
+.medium_title {
+    font-size: 14px;
+}
+
 #item_name h4 {
     margin: 2px;
 }
 
+.result_top,
+.result_middle {
+    border: 4px solid #518070;
+    border-radius: 1em;
+    margin-bottom: 5px;
+}
+
+.result_top h5,
+.result_middle h5{
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    border: 2px solid hsla(189, 59%, 79%, .3);
+    border-radius: 1em;
+    margin: 5px 30px;
+
+}
+
+.result_top div,
+.result_middle div {
+    text-align: center;
+}
+
+.result_bottom div {
+    text-align: center;
+    font-size: 12px;
+}
+
+.left_justify div {
+    text-align: left;
+    padding: 0 5px;
+}
+
+.crew span {
+    color: white;
+}
+
+.crew span:nth-of-type(2) {
+    color: yellow;
+}
 
 .spinner {
     position: absolute;

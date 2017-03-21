@@ -1,7 +1,7 @@
     <div class="results_inner_wrapper">
         <div id="hdr_name" class="r_row">
             <div class="trapezoid">
-                <h4 id="item_name">{{ r.name }}</h4>
+                <h4 id="item_name" ng-class="r.name.length > 23 ? 'long_title' : 'medium_title'">{{ r.name }}</h4>
             </div>
         </div>
         <!--<div class="r_row">-->
@@ -12,108 +12,116 @@
                 <!--{{ r.name }}-->
             <!--</div>-->
         <!--</div>-->
-        <div class="system_note" ng-show="checkValue(r.eye_colors)">
-            <div class="col-xs-6">
-                Eye Colors:
+        <div class="result_top yellow_text">
+            <h5>Biology</h5>
+            <div class="system_note" ng-show="checkValue(r.eye_colors)">
+                <div class="col-xs-6">
+                    Eye Colors:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.eye_colors }}
+                </div>
             </div>
-            <div class="col-xs-6">
-                {{ r.eye_colors }}
+            <div class="system_note" ng-show="checkValue(r.hair_colors)">
+                <div class="col-xs-6">
+                    Hair Colors:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.hair_colors }}
+                </div>
             </div>
-        </div>
-        <div class="system_note" ng-show="checkValue(r.hair_colors)">
-            <div class="col-xs-6">
-                Hair Colors:
+            <div class="system_note" ng-show="checkValue(r.skin_colors)">
+                <div class="col-xs-6">
+                    Skin Colors:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.skin_colors }}
+                </div>
             </div>
-            <div class="col-xs-6">
-                {{ r.hair_colors }}
+            <div class="system_note" ng-show="checkValue(r.classification)">
+                <div class="col-xs-6">
+                    Classification:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.classification }}
+                </div>
             </div>
-        </div>
-        <div class="system_note" ng-show="checkValue(r.skin_colors)">
-            <div class="col-xs-6">
-                Skin Colors:
+            <div class="system_note">
+                <div class="col-xs-6">
+                    Designation:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.designation }}
+                </div>
             </div>
-            <div class="col-xs-6">
-                {{ r.skin_colors }}
+            <div class="system_note" ng-show="homeworlds.length && checkValue(homeworlds[$index].name)">
+                <div class="col-xs-6">
+                    Homeworld:
+                </div>
+                <div class="col-xs-6">
+                    <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
+                </div>
             </div>
-        </div>
-        <div class="system_note" ng-show="checkValue(r.classification)">
-            <div class="col-xs-6">
-                Classification:
+            <div class="system_note" ng-show="checkValue(r.language)">
+                <div class="col-xs-6">
+                    Language
+                </div>
+                <div class="col-xs-6">
+                    {{ r.language }}
+                </div>
             </div>
-            <div class="col-xs-6">
-                {{ r.classification }}
+            <div class="system_note" ng-show="checkValue(r.average_height)">
+                <div class="col-xs-6">
+                    Avg Height:
+                </div>
+                <div class="col-xs-6">
+                    {{ convertHeight(r.average_height) }}
+                </div>
             </div>
-        </div>
-        <div class="system_note">
-            <div class="col-xs-6">
-                Designation:
-            </div>
-            <div class="col-xs-6">
-                {{ r.designation }}
-            </div>
-        </div>
-        <div class="system_note" ng-show="homeworlds.length && checkValue(homeworlds[$index].name)">
-            <div class="col-xs-6">
-                Homeworld:
-            </div>
-            <div class="col-xs-6">
-                <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
-            </div>
-        </div>
-        <div class="system_note" ng-show="checkValue(r.language)">
-            <div class="col-xs-6">
-                Language
-            </div>
-            <div class="col-xs-6">
-                {{ r.language }}
-            </div>
-        </div>
-        <div class="system_note" ng-show="checkValue(r.average_height)">
-            <div class="col-xs-6">
-                Avg Height:
-            </div>
-            <div class="col-xs-6">
-                {{ convertHeight(r.average_height) }}
-            </div>
-        </div>
-        <div class="system_note" ng-show="checkValue(r.average_lifespan)">
-            <div class="col-xs-6">
-                Avg Lifespan:
-            </div>
-            <div class="col-xs-6">
-                {{ r.average_lifespan }} years
-            </div>
-        </div>
-        <div class="system_note">
-            <div class="col-xs-6">
-                People:
+            <div class="system_note" ng-show="checkValue(r.average_lifespan)">
+                <div class="col-xs-6">
+                    Avg Lifespan:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.average_lifespan }} years
+                </div>
             </div>
         </div>
-        <div class="flex_col_justify_top left-padding"  ng-repeat="p in people[$index]">
-            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
-        </div>
-        <div class="r_row system_note" >
-            <div class="flex_col_justify_top">
-                Films:
+        <div class="result_middle">
+            <h5>Origins</h5>
+            <div class="system_note">
+                <div>
+                    People:
+                </div>
+            </div>
+            <div class="flex_col_justify_top justify-center"  ng-repeat="p in people[$index]">
+                <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
+            </div>
+            <div class="r_row system_note" >
+                <div class="flex_col_justify_top">
+                    Films:
+                </div>
+            </div>
+            <div class="justify-center" ng-repeat="f in films[$index]">
+                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
-        <div class="left-padding" ng-repeat="f in films[$index]">
-            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-        </div>
-        <div class="system_note">
-            <div>
-                Created:
+        <div class="result_bottom">
+            <div class="system_note">
+                <div>
+                    Created:
+                </div>
+                <div>
+                    {{ convertToLocal(r.created) }}
+                </div>
             </div>
-            <div clasa="left-padding">
-                {{ convertToLocal(r.created) }}
-            </div>
-        </div>
-        <div class="system_note">
-            <div>
-                Edited:
-            </div>
-            <div class="left-padding">
-                {{ convertToLocal(r.edited) }}
+            <div class="system_note">
+                <div>
+                    Edited:
+                </div>
+                <div>
+                    {{ convertToLocal(r.edited) }}
+                </div>
             </div>
         </div>
     </div>

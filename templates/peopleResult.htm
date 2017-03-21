@@ -1,71 +1,79 @@
 <div class="results_inner_wrapper">
         <div id="hdr_name" class="r_row">
             <div class="trapezoid">
-                <h4 id="person_name">{{ r.name }}</h4>
+                <h4 id="item_name" ng-class="r.name.length > 23 ? 'long_title' : 'medium_title'">{{ r.name }}</h4>
             </div>
         </div>
-        <div class="r_row">
-            <div class="col-xs-6">
-                {{ r.eye_color }} eyes
+        <div class="result_top yellow_text">
+            <h5>Biology</h5>
+            <div class="r_row">
+                <div class="col-xs-6">
+                    {{ r.eye_color }} eyes
+                </div>
+                <div class="col-xs-6" ng-show="checkValue(r.hair_color)">
+                    {{ r.hair_color }} hair
+                </div>
             </div>
-            <div class="col-xs-6" ng-show="checkValue(r.hair_color)">
-                {{ r.hair_color }} hair
+            <div class="r_row">
+                <div class="col-xs-6">
+                    {{ r.gender }}
+                </div>
+                <div class="col-xs-6" ng-repeat="s in species[$index]">
+                    <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
+                </div>
             </div>
-        </div>
-        <div class="r_row">
-            <div class="col-xs-6">
-                {{ r.gender }}
+            <div class="r_row">
+                <div class="col-xs-6">
+                    {{ convertHeight(r.height) }}
+                </div>
+                <div class="col-xs-6">
+                    {{ convertWeight(r.mass) }}
+                </div>
             </div>
-            <div class="col-xs-6" ng-repeat="s in species[$index]">
-                <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
-            </div>
-        </div>
-        <div class="r_row">
-            <div class="col-xs-6">
-                {{ convertHeight(r.height) }}
-            </div>
-            <div class="col-xs-6">
-                {{ convertWeight(r.mass) }}
-            </div>
-        </div>
-        <div class="r_row">
-            <div class="col-xs-6">
-                {{ r.skin_color }} skin
-            </div>
-            <div class="col-xs-6">
-                Born {{ r.birth_year }}
-            </div>
-        </div>
-        <div class="system_note ng-show="checkValue(homeworlds[$index].name)">
-            <div class="col-xs-6">
-                Homeworld:
-            </div>
-            <div class="col-xs-6">
-                <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
+            <div class="r_row">
+                <div class="col-xs-6">
+                    {{ r.skin_color }} skin
+                </div>
+                <div class="col-xs-6">
+                    Born {{ r.birth_year }}
+                </div>
             </div>
         </div>
-        <div class="system_note" >
-            <div class="flex_col_justify_top">
-                Films:
+        <div class="result_middle">
+            <h5>Origins</h5>
+            <div class="system_note ng-show="checkValue(homeworlds[$index].name)">
+                <div class="col-xs-6">
+                    Homeworld:
+                </div>
+                <div class="col-xs-6">
+                    <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
+                </div>
+            </div>
+            <div class="system_note" >
+                <div class="flex_col_justify_top">
+                    Films:
+                </div>
+            </div>
+            <div ng-repeat="f in films[$index]">
+                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
-        <div class="left-padding" ng-repeat="f in films[$index]">
-            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-        </div>
-        <div class="system_note">
-            <div>
-                Created:
+        <div class="result_bottom">
+            <div class="system_note">
+                <div>
+                    Created:
+                </div>
+                <div>
+                    {{ convertToLocal(r.created) }}
+                </div>
             </div>
-            <div class="left-padding">
-                {{ convertToLocal(r.created) }}
-            </div>
-        </div>
-        <div class="system_note">
-            <div>
-                Edited:
-            </div>
-            <div class="left-padding">
-                {{ convertToLocal(r.edited) }}
+            <div class="system_note">
+                <div>
+                    Edited:
+                </div>
+                <div>
+                    {{ convertToLocal(r.edited) }}
+                </div>
             </div>
         </div>
     </div>
