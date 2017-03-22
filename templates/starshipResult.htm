@@ -4,132 +4,142 @@
                 <h4 id="item_name" ng-class="r.name.length > 23 ? 'long_title' : 'medium_title'">{{ r.name }}</h4>
             </div>
         </div>
-        <div class="r_row">
-            <div>
-                Model
+        <div class="result_top left_justify">
+            <h5>Specifications</h5>
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Model
+                </div>
+                <div class="col-xs-6">
+                    {{ r.model }}
+                </div>
             </div>
-            <div>
-                {{ r.model }}
-            </div>
-        </div>
-        <div class="r_row">
-            <div>
+            <div class="category_name">
+                <div class="col-xs-6">
                 Class
-            </div>
-            <div>
+                </div>
+                <div class="col-xs-6">
                 {{ r.starship_class }}
+                </div>
+            </div>
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Manufacturer
+                </div>
+                <div class="col-xs-6">
+                    {{ r.manufacturer }}
+                </div>
+            </div>
+            <div class="category_name" ng-show="checkValue(r.hyperdrive_rating)">
+                <div class="col-xs-6">
+                    Hyperdrive:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.hyperdrive_rating }}
+                </div>
+            </div>
+            <div class="category_name" ng-show="checkValue(r.MGLT)">
+                <div class="col-xs-6">
+                    Speed
+                </div>
+                <div class="col-xs-6">
+                    {{ r.MGLT }} (Megalights per hour)
+                </div>
+            </div>
+            <div class="category_name" ng-show="checkValue(r.max_atmosphering_speed)">
+                <div class="col-xs-6">
+                    Max Speed:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.max_atmosphering_speed }} (atmoshpheric)
+                </div>
+            </div>
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Crew
+                </div>
+                <div class="col-xs-6">
+                    {{ r.crew }}
+                </div>
+            </div>
+            <div class="category_name" ng-show="checkValue(r.passengers)">
+                <div class="col-xs-6">
+                    Passengers:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.passengers }}
+                </div>
+            </div>
+
+            <div class="category_name" ng-show="checkValue(r.cargo_capacity)">
+                <div class="col-xs-6">
+                    Cargo:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.cargo_capacity }} kg
+                </div>
+            </div>
+
+            <div class="category_name"  ng-show="checkValue(r.length)">
+                <div class="col-xs-6">
+                    Length
+                </div>
+                <div class="col-xs-6">
+                    {{ r.length }} meters
+                </div>
+            </div>
+            <div class="category_name" ng-show="checkValue(r.consumables)">
+                <div class="col-xs-6">
+                    Consumables
+                </div>
+                <div class="col-xs-6">
+                    {{ r.consumables }}
+                </div>
+            </div>
+            <div class="category_name" ng-show="checkValue(r.cost_in_credits)">
+                <div class="col-xs-6">
+                    Cost:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.cost_in_credits }} credits
+                </div>
             </div>
         </div>
-        <div class="r_row">
-            <div>
-                Manufacturer
+        <div class="result_middle left_justify">
+            <h5>Featured</h5>
+            <div class="r_row film_row_top"  ng-show="pilots[$index].length">
+                <div class=" justify-center white_text">
+                    Pilots:
+                </div>
             </div>
-            <div>
-                {{ r.manufacturer }}
+            <div class=" justify-center med-line-height"  ng-show="pilots[$index].length" ng-repeat="p in pilots[$index]">
+                <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
             </div>
-        </div>
-        <div class="r_row">
-            <div>
-                Crew
+            <div class="r_row film_row_top" >
+                <div class=" justify-center white_text top_padding" ng-class="{ hidden_element: $index > 0 } ">
+                    Films:
+                </div>
             </div>
-            <div>
-                {{ r.crew }}
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.cargo_capacity)">
-            <div>
-                Cargo:
-            </div>
-            <div>
-                {{ r.cargo_capacity }} kg
+            <div class="justify-center med-line-height" ng-repeat="f in films[$index]">
+                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
-        <div class="r_row" ng-show="checkValue(r.hyperdrive_rating)">
-            <div>
-                Hyperdrive:
+        <div class="result_bottom left_justify">
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Created:
+                </div>
+                <div class="col-xs-6">
+                    {{ convertToLocal(r.created) }}
+                </div>
             </div>
-            <div>
-                {{ r.hyperdrive_rating }}
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.MGLT)">
-            <div>
-               Speed
-            </div>
-            <div>
-                {{ r.MGLT }} (Megalights per hour)
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.max_atmosphering_speed)">
-            <div>
-                Max Speed:
-            </div>
-            <div>
-                {{ r.max_atmosphering_speed }} (atmoshpheric)
-            </div>
-        </div>
-        <div class="r_row"  ng-show="checkValue(r.length)">
-            <div>
-                Length
-            </div>
-            <div>
-                {{ r.length }} meters
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.consumables)">
-            <div>
-                Consumables
-            </div>
-            <div>
-                {{ r.consumables }}
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.cost_in_credits)">
-            <div>
-                Cost:
-            </div>
-            <div>
-                {{ r.cost_in_credits }} credits
-            </div>
-        </div>
-        <div class="r_row" >
-            <div class="flex_col_justify_top">
-                Films:
-            </div>
-        </div>
-        <div class="left-padding" ng-repeat="f in films[$index]">
-            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.passengers)">
-            <div>
-                Passengers:
-            </div>
-            <div>
-                {{ r.passengers }}
-            </div>
-        </div>
-        <div class="r_row" >
-            <div class="flex_col_justify_top" ng-show="pilots[$index].length">
-                Pilots:
-            </div>
-        </div>
-        <div class="left-padding" ng-show="pilots[$index].length" ng-repeat="p in pilots[$index]">
-            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
-        </div>
-        <div class="r_row">
-            <div>
-                Created:
-            </div>
-            <div>
-                {{ convertToLocal(r.created) }}
-            </div>
-        </div>
-        <div class="r_row">
-            <div>
-                Edited:
-            </div>
-            <div>
-                {{ convertToLocal(r.edited) }}
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Edited:
+                </div>
+                <div class="col-xs-6">
+                    {{ convertToLocal(r.edited) }}
+                </div>
             </div>
         </div>
     </div>

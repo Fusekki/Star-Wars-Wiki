@@ -41,7 +41,7 @@
         </div>
         <div class="result_middle">
             <h5>Origins</h5>
-            <div class="system_note ng-show="checkValue(homeworlds[$index].name)">
+            <div class="category_name ng-show="checkValue(homeworlds[$index].name)">
                 <div class="col-xs-6">
                     Homeworld:
                 </div>
@@ -49,17 +49,17 @@
                     <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
                 </div>
             </div>
-            <div class="system_note" >
+            <div class="category_name" >
                 <div class="flex_col_justify_top">
                     Films:
                 </div>
             </div>
-            <div ng-repeat="f in films[$index]">
+            <div class="med-line-height" ng-repeat="f in films[$index]" >
                 <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
         <div class="result_bottom">
-            <div class="system_note">
+            <div class="category_name">
                 <div>
                     Created:
                 </div>
@@ -67,7 +67,7 @@
                     {{ convertToLocal(r.created) }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div>
                     Edited:
                 </div>

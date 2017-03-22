@@ -4,9 +4,9 @@
                 <h4 id="item_name" ng-class="r.name.length > 23 ? 'long_title' : 'medium_title'">{{ r.name }}</h4>
             </div>
         </div>
-        <div class="result_top vehicle_area">
+        <div class="result_top vehicle_area left_justify">
             <h5>Specifications</h5>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Class
                 </div>
@@ -14,7 +14,7 @@
                     {{ r.vehicle_class }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Model
                 </div>
@@ -22,7 +22,7 @@
                     {{ r.model }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Manufacturer:
                 </div>
@@ -30,7 +30,7 @@
                     {{ r.manufacturer }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Crew:
                 </div>
@@ -38,7 +38,7 @@
                     {{ r.crew }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Passengers:
                 </div>
@@ -46,7 +46,7 @@
                     {{ r.passengers }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Max Speed:
                 </div>
@@ -54,7 +54,7 @@
                     {{ r.max_atmosphering_speed }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Cargo Capacity
                 </div>
@@ -62,7 +62,7 @@
                     {{ r.cargo_capacity }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Length
                 </div>
@@ -70,8 +70,7 @@
                     {{ r.length }} meters
                 </div>
             </div>
-
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Consumables
                 </div>
@@ -79,7 +78,7 @@
                     {{ r.consumables }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Cost
                 </div>
@@ -88,27 +87,27 @@
                 </div>
             </div>
         </div>
-        <div class="system_note" >
-            <div class="flex_col_justify_top" ng-show="pilots[$index].length">
-                Pilots:
-            </div>
-        </div>
         <div class="result_middle left_justify">
             <h5>Origins</h5>
-            <div class="left-padding" ng-show="pilots[$index].length" ng-repeat="p in pilots[$index]">
-                <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
+            <div class="category_name" >
+                <div class="col-xs-6" ng-show="pilots[$index].length">
+                    Pilots:
+                </div>
+                <div class="col-xs-6" ng-show="pilots[$index].length" ng-repeat="p in pilots[$index]">
+                    <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
+                </div>
             </div>
-            <div class="system_note" ng-repeat="f in films[$index]" >
-                <div class="col-xs-6" ng-class="{ hidden_element: $index > 0 } ">
+            <div class="r_row film_row_top" >
+                <div class=" justify-center white_text top_padding" ng-class="{ hidden_element: $index > 0 } ">
                     Films:
                 </div>
-                <div class="col-xs-6" >
-                    <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-                </div>
+            </div>
+            <div class="justify-center med-line-height" ng-repeat="f in films[$index]">
+                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
         <div class="result_bottom left_justify">
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Created:
                 </div>
@@ -116,7 +115,7 @@
                     {{ convertToLocal(r.created) }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Edited:
                 </div>

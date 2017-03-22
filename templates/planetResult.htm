@@ -1,108 +1,111 @@
     <div class="results_inner_wrapper">
-        <div class="r_row">
-            <div>
-                Name:
-            </div>
-            <div>
-                {{ r.name }}
+        <div id="hdr_name" class="r_row">
+            <div class="trapezoid">
+                <h4 id="item_name" ng-class="r.name.length > 23 ? 'long_title' : 'medium_title'">{{ r.name }}</h4>
             </div>
         </div>
-        <div class="r_row" ng-show="checkValue(r.diameter)">
-            <div>
-                Diameter:
+        <div class="result_top left_justify">
+        <h5>Specifications</h5>
+            <div class="category_name" ng-show="checkValue(r.diameter)">
+                <div class="col-xs-6">
+                    Diameter:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.diameter }} km
+                </div>
             </div>
-            <div>
-                {{ r.diameter }} km
+            <div class="category_name" ng-show="checkValue(r.rotation_period)">
+                <div class="col-xs-6">
+                    Rotation:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.rotation_period }} hrs
+                </div>
             </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.rotation_period)">
-            <div>
-                Rotation:
+            <div class="category_name" ng-show="checkValue(r.orbital_period)">
+                <div class="col-xs-6">
+                    Orbital Period:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.orbital_period }}
+                </div>
             </div>
-            <div>
-                {{ r.rotation_period }} hrs
+            <div class="category_name" ng-show="checkValue(r.gravity)">
+                <div class="col-xs-6">
+                    Gravity:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.gravity }} Gs
+                </div>
             </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.orbital_period)">
-            <div>
-                Orbital Period:
+            <div class="category_name" ng-show="checkValue(r.population)">
+                <div class="col-xs-6">
+                    Population:
+                </div>
+                <div class="col-xs-6">
+                    ~ {{ r.population }}
+                </div>
             </div>
-            <div>
-                {{ r.orbital_period }}
+            <div class="category_name" ng-show="checkValue(r.climate)">
+                <div class="col-xs-6">
+                    Climate:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.climate }}
+                </div>
             </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.gravity)">
-            <div>
-                Gravity:
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Terrain:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.terrain }}
+                </div>
             </div>
-            <div>
-                {{ r.gravity }} Gs
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.population)">
-            <div>
-                Population:
-            </div>
-            <div>
-                ~ {{ r.population }}
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.climate)">
-            <div>
-                Climate:
-            </div>
-            <div>
-                {{ r.climate }}
-            </div>
-        </div>
-        <div class="r_row">
-            <div>
-                Terrain:
-            </div>
-            <div>
-                {{ r.terrain }}
-            </div>
-        </div>
-        <div class="r_row" ng-show="checkValue(r.surface_water)">
-            <div>
-                Surface Water:
-            </div>
-            <div>
-                {{ r.surface_water }}% of planet's surface
-            </div>
-        </div>
-
-        <div class="r_row" ng-show="people[$index].length">
-            <div class="flex_col_justify_top">
-                Residents:
+            <div class="category_name" ng-show="checkValue(r.surface_water)">
+                <div class="col-xs-6">
+                    Surface Water:
+                </div>
+                <div class="col-xs-6">
+                    {{ r.surface_water }}% of planet's surface
+                </div>
             </div>
         </div>
-        <div class="flex_col_justify_top left-padding" ng-show="people[$index].length" ng-repeat="p in people[$index]">
-            <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
-        </div>
-
-        <div class="r_row" >
-            <div class="flex_col_justify_top">
-                Films:
+        <div class="result_middle left_justify">
+            <h5>Featured</h5>
+            <div class="r_row film_row_top med-line-height" ng-show="people[$index].length">
+                <div class="justify-center white_text">
+                    Residents:
+                </div>
+            </div>
+            <div class="justify-center" ng-show="people[$index].length" ng-repeat="p in people[$index]">
+                <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
+            </div>
+            <div class="r_row film_row_top" >
+                <div class=" justify-center white_text top_padding" ng-class="{ hidden_element: $index > 0 } ">
+                    Films:
+                </div>
+            </div>
+            <div class="justify-center med-line-height" ng-repeat="f in films[$index]">
+                <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
-        <div class="left-padding" ng-repeat="f in films[$index]">
-            <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
-        </div>
-        <div class="r_row move_up">
-            <div>
-                Created:
+        <div class="result_bottom left_justify">
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Created:
+                </div>
+                <div class="col-xs-6">
+                    {{ convertToLocal(r.created) }}
+                </div>
             </div>
-            <div>
-                {{ convertToLocal(r.created) }}
-            </div>
-        </div>
-        <div class="r_row">
-            <div>
-                Edited:
-            </div>
-            <div>
-                {{ convertToLocal(r.edited) }}
+            <div class="category_name">
+                <div class="col-xs-6">
+                    Edited:
+                </div>
+                <div class="col-xs-6">
+                    {{ convertToLocal(r.edited) }}
+                </div>
             </div>
         </div>
     </div>

@@ -291,12 +291,12 @@ form {
 
 }
 
-.system_note div {
+.category_name div {
     color: white;
     padding-left: 0;
 }
 
-.system_note div:nth-of-type(2) {
+.category_name div:nth-of-type(2) {
     color: yellow;
 }
 
@@ -328,6 +328,10 @@ form {
 
 .r_row .push_column_right:last-of-type {
     /*margin-top: -2em;*/
+}
+
+.med-line-height {
+    line-height: 1.5em;
 }
 
 
@@ -381,6 +385,7 @@ form {
     margin: 2px;
 }
 
+
 .result_top,
 .result_middle {
     border: 4px solid #518070;
@@ -421,6 +426,7 @@ form {
 .crew span:nth-of-type(2) {
     color: yellow;
 }
+
 
 .spinner {
     position: absolute;

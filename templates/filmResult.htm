@@ -7,17 +7,17 @@
         <div class="result_top">
             <h5>Details:</h5>
             <div class="r_row left_justify">
-                <div class="col-xs-12 crew">
+                <div class="col-xs-12 crew med-line-height">
                     <span>Directed by </span> <span>{{ r.director }}</span>
                 </div>
             </div>
             <div class="r_row left_justify">
-                <div class="col-xs-12 crew">
+                <div class="col-xs-12 crew med-line-height">
                     <span>Produced by </span><span>{{ r.producer }}</span>
                 </div>
             </div>
             <div class="r_row left_justify">
-                <div class="col-xs-12 crew">
+                <div class="col-xs-12 crew med-line-height">
                     <span>Released on </span> <span>{{ convertToLocalDate(r.release_date) }}</span>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     Characters:
                 </div>
             </div>
-            <div class=" justify-center"  ng-repeat="c in characters[$index]">
+            <div class=" justify-center med-line-height"  ng-repeat="c in characters[$index]">
                 <a ng-click="callUrl(c.name, c.url)">{{ c.name }}</a>
             </div>
 
@@ -50,16 +50,16 @@
                     Planets:
                 </div>
             </div>
-            <div class="justify-center" ng-repeat="p in planets[$index]">
+            <div class="justify-center med-line-height" ng-repeat="p in planets[$index]">
                 <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
             </div>
 
-            <div class="justify-center" >
+            <div class="justify-center med-line-height" >
                 <div class=" justify-center white_text top_padding">
                     Species:
                 </div>
             </div>
-            <div class="justify-center " ng-repeat="s in species[$index]">
+            <div class="justify-center med-line-height" ng-repeat="s in species[$index]">
                 <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
             </div>
 
@@ -68,7 +68,7 @@
                     Starships:
                 </div>
             </div>
-            <div class="justify-center" ng-repeat="st in starships[$index]">
+            <div class="justify-center med-line-height" ng-repeat="st in starships[$index]">
                 <a ng-click="callUrl(st.name, st.url)">{{ st.name }}</a>
             </div>
 
@@ -77,12 +77,12 @@
                     Vehicles:
                 </div>
             </div>
-            <div class="justify-center" ng-repeat="v in vehicles[$index]">
+            <div class="justify-center med-line-height" ng-repeat="v in vehicles[$index]">
                 <a ng-click="callUrl(st.name, st.url)">{{ v.name }}</a>
             </div>
         </div>
         <div class="result_bottom">
-            <div class="system_note">
+            <div class="category_name">
                 <div>
                     Created:
                 </div>
@@ -90,7 +90,7 @@
                     {{ convertToLocal(r.created) }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div>
                     Edited:
                 </div>

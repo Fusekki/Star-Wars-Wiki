@@ -12,9 +12,9 @@
                 <!--{{ r.name }}-->
             <!--</div>-->
         <!--</div>-->
-        <div class="result_top yellow_text">
+        <div class="result_top yellow_text left_justify">
             <h5>Biology</h5>
-            <div class="system_note" ng-show="checkValue(r.eye_colors)">
+            <div class="category_name" ng-show="checkValue(r.eye_colors)">
                 <div class="col-xs-6">
                     Eye Colors:
                 </div>
@@ -22,7 +22,7 @@
                     {{ r.eye_colors }}
                 </div>
             </div>
-            <div class="system_note" ng-show="checkValue(r.hair_colors)">
+            <div class="category_name" ng-show="checkValue(r.hair_colors)">
                 <div class="col-xs-6">
                     Hair Colors:
                 </div>
@@ -30,7 +30,7 @@
                     {{ r.hair_colors }}
                 </div>
             </div>
-            <div class="system_note" ng-show="checkValue(r.skin_colors)">
+            <div class="category_name" ng-show="checkValue(r.skin_colors)">
                 <div class="col-xs-6">
                     Skin Colors:
                 </div>
@@ -38,7 +38,7 @@
                     {{ r.skin_colors }}
                 </div>
             </div>
-            <div class="system_note" ng-show="checkValue(r.classification)">
+            <div class="category_name" ng-show="checkValue(r.classification)">
                 <div class="col-xs-6">
                     Classification:
                 </div>
@@ -46,7 +46,7 @@
                     {{ r.classification }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div class="col-xs-6">
                     Designation:
                 </div>
@@ -54,7 +54,7 @@
                     {{ r.designation }}
                 </div>
             </div>
-            <div class="system_note" ng-show="homeworlds.length && checkValue(homeworlds[$index].name)">
+            <div class="category_name" ng-show="homeworlds.length && checkValue(homeworlds[$index].name)">
                 <div class="col-xs-6">
                     Homeworld:
                 </div>
@@ -62,7 +62,7 @@
                     <a ng-click="callUrl(homeworlds[$index].name, homeworlds[$index].url)"> {{ homeworlds[$index].name }}</a>
                 </div>
             </div>
-            <div class="system_note" ng-show="checkValue(r.language)">
+            <div class="category_name" ng-show="checkValue(r.language)">
                 <div class="col-xs-6">
                     Language
                 </div>
@@ -70,7 +70,7 @@
                     {{ r.language }}
                 </div>
             </div>
-            <div class="system_note" ng-show="checkValue(r.average_height)">
+            <div class="category_name" ng-show="checkValue(r.average_height)">
                 <div class="col-xs-6">
                     Avg Height:
                 </div>
@@ -78,7 +78,7 @@
                     {{ convertHeight(r.average_height) }}
                 </div>
             </div>
-            <div class="system_note" ng-show="checkValue(r.average_lifespan)">
+            <div class="category_name" ng-show="checkValue(r.average_lifespan)">
                 <div class="col-xs-6">
                     Avg Lifespan:
                 </div>
@@ -89,25 +89,25 @@
         </div>
         <div class="result_middle">
             <h5>Origins</h5>
-            <div class="system_note">
+            <div class="category_name">
                 <div>
                     People:
                 </div>
             </div>
-            <div class="flex_col_justify_top justify-center"  ng-repeat="p in people[$index]">
+            <div class="flex_col_justify_top justify-center med-line-height"  ng-repeat="p in people[$index]">
                 <a ng-click="callUrl(p.name, p.url)">{{ p.name }}</a>
             </div>
-            <div class="r_row system_note" >
+            <div class="r_row category_name" >
                 <div class="flex_col_justify_top">
                     Films:
                 </div>
             </div>
-            <div class="justify-center" ng-repeat="f in films[$index]">
+            <div class="justify-center med-line-height" ng-repeat="f in films[$index]">
                 <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
         <div class="result_bottom">
-            <div class="system_note">
+            <div class="category_name">
                 <div>
                     Created:
                 </div>
@@ -115,7 +115,7 @@
                     {{ convertToLocal(r.created) }}
                 </div>
             </div>
-            <div class="system_note">
+            <div class="category_name">
                 <div>
                     Edited:
                 </div>
