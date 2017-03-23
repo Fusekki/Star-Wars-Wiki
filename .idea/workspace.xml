@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="340a9229-a764-473c-8e96-d77f96bf7186" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/balls.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/computer_engineering_science_tech_1920x1080.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/computer_engineering_science_tech_1920x1080.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/droid.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/mf.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/species1.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/species2.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/starships2.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/vehicles2.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/vehicles3.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/services/services_old.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/controllers.js" afterPath="$PROJECT_DIR$/controllers/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/directives/directives.js" afterPath="$PROJECT_DIR$/directives/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/vehicles.svg" afterPath="$PROJECT_DIR$/img/vehicles.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/routes.js" afterPath="$PROJECT_DIR$/routes/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/services.js" afterPath="$PROJECT_DIR$/services/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/search.htm" afterPath="$PROJECT_DIR$/templates/search.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -71,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+            <state relative-caret-position="34">
+              <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -131,10 +110,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3339">
+            <state relative-caret-position="-1809">
               <caret line="358" column="0" lean-forward="false" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
               <folding />
             </state>
@@ -145,7 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>new_</find>
       <find>bounceInLeft</find>
       <find>luke</find>
       <find>serenno</find>
@@ -175,6 +153,7 @@
       <find>tion</find>
       <find>left_justify</find>
       <find>error</find>
+      <find>102,166,214</find>
     </findStrings>
     <replaceStrings>
       <replace>tr</replace>
@@ -190,6 +169,7 @@
       <replace>left_justify</replace>
       <replace>system_note</replace>
       <replace>category_name</replace>
+      <replace>208, 110, 88</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -601,12 +581,12 @@
       <workItem from="1490020558464" duration="9959000" />
       <workItem from="1490108052263" duration="10175000" />
       <workItem from="1490197200777" duration="4222000" />
-      <workItem from="1490277430049" duration="10872000" />
+      <workItem from="1490277430049" duration="11631000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="399697000" />
+    <option name="totallyTimeSpent" value="400456000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -957,14 +937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/search.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -975,8 +947,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3339">
+        <state relative-caret-position="-1809">
           <caret line="358" column="0" lean-forward="false" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding />
         </state>
       </provider>
