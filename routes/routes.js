@@ -3,12 +3,10 @@
 swApp.config(function ($routeProvider) {
 
     $routeProvider
-
         .when('/', {
             templateUrl: 'templates/home.htm',
             controller: 'homeCtrl'
         })
-
         .when('/search', {
             templateUrl: 'templates/search.htm',
             controller: 'searchCtrl'
@@ -33,31 +31,4 @@ swApp.config(function ($routeProvider) {
             templateUrl: 'templates/noresults.htm',
             controller: 'errorCtrl'
         })
-
-
-
-        // .when('/planets', {
-        //     templateUrl: 'templates/planetResult.htm',
-        //     controller: 'resultCtrl'
-        // })
-        //
-        // .when('/species', {
-        //     templateUrl: 'templates/speciesResult.htm',
-        //     controller: 'resultCtrl'
-        // })
-        //
-        // .when('/starships', {
-        //     templateUrl: 'templates/starshipResult.htm',
-        //     controller: 'resultCtrl'
-        // })
-        //
-        // .when('/vehicles', {
-        //     templateUrl: 'templates/vehicleResult.htm',
-        //     controller: 'resultCtrl'
-        // })
-        //
-        // .when('/films', {
-        //     templateUrl: 'templates/filmResult.htm',
-        //     controller: 'resultCtrl'
-        // })
 });

@@ -308,8 +308,6 @@ angular.module('swApp')
     .service('logicService', function (myCache, $rootScope) {
         var self = this;
 
-        // console.log('in logic service');
-
         var window_sizes = ['xs', 'xs+', 'sm', 'sm+', 'med', 'med+', 'lrg', 'lrg+'];
 
         var categories = ["people", "films", "starships", "vehicles", "species", "planets"];
@@ -321,20 +319,6 @@ angular.module('swApp')
         var spinner = null;
 
         self.orientation = screen.orientation.angle;
-
-        // Start Debug
-        // Set to false to hide debugging window.
-        // var debug = true;
-        //
-        // var orientation = screen.orientation.type;
-        //
-        // var checkScreenPixels = function() {
-        //     return screen.width + ' x ' + screen.height;
-        //
-        // };
-
-        // end debugging tools.
-
 
         var capitalize = function(word) {
             return word.charAt(0).toUpperCase() + word.slice(1);
@@ -360,12 +344,6 @@ angular.module('swApp')
         };
 
         var convertToFeet = function (height) {
-            // console.log(height);
-            // var feet = parseInt(height * 0.032808);
-            // console.log(feet);
-            // var inches = (height % 0.032808) * 0.39370;
-            // console.log(inches);
-            // return feet + "' " + inches + '"';
             var actualFeet = ((height * 0.393700) / 12);
             var feet = Math.floor(actualFeet);
             var inches = Math.round((actualFeet - feet) * 12);
@@ -388,31 +366,6 @@ angular.module('swApp')
             console.log(self.orientation);
             $rootScope.$broadcast('orientation_change');
         });
-
-        // window.addEventListener("orientationchange", function() {
-        //     // Announce the new orientation number
-        //     self.orientation = screen.orientation.angle;
-        //     console.log(self.orientation);
-        //     $rootScope.$broadcast('orientation_change');
-        //     // alert(screen.orientation);
-        // });
-
-        // var reloadPage = function() {
-        //     console.log('trigger reload');
-        // };
-
-
-        // iPhone 5 portrait: min-device-width: 320px
-        // iPhone 5 landscape: 320px and orientation: landscape
-        //
-        // iPhone 6 portrait: min-device-width: 376px
-        // iPhone 6 landscape: 375px and orientation: landscape
-        //
-        // iPhone 6P portrait: min-device-width: 414px
-        // iPhone 6P landscape: 414px and orientation: landscape
-        //
-        // iPad portrait: min-device-width: 768px
-        // iPad landscape: 768px and orientation: landscape
 
 
         var checkWindowSize = function() {
@@ -469,15 +422,7 @@ angular.module('swApp')
             getOrientation: function() {
               return screen.orientation.angle;
             },
-            //
-            // isDebug: function() {
-            //     return debug;
-            // },
-            //
-            // getScreenPixels: function() {
-            //     return checkScreenPixels();
-            // },
-            //
+
             getWindowSize: function() {
                 return checkWindowSize();
             },
@@ -505,7 +450,6 @@ angular.module('swApp')
                 api_count++;
                 if (api_count === 1) {
                     spinner = true;
-                    // console.log('activating spinner');
                 }
                 return true;
             },
@@ -514,7 +458,6 @@ angular.module('swApp')
                 api_count--;
                 if (!api_count) {
                     spinner = false;
-                    // console.log('deactivating spinner');
                     return false;
                 }
                 return true;
@@ -562,16 +505,10 @@ angular.module('swApp')
                 }
                 return true;
             }
-            // pageReload: function() {
-            //     reloadPage();
-            // }
-
         };
     })
 
     .service('searchService', function (logicService, apiService) {
-
-        // console.log('in search service');
 
         var self=this;
 
@@ -581,60 +518,32 @@ angular.module('swApp')
         apiService.search_term = self.search_term;
      })
 
-
-
-
     .service('apiService', function($http, logicService) {
 
-
-        // console.log('in api service');
         var self = this;
 
         self.category = logicService.lowerCaseThis(logicService.category);
         self.search_term = logicService.search_term;
 
         this.getData = function(callback, err) {
-            // console.log('starting API call');
-            if (logicService.incrementApiCount()) {
-                // console.log('succesfully increased API count.');
-                // console.log('API total is now at ' + logicService.getApiCount() );
-            }
             $http.get('https://swapi.co/api/' + self.category + '/?search='+ self.search_term)
                 .then(callback,err)
                 .finally(function() {
-                        // console.log('DONE LOADING');
-                        if (logicService.decrementApiCount()) {
-                            // console.log('successfully decremented API count.');
-                            // console.log('API count now at '+ logicService.getApiCount());
-                        } else {
-                            // console.log('API count is reached zero.  Trigger spinner to stop.');
-                            // logicService.spinner = false;
+                        if (!logicService.decrementApiCount()) {
                             logicService.setSpinner(false);
                         }
-
                     }
                 )
         }
 
         this.getDataUrl = function(url, callback, err) {
-            // console.log('starting API call');
-            if (logicService.incrementApiCount()) {
-                // console.log('succesfully increased API count.');
-                // console.log('API total is now at ' + logicService.getApiCount() );
-            }
             $http.get(url)
                 .then(callback,err)
                 .finally(function() {
-                        // console.log('DONE LOADING');
                         if (logicService.decrementApiCount()) {
                             // console.log('successfully decremented API count.');
                             // console.log('API count now at '+ logicService.getApiCount());
-                        } else {
-                            // console.log('API count is reached zero.  Trigger spinner to stop.');
-                            // logicService.spinner = false;
-                            // logicService.setSpinner(false);
                         }
-
                     }
                 )
         }
@@ -644,14 +553,10 @@ angular.module('swApp')
     .service('parseService', function (apiService, logicService, $log) {
         var self = this;
 
-        // self.new_search = true;
-
         self.item_number = 0;
         self.array_count = 0;
 
         self.a_list = [];
-
-        // console.log('in parseService');
 
         self.categories_with_url = ["homeworld"];
 
@@ -683,7 +588,6 @@ angular.module('swApp')
         self.people = [];
 
         // We ate going to use this variable to store the number of api calls.
-
         // whichever category the user specifies, there may be multiple results.
         // First, let's create the API call and then store all results in some array.
 
@@ -714,10 +618,6 @@ angular.module('swApp')
 
             var category_list = logicService.getCategories();
 
-            // console.log('in ParseResults for ' + original_category);
-            // console.log(results_length + ' total results to process.');
-
-
             if (self.a_list.length) {
                 self.a_list.length = 0;
             }
@@ -732,7 +632,6 @@ angular.module('swApp')
             if (self.pilot_list.length) {
                 self.pilot_list.length = 0;
             }
-            // console.log(results_to_parse);
 
             if (self.homeworlds.length) {
                 self.homeworlds.length = 0;
@@ -764,12 +663,11 @@ angular.module('swApp')
 
             if (!logicService.getApiCount()) {
                 if (logicService.setApiCount(0)) {
-                    console.log('successfully set API count to 0.');
+                    // console.log('successfully set API count to 0.');
                 };
 
             }
 
-            // console.log('creating arrays for results.');
 
 
             switch (original_category) {
@@ -780,8 +678,6 @@ angular.module('swApp')
                 // 4 "species",
                 // 5 "planets"
                 case (category_list[0]):
-                    // console.log('people');
-                    // console.log('creating films, starships and vehicles arrays.');
                     for (var x = 0; x < results_length; x++) {
                         self.film_list[x] = [];
                         self.species[x] = [];
@@ -790,8 +686,6 @@ angular.module('swApp')
                     };
                     break;
                 case (category_list[1]):
-                    // console.log('films');
-                    // console.log('creating characters, planets, species, starships and vehicles arrays.');
                     for (var x = 0; x < results_length; x++) {
                         self.characters[x] = [];
                         self.planets[x] = [];
@@ -799,50 +693,36 @@ angular.module('swApp')
                         self.starships[x] = [];
                         self.vehicles[x] = [];
                     };
-
                     break;
 
                 case (category_list[2]):
-                    // console.log('starships');
-                    // console.log('creating films and pilots arrays.');
                     for (var x = 0; x < results_length; x++) {
                         self.pilots[x] = [];
                         self.film_list[x] = [];
                     };
-
                     break;
                 case (category_list[3]):
-                    // console.log('vehicles');
                     for (var x = 0; x < results_length; x++) {
                         self.pilots[x] = [];
                         self.film_list[x] = [];
                     };
-
                     break;
-
                 case (category_list[4]):
-                    // console.log('species');
                     for (var x = 0; x < results_length; x++) {
                         self.people[x] = [];
                         self.film_list[x] = [];
                     };
-
                     break;
                 case (category_list[5]):
-                    // console.log('planets');
                     for (var x = 0; x < results_length; x++) {
                         self.people[x] = [];
                         self.film_list[x] = [];
                     };
-
                     break;
             }
 
             // We need to cycle through object returned in the event there are many.
             results_to_parse.forEach(function(result_item, i, arr) {
-
-                // console.log('in resultstoParse for ' + original_category);
-                // console.log(result_item);
 
                 var a_length = arr.length;
                 var a_index = i;
@@ -854,13 +734,10 @@ angular.module('swApp')
                 // These categories should be stored in an object.
                 // For each homeworld, for example
                 self.categories_with_url.forEach(function(category) {
-                    // console.log(category);
                     if (result_item[category]) {
                         current_count++;
                         // make api call
                         var url = result_item[category];
-                        // console.log(url);
-                        // console.log(url.length)
                         // Before any API calls, we need to check the cache.
                         var cache_results = logicService.getCacheItem(url);
                         if (!cache_results) {
@@ -895,68 +772,37 @@ angular.module('swApp')
 
                         switch (category) {
                             case (self.categories_with_array[0]):
-                                // characters
-                                // console.log('in ' + self.categories_with_array[0].toString());
                                 self.processCatArray(category, self.characters, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[1]):
-                                // films
-                                // console.log('in ' + self.categories_with_array[1].toString());
+
                                 self.processCatArray(category, self.films, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[2]):
-                                // People
-                                // console.log('in ' + self.categories_with_array[2].toString());
                                 self.processCatArray(category, self.people, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[3]):
-                                // pilots
-                                // console.log('in ' + self.categories_with_array[3].toString());
-                                // console.log('total results to parse is ' + a_length);
-                                // console.log('the index of this result is ' + a_index);
-                                // console.log('triggering populatePilotArray');
-                                // self.populatePilotArray(self.pilots, result_item, a_length, a_index);
                                 self.processCatArray(category, self.pilots, result_item, a_length, a_index);
-
                                 break;
                             case (self.categories_with_array[4]):
-                                // planets
-                                // console.log('in ' + self.categories_with_array[4].toString());
                                 self.processCatArray(category, self.planets, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[5]):
-                                // Residents
-                                // console.log('in ' + self.categories_with_array[5].toString());
                                 self.processCatArray(category, self.people, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[6]):
-                                // species
-                                // console.log('in ' + self.categories_with_array[6].toString());
                                 self.processCatArray(category, self.species, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[7]):
-                                // starships
-                                // console.log('in ' + self.categories_with_array[7].toString());
                                 self.processCatArray(category, self.starships, result_item, a_length, a_index);
                                 break;
                             case (self.categories_with_array[8]):
-                                // vehicles
-                                // console.log('in ' + self.categories_with_array[8].toString());
                                 self.processCatArray(category, self.vehicles, result_item, a_length, a_index);
                                 break;
-
-
                         }
 
                     }
                 });
-                // console.log(current_count);
-                // console.log(a_length);
-                // if (current_count == a_length - 1) {
-                // console.log('detecting end of search!!!!!!!!!!!!!!!!!!!');
-                //
-                // // self.new_search = true;
-                // }
             });
 
         }
@@ -964,12 +810,8 @@ angular.module('swApp')
         self.processCatArray = function(category, array_name, obj, a_length, a_index) {
 
 
-            // console.log('process cat array start for ' + category);
-            // console.log(self.species);
-
             var item_array = [];
             var items_in_object = null;
-
 
             // 0 "characters",
             // 1 "films",
@@ -985,56 +827,33 @@ angular.module('swApp')
 
             switch (category) {
                 case (self.categories_with_array[0]):
-                    // characters
-                    // console.log('in ' + self.categories_with_array[0].toString());
                     item_array = obj.characters;
                     break;
                 case (self.categories_with_array[1]):
-                    // films
-                    // console.log('in ' + self.categories_with_array[1].toString());
                     item_array = obj.films;
                     break;
                 case (self.categories_with_array[2]):
-                    // people
-                    // console.log('in ' + self.categories_with_array[2].toString());
                     item_array = obj.people;
                     break;
                 case (self.categories_with_array[3]):
-                    // pilots
-                    // console.log('in ' + self.categories_with_array[3].toString());
                     item_array = obj.pilots;
                     break;
                 case (self.categories_with_array[4]):
-                    // planets
-                    // console.log('in ' + self.categories_with_array[4].toString());
                     item_array = obj.planets;
                     break;
                 case (self.categories_with_array[5]):
-                    // residents
-                    // console.log('in ' + self.categories_with_array[5].toString());
                     item_array = obj.residents;
                     break;
                 case (self.categories_with_array[6]):
-                    // species
-                    // console.log('in ' + self.categories_with_array[6].toString());
                     item_array = obj.species;
                     break;
                 case (self.categories_with_array[7]):
-                    // starships
-                    // console.log('in ' + self.categories_with_array[7].toString());
                     item_array = obj.starships;
                     break;
                 case (self.categories_with_array[8]):
-                    // vehicles
-                    // console.log('in ' + self.categories_with_array[8].toString());
                     item_array = obj.vehicles;
                     break;
-
             }
-
-            // console.log('in processcatararry for ' + category);
-
-            // console.log(item_array);
 
             item_array.forEach(function(url) {
 
@@ -1047,93 +866,63 @@ angular.module('swApp')
                         var trimmed_result = response.data;
                         switch (category) {
                             case (self.categories_with_array[0]):
-                                // console.log('characters');
-                                /// films
                                 self.populate_array(self.characters, trimmed_result, a_index, self.categories_with_array[0]);
                                 break;
                             case (self.categories_with_array[1]):
-                                // console.log('films');
-                                /// films
                                 self.populate_array(self.film_list, trimmed_result, a_index, self.categories_with_array[1]);
                                 break;
                             case (self.categories_with_array[2]):
-                                // people
                                 self.populate_array(self.people, trimmed_result, a_index, self.categories_with_array[2]);
                                 break;
                             case (self.categories_with_array[3]):
-                                // pilots
                                 self.populate_array(self.pilots, trimmed_result, a_index, self.categories_with_array[3]);
                                 break;
                             case (self.categories_with_array[4]):
-                                // planets
                                 self.populate_array(self.planets, trimmed_result, a_index, self.categories_with_array[4]);
                                 break;
                             case (self.categories_with_array[5]):
-                                // people
                                 self.populate_array(self.people, trimmed_result, a_index, self.categories_with_array[5]);
                                 break;
                             case (self.categories_with_array[6]):
-                                // species
                                 self.populate_array(self.species, trimmed_result, a_index, self.categories_with_array[6]);
                                 break;
                             case (self.categories_with_array[7]):
-                                // starships
                                 self.populate_array(self.starships, trimmed_result, a_index, self.categories_with_array[7]);
                                 break;
                             case (self.categories_with_array[8]):
-                                // vehicles
                                 self.populate_array(self.vehicles, trimmed_result, a_index, self.categories_with_array[8]);
                                 break;
                         }
-
                     }, function (err) {
                         console.log(err.status);
                     });
                 } else {
-                    // console.log(category + ' in cache');
                     switch (category) {
                         case (self.categories_with_array[0]):
-                            // console.log('characters');
-                            /// films
                             self.populate_array(self.characters,cache_results, a_index, self.categories_with_array[0]);
                             break;
                         case (self.categories_with_array[1]):
-                            // console.log('films');
-                            /// films
                             self.populate_array(self.film_list, cache_results, a_index, self.categories_with_array[1]);
                             break;
                         case (self.categories_with_array[2]):
-                            // people
                             self.populate_array(self.people, cache_results, a_index, self.categories_with_array[2]);
                             break;
                         case (self.categories_with_array[3]):
-                            // pilots
                             self.populate_array(self.pilots, cache_results, a_index, self.categories_with_array[3]);
-
                             break;
                         case (self.categories_with_array[4]):
-                            // console.log('planets');
-                            /// films
                             self.populate_array(self.planets, cache_results, a_index, self.categories_with_array[4]);
                             break;
                         case (self.categories_with_array[5]):
-                            // console.log('residents');
-                            /// films
                             self.populate_array(self.people, cache_results, a_index, self.categories_with_array[5]);
                             break;
                         case (self.categories_with_array[6]):
-                            // console.log('species');
-                            /// films
                             self.populate_array(self.species, cache_results, a_index, self.categories_with_array[6]);
                             break;
                         case (self.categories_with_array[7]):
-                            // console.log('starships');
-                            /// films
                             self.populate_array(self.starships, cache_results, a_index, self.categories_with_array[7]);
                             break;
                         case (self.categories_with_array[8]):
-                            // console.log('vehicles');
-                            /// films
                             self.populate_array(self.vehicles, cache_results, a_index, self.categories_with_array[8]);
                             break;
 
@@ -1143,12 +932,9 @@ angular.module('swApp')
         }
 
         self.processCatUrl =  function(category, obj, array_destination) {
-            // console.log(obj);
-
             switch (category) {
                 case (self.categories_with_url[0]):
-                    // homeworlds
-                    var homeworld_name = obj.name;
+                    // var homeworld_name = obj.name;
                     array_destination.push({
                         name: obj.name,
                         url: obj.url
@@ -1158,7 +944,6 @@ angular.module('swApp')
         }
 
         self.populate_array = function(array, obj, idx, type) {
-            // console.log('in populate_array function.');
             switch(type) {
                 case self.categories_with_array[0]:
                     array[idx].push({
@@ -1183,14 +968,12 @@ angular.module('swApp')
                         name: obj.name,
                         url: obj.url
                     });
-                    // console.log(self.species);
                     break;
                 case self.categories_with_array[4]:
                     array[idx].push({
                         name: obj.name,
                         url: obj.url
                     });
-                    // console.log(self.people);
                     break;
                 case self.categories_with_array[5]:
                     array[idx].push({
@@ -1239,10 +1022,8 @@ angular.module('swApp')
 
     .service('debugService', function () {
 
-
-
         // Set to false to hide debugging window.
-        var debug = true;
+        var debug = false;
 
         var orientation = screen.orientation.type;
 
@@ -1250,7 +1031,6 @@ angular.module('swApp')
             return screen.width + ' x ' + screen.height;
 
         };
-
 
         // Public variables
 
@@ -1271,9 +1051,6 @@ angular.module('swApp')
             }
 
             // End Debug area.
-
-
-
         };
     })
 
