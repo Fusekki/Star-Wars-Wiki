@@ -202,12 +202,16 @@ angular.module('swApp')
                     // console.log(response);
                     $scope.results = response.data.results;
                     $scope.results_length = $scope.results.length;
+                    if (!$scope.results_length) {
+                        $location.path("/noresults");
+                    }
                     console.log($scope.results);
                     // console.log(self.container_size);
                     logicService.setCacheItem(category + ':' + $scope.search_term, $scope.results);
                     // This is the only call to the parseService made.
                     parseService.parseResults($scope.results, category);
                 }, function(err) {
+                    $location.path("/error");
                     console.log(err.status);
                 });
             } else {
@@ -353,10 +357,12 @@ angular.module('swApp')
         };
 
         $scope.convertWeight = function(mass) {
+            console.log(mass);
             return logicService.weightThis(mass);
         };
 
         $scope.convertHeight = function(height) {
+            console.log(height);
             return logicService.heightThis(height);
         }
 
@@ -493,8 +499,11 @@ angular.module('swApp')
         };
     })
 
-    .controller('errorCtrl', function ($scope, $timeout, $location) {
-        // console.log('in error ctrl');
+    .controller('errorCtrl', function ($scope, $timeout, $location, logicService) {
+        console.log('in error ctrl');
+
+        $scope.category = logicService.category;
+        $scope.search_term = logicService.search_term;
         $scope.counter = 5;
         var stopped;
 

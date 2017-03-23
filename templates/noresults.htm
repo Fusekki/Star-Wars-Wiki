@@ -1,0 +1,7 @@
+<div class="col-xs-10 result_line">Results for <span class="yellow_text">"{{ search_term }}"</span> in {{ category }}</div>
+<div class="col-xs-10 no_results">The search yielded no results.  Please refine your search and try again.</div>
+<div class="col-xs-10"> Click <a ng-href="#/">here</a> to return to homepage.<br></div>
+<div class="clearfix col-xs-10">
+    <span ng-show="counter > 0" >Auto redirecting in <span ng-bind="counter"></span> seconds.</span> <br>
+    <span id="redirection_notice" ng-show="counter == 0">Redirecting now...</span>
+</div>

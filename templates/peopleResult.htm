@@ -22,11 +22,11 @@
                     <a ng-click="callUrl(s.name, s.url)">{{ s.name }}</a>
                 </div>
             </div>
-            <div class="r_row">
+            <div class="r_row" ng-show="checkValue(r.height)">
                 <div class="col-xs-6">
                     {{ convertHeight(r.height) }}
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-6" ng-show="checkValue(r.weight)">
                     {{ convertWeight(r.mass) }}
                 </div>
             </div>
@@ -34,14 +34,14 @@
                 <div class="col-xs-6">
                     {{ r.skin_color }} skin
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-6" ng-show="checkValue(r.birth_year)">
                     Born {{ r.birth_year }}
                 </div>
             </div>
         </div>
         <div class="result_middle">
             <h5>Origins</h5>
-            <div class="category_name ng-show="checkValue(homeworlds[$index].name)">
+            <div class="category_name" ng-show="checkValue(homeworlds[$index].name)">
                 <div class="col-xs-6">
                     Homeworld:
                 </div>

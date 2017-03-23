@@ -29,6 +29,10 @@ swApp.config(function ($routeProvider) {
             templateUrl: 'templates/home.htm',
             controller: 'homeCtrl'
         })
+        .when('/noresults', {
+            templateUrl: 'templates/noresults.htm',
+            controller: 'errorCtrl'
+        })
 
 
 

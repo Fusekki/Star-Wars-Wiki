@@ -102,7 +102,16 @@ angular.module('swApp')
                 'Grievous',
                 'Tarfful',
                 'Raymus Antilles',
-                'Sly Moore'
+                'Sly Moore',
+                'Tion Medon',
+                'Finn',
+                'Rey',
+                'Poe Dameron',
+                'BB8',
+                'Captain Phasma',
+                'Padmé Amidala',
+
+
             ],
             starships: [
                 'Sentinel-class landing craft',

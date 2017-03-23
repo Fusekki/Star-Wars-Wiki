@@ -4,7 +4,7 @@
                 <h4 id="item_name" ng-class="r.name.length > 23 ? 'long_title' : 'medium_title'">{{ r.name }}</h4>
             </div>
         </div>
-        <div class="result_top left_justify">
+        <div class="result_top left_justify planet_area">
         <h5>Specifications</h5>
             <div class="category_name" ng-show="checkValue(r.diameter)">
                 <div class="col-xs-6">
@@ -90,20 +90,20 @@
                 <a ng-click="callUrl(f.title, f.url)">{{ f.title }}</a>
             </div>
         </div>
-        <div class="result_bottom left_justify">
+        <div class="result_bottom">
             <div class="category_name">
-                <div class="col-xs-6">
+                <div>
                     Created:
                 </div>
-                <div class="col-xs-6">
+                <div>
                     {{ convertToLocal(r.created) }}
                 </div>
             </div>
             <div class="category_name">
-                <div class="col-xs-6">
+                <div>
                     Edited:
                 </div>
-                <div class="col-xs-6">
+                <div>
                     {{ convertToLocal(r.edited) }}
                 </div>
             </div>
