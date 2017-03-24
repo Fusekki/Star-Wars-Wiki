@@ -250,6 +250,8 @@ angular.module('swApp')
         $scope.$watch('films', function () {
             $scope.films = parseService.film_list;
         }, true);
+
+
         // Calculations used for function below:
         /*!*margin-top: 6em*!*/
         /*!*margin-top contents 20px;*!*/
@@ -325,6 +327,11 @@ angular.module('swApp')
             return logicService.heightThis(height);
         };
 
+        // This is the wrapper function for clicking an A tag in the results.
+        // It grabs the url as well as the category name from the element.
+        // After, it sets the logic service variables to the elements grabbed.
+        // Finally, it sets the path to /results which via the routes
+        // reinitializes the result controller
         $scope.callUrl = function(name, url) {
             var _slice = url.lastIndexOf('/');
             var _url = url.substr(0, _slice);
@@ -388,7 +395,5 @@ angular.module('swApp')
         };
 
         // This launches the countdown.
-
         countdown();
-
         });

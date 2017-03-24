@@ -3,14 +3,13 @@
 angular.module('swApp')
 
 
-// Assigning the cachFactory to 'myCache'
+// Assigning the cachFactory to 'myCache'.  Cache Factory stores results after each successful search to limit API calls.,
     .factory('myCache', function($cacheFactory) {
         return $cacheFactory('myCache');
     })
 
+    // modelService stores the entries used to populate the autocomplete field in the search form in search.htm
     .service('modelService', function() {
-
-        var self = this;
 
         var data =  {
             films: [
@@ -297,14 +296,15 @@ angular.module('swApp')
         };
 
         return {
-
+            // Public function to return the data.
             getData: function () {
                 return data;
             }
         };
     })
 
-
+    // logic service is a shared service between controllers.  It's purpose is twofold.  It functions as the app's memory by storing scope variables between controllers.  If you notice,
+    // the controller's first retrieve the category, search term, and various other values.  It's second purpose is to contain commonly used functions (such as capitalize, etc).
     .service('logicService', function (myCache, $rootScope) {
         var self = this;
 
@@ -328,14 +328,18 @@ angular.module('swApp')
             return word.charAt(0).toLowerCase() + word.slice(1);
         };
 
+        // function to convert date from european time to local with hour and minute.
         var convertToLocal = function(some_date) {
             return new Date(some_date).toLocaleString().replace(/(.*)\D\d+/, '$1');
         };
+
+        // function to convert date from european time to local without hour and minute.  Used for film release date in the filmresult template.
 
         var convertToLocalDate = function(some_date) {
             return new Date(some_date).toLocaleDateString();
         };
 
+        // function to convert european weight to american standard.
         var convertToLbs = function (mass) {
             var approx = mass/0.45359237;
             var lbs = Math.floor(approx);
@@ -343,31 +347,34 @@ angular.module('swApp')
             return lbs + " lbs " + oz +  " oz";
         };
 
+        // function to convert meters to feet and inches
         var convertToFeet = function (height) {
             var actualFeet = ((height * 0.393700) / 12);
             var feet = Math.floor(actualFeet);
             var inches = Math.round((actualFeet - feet) * 12);
             return feet + "'" + inches + '"';
-        }
+        };
 
+        // function to get a cache item.
         var getCacheItem = function (item) {
             return myCache.get(item);
         };
 
+        // function to set a cache item.
         var setCacheItem = function (cache, items) {
             myCache.put(cache, items);
         };
 
-        // Listen for orientation changes
+        // Listener for orientation changes on mobile devices.
 
         $(window).on("orientationchange",function(){
             // Announce the new orientation number
             self.orientation = screen.orientation.angle;
-            console.log(self.orientation);
+            // console.log(self.orientation);
             $rootScope.$broadcast('orientation_change');
         });
 
-
+        // This function is so that JS can store the media size.  This is necessary for future CSS calculations set by the JS code.
         var checkWindowSize = function() {
             if (window.matchMedia("(min-width : 768px)").matches) {
             // iPhone6P
@@ -375,7 +382,7 @@ angular.module('swApp')
                     return window_sizes[6];
                 }
                 else {
-                    return window_sizes[7]
+                    return window_sizes[7];
                 }
             }
             else if (window.matchMedia("(min-width : 414px)").matches) {
@@ -384,7 +391,7 @@ angular.module('swApp')
                     return window_sizes[4];
                 }
                 else {
-                    return window_sizes[5]
+                    return window_sizes[5];
                 }
 
             }
@@ -394,7 +401,7 @@ angular.module('swApp')
                     return window_sizes[2];
                 }
                 else {
-                    return window_sizes[3]
+                    return window_sizes[3];
                 }
 
             }
@@ -404,12 +411,9 @@ angular.module('swApp')
                     return window_sizes[0];
                 }
                 else {
-                    return window_sizes[1]
+                    return window_sizes[1];
                 }
-
             }
-
-
 
         };
 
@@ -429,23 +433,30 @@ angular.module('swApp')
 
             // End Debug area.
 
+            // get spinner state
             getSpinner: function() {
                 return spinner;
             },
-
+            // set spinner state.
             setSpinner: function(activate) {
                 spinner = activate;
             },
 
+            // returns the api count.  this is used to track the number of subsequent API calls needed to be made from the original JSON object.  Remember, the JOSN returned containes URLs for
+            // some fields
             getApiCount: function() {
                 return api_count;
             },
+
+            // Sets the API count.
+            // We ate going to use this variable to store the number of api calls.
 
             setApiCount: function(num) {
                 api_count = num;
                 return true;
             },
 
+            // After each successful API call is initiated, this function is called to increase the API count.
             incrementApiCount: function() {
                 api_count++;
                 if (api_count === 1) {
@@ -454,6 +465,7 @@ angular.module('swApp')
                 return true;
             },
 
+            // After each successful API call is returned, this function is called to mark off an API call.
             decrementApiCount: function() {
                 api_count--;
                 if (!api_count) {
@@ -463,6 +475,8 @@ angular.module('swApp')
                 return true;
             },
 
+            // Public functions for set and get cache.
+
             setCacheItem: function(name, contents) {
                 setCacheItem(name, contents);
             },
@@ -471,6 +485,7 @@ angular.module('swApp')
                 return getCacheItem(cacheName);
             },
 
+            // Public function to get categories.
             getCategories: function() {
                 return categories;
             },
@@ -510,70 +525,110 @@ angular.module('swApp')
 
     .service('searchService', function (logicService, apiService) {
 
-        var self=this;
-
+        var self = this;
+        // These variables wire the values from the logic service to the search service.
         self.category = logicService.lowerCaseThis(logicService.category);
         self.search_term = logicService.search_term;
-        apiService.category = logicService.lowerCaseThis(self.category);
-        apiService.search_term = self.search_term;
+        // These variables wire the values from the logic service to the API service.
+
+        // apiService.category = logicService.lowerCaseThis(self.category);
+        // apiService.search_term = self.search_term;
      })
 
     .service('apiService', function($http, logicService) {
 
         var self = this;
 
+        // These variables wire the values from the logic service to the API service.
         self.category = logicService.lowerCaseThis(logicService.category);
         self.search_term = logicService.search_term;
 
+        // This is the wrapper for the API call when selected from the category from the home page.
         this.getData = function(callback, err) {
+            // This increments the API count which in return sets the spinner to true if not already.
+            if (logicService.incrementApiCount()) {
+                // console.log('succesfully increased API count.');
+                // console.log('API total is now at ' + logicService.getApiCount() );
+            }
             $http.get('https://swapi.co/api/' + self.category + '/?search='+ self.search_term)
                 .then(callback,err)
                 .finally(function() {
+                        // This lowers the API count.  If it returns true then it sets the spinner to false.  True meaning the API count has reached 0.
                         if (!logicService.decrementApiCount()) {
+                            // logicService.setSpinner(false);
+                        } else {
+                            // console.log('API count is reached zero.  Trigger spinner to stop.');
+                            // logicService.spinner = false;
                             logicService.setSpinner(false);
                         }
                     }
-                )
-        }
-
+                );
+        };
+        // This is the wrapper for the API call when used for parsing results.  It passes the URL in the JSON to this funtion.
         this.getDataUrl = function(url, callback, err) {
+            // This increments the API count which in return sets the spinner to true if not already.
+            if (logicService.incrementApiCount()) {
+                // console.log('succesfully increased API count.');
+                // console.log('API total is now at ' + logicService.getApiCount() );
+            }
             $http.get(url)
                 .then(callback,err)
                 .finally(function() {
+                    // console.log('API count is reached zero.  Trigger spinner to stop.');
                         if (logicService.decrementApiCount()) {
                             // console.log('successfully decremented API count.');
                             // console.log('API count now at '+ logicService.getApiCount());
                         }
                     }
-                )
-        }
+                );
+        };
 
     })
 
-    .service('parseService', function (apiService, logicService, $log) {
+
+    // The patse Service parses the JSON results returned via the API calls and wires them to the $scope variables for the controller and template.
+    .service('parseService', function (apiService, logicService) {
+        // The parseService essentially works in the following detailed manner.
+        // Whichever category the user oroginally specifies, there may be multiple results.
+
+        // First, the API call is made and then stores all results in some JSON.
+
+        // For each result, we need to check for specific fields that require additional API calls.
+        // These categories should be stored in an object array.
+
+        // Once the API call is completed, we store the search term as a key with the URLName as the value in the cache with the returned info.
+
+        // If the category is an array object (such as films), push those items to a subarray, such as self.films.
+        // Cycle through each item in subarray, call the API, store the URL into the cache.
+        // After, push the result to subarray.
+
+        // Otherwise, just push to a variable.
+        // After all calls are done for one object, create a new $scope object that contains the results
+
         var self = this;
 
-        self.item_number = 0;
-        self.array_count = 0;
 
-        self.a_list = [];
+        // self.item_number = 0;
+        // self.array_count = 0;
+
+        // self.a_list = [];
 
         self.categories_with_url = ["homeworld"];
 
         self.categories_with_array = ["characters", "films", "people", "pilots", "planets", "residents", "species", "starships", "vehicles"];
 
 
-        // Used for all controllers. This stores the array that the $scope.films is wired to.
+        // Used for all JSONs
         self.films = [];
         self.films_in_object = 0;
         self.film_list = [];
 
-        // Used for people
+        // Used for people JSON
         self.homeworlds = [];
         self.species = [];
         self.starships = [];
 
-        // used for films
+        // used for films JSON
         self.characters = [];
         self.planets = [];
 
@@ -583,45 +638,23 @@ angular.module('swApp')
         self.pilots = [];
         self.pilot_list = [];
 
-        // Used for species
-
+        // Used for species JSON
         self.people = [];
 
-        // We ate going to use this variable to store the number of api calls.
-        // whichever category the user specifies, there may be multiple results.
-        // First, let's create the API call and then store all results in some array.
-
-        // Call API, push results to array
-
-        // For each result, we need to check for specific fields that require additional API calls.
-        // These categories should be stored in an object.
-
-        // Once the call is completed, store the URLName in the cache with the returned info.
-
-        // If the category is an array object (such as films), push those items to a subarray.
-        // Otherwise, just push to a variable.
-        // Cycle through each item in subarray, call the API, store the URL into the cache.
-        // After, push the result to subarray.
-
-        // After all calls are done for one object, create a new $scope object that contains the results
-        // (both from original, and include new variable(s) with the results of those API calls as well as arrays.
-
-
-        // This is called once per search.  It holds the entire results in results_to_parse.
+        // This is called once following each API results.  It holds the entire results in results_to_parse.
         self.parseResults = function(results_to_parse, category) {
 
-
-
+            // Variable used to define the size of the arrays based on results returned.
+            // For instance, a seatch of "darth" yeilds two results.  This then goes to define the arrays as having two dimension.
             var results_length = results_to_parse.length;
-
-            var original_category = category;
 
             var category_list = logicService.getCategories();
 
-            if (self.a_list.length) {
-                self.a_list.length = 0;
-            }
+            // if (self.a_list.length) {
+            //     self.a_list.length = 0;
+            // }
 
+            // These are quick ways to completely erase an array from memory without having to cycle through all the index.
             if (self.characters.length) {
                 self.characters.length = 0;
             }
@@ -664,13 +697,14 @@ angular.module('swApp')
             if (!logicService.getApiCount()) {
                 if (logicService.setApiCount(0)) {
                     // console.log('successfully set API count to 0.');
-                };
-
+                }
             }
 
+            // Based on the category being searched, we will initialize the arrays needed for that category to ensure there is no
+            // remaining values from previous searches.
+            var x;
 
-
-            switch (original_category) {
+            switch (category) {
                 // 0 "people",
                 // 1 "films",
                 // 2 "starships",
@@ -678,50 +712,50 @@ angular.module('swApp')
                 // 4 "species",
                 // 5 "planets"
                 case (category_list[0]):
-                    for (var x = 0; x < results_length; x++) {
+                    for (x = 0; x < results_length; x++) {
                         self.film_list[x] = [];
                         self.species[x] = [];
                         self.starships[x] = [];
                         self.vehicles[x] = [];
-                    };
+                    }
                     break;
                 case (category_list[1]):
-                    for (var x = 0; x < results_length; x++) {
+                    for (x = 0; x < results_length; x++) {
                         self.characters[x] = [];
                         self.planets[x] = [];
                         self.species[x] = [];
                         self.starships[x] = [];
                         self.vehicles[x] = [];
-                    };
+                    }
                     break;
 
                 case (category_list[2]):
-                    for (var x = 0; x < results_length; x++) {
+                    for (x = 0; x < results_length; x++) {
                         self.pilots[x] = [];
                         self.film_list[x] = [];
-                    };
+                    }
                     break;
                 case (category_list[3]):
-                    for (var x = 0; x < results_length; x++) {
+                    for (x = 0; x < results_length; x++) {
                         self.pilots[x] = [];
                         self.film_list[x] = [];
-                    };
+                    }
                     break;
                 case (category_list[4]):
-                    for (var x = 0; x < results_length; x++) {
+                    for (x = 0; x < results_length; x++) {
                         self.people[x] = [];
                         self.film_list[x] = [];
-                    };
+                    }
                     break;
                 case (category_list[5]):
-                    for (var x = 0; x < results_length; x++) {
+                    for (x = 0; x < results_length; x++) {
                         self.people[x] = [];
                         self.film_list[x] = [];
-                    };
+                    }
                     break;
             }
 
-            // We need to cycle through object returned in the event there are many.
+            // We need to cycle through object returned in the event there are embedded API calls.
             results_to_parse.forEach(function(result_item, i, arr) {
 
                 var a_length = arr.length;
@@ -729,10 +763,8 @@ angular.module('swApp')
 
                 var current_count = a_index;
 
-                // let's define the film array based on the result's length.
-                // For each result, we need to check for specific fields that require additional API calls.
-                // These categories should be stored in an object.
-                // For each homeworld, for example
+                // Search through the results returned looking for fields in the categories_with_url array.
+                // For the time being, homeworld is the only field this is used for.
                 self.categories_with_url.forEach(function(category) {
                     if (result_item[category]) {
                         current_count++;
@@ -754,7 +786,8 @@ angular.module('swApp')
                     }
                 });
 
-                // Like films, for example
+                // Search through the results returned looking for fields in the categories_with_array array.
+                // For example, films and people fall under this area.
                 self.categories_with_array.forEach(function(category) {
 
                     if (result_item[category]) {
@@ -770,6 +803,8 @@ angular.module('swApp')
                         // 7 "starships",
                         // 8 "vehicles"
 
+                        // Based on the category in the categories_with_array array, we are going to pass the predefined array as an object as well as the original length of results
+                        // and the current result index of the object we are working on.
                         switch (category) {
                             case (self.categories_with_array[0]):
                                 self.processCatArray(category, self.characters, result_item, a_length, a_index);
@@ -805,13 +840,17 @@ angular.module('swApp')
                 });
             });
 
-        }
+        };
+
+        // This function processes the JSON fields that are stored within object arrays.  It receives the category specified in
+        // the categories_with_array array, the array name passed (such as self.films), the JSON object, as well as the original length of full results to parse and the
+        // current index number of the original result array.
 
         self.processCatArray = function(category, array_name, obj, a_length, a_index) {
 
 
             var item_array = [];
-            var items_in_object = null;
+            // var items_in_object = null;
 
             // 0 "characters",
             // 1 "films",
@@ -824,7 +863,7 @@ angular.module('swApp')
             // 8 "vehicles"
 
 
-
+            //  We use a switch statement to set the item_array to
             switch (category) {
                 case (self.categories_with_array[0]):
                     item_array = obj.characters;
@@ -854,16 +893,18 @@ angular.module('swApp')
                     item_array = obj.vehicles;
                     break;
             }
-
+            // We now cycle through each URL specified in the object.
             item_array.forEach(function(url) {
 
                 var cache_results = logicService.getCacheItem(url);
                 // if the cache is not created, we need to make an API call.
                 if (!cache_results) {
+                    // If cache does not contain the data, start the API call.
                     apiService.getDataUrl(url, function (response) {
                         // Push the URL and result to the Cache
                         logicService.setCacheItem(url, response.data);
                         var trimmed_result = response.data;
+                        // Based on category, push the object to the populate_array function.
                         switch (category) {
                             case (self.categories_with_array[0]):
                                 self.populate_array(self.characters, trimmed_result, a_index, self.categories_with_array[0]);
@@ -897,6 +938,8 @@ angular.module('swApp')
                         console.log(err.status);
                     });
                 } else {
+                    // This handles the categories if the result is cached.  Remember, the cached item is stored in its original JSON form.
+                    // The item still needs to be parsed to values the controller and template can display.
                     switch (category) {
                         case (self.categories_with_array[0]):
                             self.populate_array(self.characters,cache_results, a_index, self.categories_with_array[0]);
@@ -929,8 +972,9 @@ angular.module('swApp')
                     }
                 }
             });
-        }
+        };
 
+        // This is for the homeland field.  It pushes the name and the URL for future API calls.  This all gets placed into an A tag on the template.
         self.processCatUrl =  function(category, obj, array_destination) {
             switch (category) {
                 case (self.categories_with_url[0]):
@@ -941,8 +985,10 @@ angular.module('swApp')
                     });
                     break;
             }
-        }
+        };
 
+
+        // This is for the object arrays that contain URLS. It pushes the name and the URL.  This is so the A tag can pass the correct URL into the API call on click.
         self.populate_array = function(array, obj, idx, type) {
             switch(type) {
                 case self.categories_with_array[0]:
@@ -1000,10 +1046,11 @@ angular.module('swApp')
                     });
                     break;
             }
-        }
+        };
     })
+    // The master API service can be used as a tool to quickly populate the model service with the autocomplete fields.
+    // uncomment this service to use it .
 
-    // uncomment this service to use it to easily build the arrays for the autocomplete
     // .service('masterApiService', function($http) {
     //     // console.log('in api service');
     //     var self = this;
@@ -1020,6 +1067,8 @@ angular.module('swApp')
     //
     // })
 
+    // The debug service is used for debugging purposes.  For right now, it's use is focused on mobile device orientation and size.  Inject this service into each controller to use
+    // and uncomment commented out debug lines as indicated.
     .service('debugService', function () {
 
         // Set to false to hide debugging window.
@@ -1052,7 +1101,7 @@ angular.module('swApp')
 
             // End Debug area.
         };
-    })
+    });
 
 
 
