@@ -5,6 +5,9 @@ var swApp = angular.module('swApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'a
 swApp.run(function ($rootScope, $route, $window, $location) {
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        console.log(event);
+        console.log(next);
+        console.log(current);
         if (next.$$route.controller == "homeCtrl" || next.$$route.controller == undefined) {
             $location.path('/');
         } else if (!current) {
