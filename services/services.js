@@ -559,7 +559,10 @@ angular.module('swApp')
                         } else {
                             // console.log('API count is reached zero.  Trigger spinner to stop.');
                             // logicService.spinner = false;
-                            logicService.setSpinner(false);
+                            //  Add a timeout for setting the spinner to allow the parsing to finish before removing.
+                            $timeout(function() {
+                                logicService.setSpinner(false);
+                            }, 1000);
                         }
                     }
                 );
@@ -839,7 +842,6 @@ angular.module('swApp')
                     }
                 });
             });
-
         };
 
         // This function processes the JSON fields that are stored within object arrays.  It receives the category specified in
