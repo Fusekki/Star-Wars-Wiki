@@ -610,12 +610,6 @@ angular.module('swApp')
 
         var self = this;
 
-
-        // self.item_number = 0;
-        // self.array_count = 0;
-
-        // self.a_list = [];
-
         self.categories_with_url = ["homeworld"];
 
         self.categories_with_array = ["characters", "films", "people", "pilots", "planets", "residents", "species", "starships", "vehicles"];
@@ -653,9 +647,6 @@ angular.module('swApp')
 
             var category_list = logicService.getCategories();
 
-            // if (self.a_list.length) {
-            //     self.a_list.length = 0;
-            // }
 
             // These are quick ways to completely erase an array from memory without having to cycle through all the index.
             if (self.characters.length) {
@@ -708,12 +699,6 @@ angular.module('swApp')
             var x;
 
             switch (category) {
-                // 0 "people",
-                // 1 "films",
-                // 2 "starships",
-                // 3 "vehicles",
-                // 4 "species",
-                // 5 "planets"
                 case (category_list[0]):
                     for (x = 0; x < results_length; x++) {
                         self.film_list[x] = [];
@@ -795,17 +780,6 @@ angular.module('swApp')
 
                     if (result_item[category]) {
                         current_count++;
-
-                        // 0 "characters",
-                        // 1 "films",
-                        // 2 "people"
-                        // 3 "pilots",
-                        // 4 "planets",
-                        // 5 "residents"
-                        // 6 "species",
-                        // 7 "starships",
-                        // 8 "vehicles"
-
                         // Based on the category in the categories_with_array array, we are going to pass the predefined array as an object as well as the original length of results
                         // and the current result index of the object we are working on.
                         switch (category) {
@@ -852,18 +826,6 @@ angular.module('swApp')
 
 
             var item_array = [];
-            // var items_in_object = null;
-
-            // 0 "characters",
-            // 1 "films",
-            // 2 "people"
-            // 3 "pilots",
-            // 4 "planets",
-            // 5 "residents"
-            // 6 "species",
-            // 7 "starships",
-            // 8 "vehicles"
-
 
             //  We use a switch statement to set the item_array to
             switch (category) {

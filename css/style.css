@@ -2,13 +2,16 @@
     /*border: 1px solid red;*/
 /*}*/
 
-/*Colors Hex*/
+/*Colors HSL*/
 
-/*rgb 4,134,226*/
-/*hsla(189, 59%, 79%, .4)*/
-/*rgba(29, 60, 124, 1)*/
-/*hsla(205, 54%, 55%, 1)*/
+/*hsla(189, 59%, 79%, 1)      -- light blue no transparency*/
+/*hsla(189, 59%, 79%, .4)     -- light blue with transparency*/
 
+/*hsla(205, 54%, 55%, 1)      -- med blue no transparency*/
+/*hsla(205, 54%, 55%, 0.55)   -- med blue with transparency*/
+
+/*hsla(209, 69%, 30%, 1)      -- drk blue no transparency*/
+/*hsla(209, 69%, 30%, .75)    -- drk blue with transparency*/
 
 /*FONTS*/
 
@@ -111,6 +114,9 @@ body {
     width: 125px;
     float: left;
     user-select: none;
+    -webkit-box-shadow: 4px 3px 5px 0px rgba(78,151,202,0.52);
+    -moz-box-shadow: 4px 3px 5px 0px rgba(78,151,202,0.52);
+    box-shadow: 4px 3px 5px 0px rgba(78,151,202,0.52);
 }
 
 .category_img {
@@ -119,15 +125,26 @@ body {
     opacity: 0.9;
 }
 
-#categoryChoice {
+#categoryChoice,
+#category_name_wrapper{
+    width: 25%;
     text-align: center;
-    margin: 2em;
+    margin: 0 auto;
 }
 
 #category_text {
     width: 35%;
-    margin: 0 auto;
+    opacity: 1;
+    transition: opacity 0.5s;
 }
+
+#category_name {
+    color: yellow;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+
 .text_overlay {
     text-align: center;
     font-family: "Distant Galaxy", sans-serif;
@@ -156,37 +173,22 @@ body {
     text-decoration: none;
     color: #fff;
     background-color: hsla(189, 59%, 79%, .4);
-    padding: 5px 15px;
+    padding: 5px 10px 5px 10px;
     border: 1px solid hsla(189, 59%, 79%, .4);
     background-image: linear-gradient(bottom, hsla(189, 59%, 79%, .5) 0%, rgba(78, 151, 202, 0.55) 100%);
     background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, hsla(189, 59%, 79%, .4)), color-stop(1, rgba(78, 151, 202, 0.55)));
-    /*-webkit-border-radius: 5px;*/
-    /*-moz-border-radius: 5px;*/
     border-radius: 5px;
     text-shadow: 0px -1px 0px rgba(0,0,0,.5);
-    /*-webkit-box-shadow: 0px 6px 0px hsla(209, 69%, 30%, .75), 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);*/
-    /*-moz-box-shadow: 0px 6px 0px hsla(209, 69%, 30%, .75), 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);*/
-    box-shadow: 0px 6px 0px hsla(209, 69%, 30%, .75), 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+    box-shadow: 3px 4px 3px #666666;
 }
 
 
 .btn:hover {
     background-image: linear-gradient(bottom, hsla(189, 59%, 79%, .5)0%, rgba(78, 151, 202, 0.55) 100%);
-    /*background-image: -o-linear-gradient(bottom, hsla(189, 59%, 79%, .5) 0%, rgba(78, 151, 202, 0.55) 100%);*/
-    /*background-image: -moz-linear-gradient(bottom, hsla(189, 59%, 79%, .5) 0%, rgba(78, 151, 202, 0.55) 100%);*/
-    /*background-image: -webkit-linear-gradient(bottom, hsla(189, 59%, 79%, .5) 0%, rgba(78, 151, 202, 0.55) 100%);*/
-    /*background-image: -ms-linear-gradient(bottom, hsla(189, 59%, 79%, .5) 0%, rgba(78, 151, 202, 0.55) 100%);*/
-
-    /*background-image: -webkit-gradient(*/
-            /*linear,*/
-            /*left bottom,*/
-            /*left top,*/
-            /*color-stop(0, hsla(205, 54%, 55%, 1)),*/
-            /*color-stop(1, rgba(78, 151, 202, 0.55))*/
-    /*);*/
 }
 
 .cat-text {
+    margin: 10px auto;
     text-align: center;
 }
 
@@ -213,7 +215,7 @@ form {
     display: flex;
     flex-direction: column;
     margin-bottom: 0;
-    border: 4px solid #4c96ca;
+    border: 4px solid hsla(205, 54%, 55%, 1);
     background: hsla(189, 59%, 79%, .4);
     border-radius: 2em;
     padding: 10px 5px;
@@ -221,7 +223,7 @@ form {
 
 .results_hdr {
     color: white;
-    border: 4px solid #4c96ca;
+    border: 4px solid hsla(205, 54%, 55%, 1);
     background: hsla(189, 59%, 79%, .4);
     margin: 2px 12px 6px 12px;
     padding: 2px 5px;
@@ -231,7 +233,7 @@ form {
 
 
 .results_inner_wrapper {
-    border: 4px solid #4c96ca;
+    border: 4px solid hsla(205, 54%, 55%, 1);
     display: flex;
     flex-direction: column;
     padding: 0px 1em 1em 1em;
@@ -458,7 +460,7 @@ form {
         flex-direction: row;
         height: 100%;
         width: 455px;
-        margin: 0 auto;
+        margin: 10px auto;
     }
 
     .bg_result_underlay {

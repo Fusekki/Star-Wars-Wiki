@@ -64,18 +64,15 @@ angular.module('swApp')
         };
 
         // This animates the category when mouse enters category element
-
         $scope.highlightCategory = function(e) {
-            var text = $scope.capitalize(e.target.id);
-            $("#category_text").text(text);
-            $("#category_text").addClass('animated pulse yellow_text');
+            var text = $scope.capitalize(e.currentTarget.id);
+            $("#category_name").text(text);
+            $("#category_name").css('opacity', '1');
         };
 
         // This in turn removes the animation on mouse leave of category
-
         $scope.leaveCategory = function(e) {
-            $("#category_text").text("Select a category:");
-            $("#category_text").removeClass('animated pulse yellow_text');
+            $("#category_name").css('opacity', '0');
         };
     })
 

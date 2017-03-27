@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="r_row">
-                <div class="col-xs-6">
+                <div class="col-xs-6" >
                     {{ r.gender }}
                 </div>
                 <div class="col-xs-6" ng-repeat="s in species[$index]">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="r_row">
-                <div class="col-xs-6">
+                <div class="col-xs-6" ng-show="checkValue(r.skin_color)">
                     {{ r.skin_color }} skin
                 </div>
                 <div class="col-xs-6" ng-show="checkValue(r.birth_year)">

@@ -1,4 +1,5 @@
 //ROUTES
+var swApp = angular.module('swApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'angularSpinners']);
 
 swApp.config(function ($routeProvider) {
 
