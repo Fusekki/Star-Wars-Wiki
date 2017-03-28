@@ -47,6 +47,8 @@ angular.module('swApp')
 
         // This function forwards to the correct category whether they click on the category or elements related to the category.
         $scope.categoryChoice = function(e) {
+            console.log('here');
+            console.log(e);
             if (e.target.parentElement.id) {
                 $scope.category = e.target.parentElement.id;
             } else if (e.target.id) {
@@ -54,8 +56,16 @@ angular.module('swApp')
             } else {
                 $scope.category = e.target.textContent;
             }
-            $location.path("/search");
+            console.log($scope.category);
+
+            logicService.navTo("/search");
        };
+
+
+
+        $scope.catChoice = function(e) {
+            console.log(e);
+        };
 
         // Wrapper function for shared logicService
 
@@ -74,12 +84,15 @@ angular.module('swApp')
         $scope.leaveCategory = function(e) {
             $("#category_name").css('opacity', '0');
         };
+
+
     })
 
     // The search controller handles the search.htm page
 
     .controller('searchCtrl', function ($scope, $location, logicService, modelService) {
 
+        console.log('here in search');
         // Watches
 
         // First wire the category tracked by the logic service.
@@ -105,7 +118,8 @@ angular.module('swApp')
 
         // This function is used to return the sub-object of the entries based on the category previously chosen for the autocomplete.
         $scope.getItems = function() {
-            switch ($scope.category) {
+            // Add the logic service call to lowercase the value because if it is selected via top nav, the category is capitalized.
+            switch (logicService.lowerCaseThis($scope.category)) {
                 case "films":
                     return $scope.entries.films;
                 case "people":

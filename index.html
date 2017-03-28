@@ -16,6 +16,7 @@
             <!-- Custom CSS -->
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="vendor/font-awesome-4.6.3/css/font-awesome.min.css">
         <!--<script src="https://use.fontawesome.com/4eb50ce79f.js"></script>-->
         <title></title>
         <!--Jquery-->
@@ -27,10 +28,27 @@
             <nav class="navbar navbar-custom navbar-fixed-top navbar-default" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
                         <a class="navbar-brand page-scroll" href="#/">
                             <span class="sw_title">Star Wars</span><span class="sw_subtitle"> Wiki</span>
                         </a>
                     </div>
+                     <!--Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                    <a href="#"></a>
+                    </li>
+                    <li ng-repeat="c in categories">
+                        <a class="page-scroll"  ng-click="categoryChoice($event)">{{ capitalize(c) }}</a>
+                    </li>
+
+                    </ul>
+                    </div>
+                     <!--/.navbar-collapse -->
                 </div>
             </nav>
         </header>

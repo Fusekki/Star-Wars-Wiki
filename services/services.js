@@ -305,7 +305,7 @@ angular.module('swApp')
 
     // logic service is a shared service between controllers.  It's purpose is twofold.  It functions as the app's memory by storing scope variables between controllers.  If you notice,
     // the controller's first retrieve the category, search term, and various other values.  It's second purpose is to contain commonly used functions (such as capitalize, etc).
-    .service('logicService', function (myCache, $rootScope) {
+    .service('logicService', function (myCache, $rootScope, $location, $route, $templateCache) {
         var self = this;
 
         var window_sizes = ['xs', 'xs+', 'sm', 'sm+', 'med', 'med+', 'lrg', 'lrg+'];
@@ -363,6 +363,20 @@ angular.module('swApp')
         // function to set a cache item.
         var setCacheItem = function (cache, items) {
             myCache.put(cache, items);
+        };
+
+        var navigateTo = function(url) {
+            console.log('url is ' + url);
+            console.log('$location.path is ' + $location.path());
+            if ($location.path() === url) {
+                console.log('sending route.reload');
+                var currentPageTemplate = $route.current.templateUrl;
+                $templateCache.remove(currentPageTemplate);
+                $route.reload();
+            } else {
+                console.log('path different. sending to new path');
+                $location.path(url);
+            }
         };
 
         // Listener for orientation changes on mobile devices.
@@ -508,6 +522,10 @@ angular.module('swApp')
 
             localizeThisDate: function(some_date) {
                 return convertToLocalDate(some_date);
+            },
+
+            navTo: function(url) {
+                navigateTo(url);
             },
 
             weightThis: function(mass) {
