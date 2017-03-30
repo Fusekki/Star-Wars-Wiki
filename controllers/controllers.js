@@ -2,7 +2,7 @@
 
 angular.module('swApp')
 
-// The home controller handles the home.htm page
+// The home controller handles the home.tmpl.htm page
 
     .controller('homeCtrl', function ($scope, $location, logicService) {
 
@@ -47,8 +47,6 @@ angular.module('swApp')
 
         // This function forwards to the correct category whether they click on the category or elements related to the category.
         $scope.categoryChoice = function(e) {
-            console.log('here');
-            console.log(e);
             if (e.target.parentElement.id) {
                 $scope.category = e.target.parentElement.id;
             } else if (e.target.id) {
@@ -56,8 +54,6 @@ angular.module('swApp')
             } else {
                 $scope.category = e.target.textContent;
             }
-            console.log($scope.category);
-
             logicService.navTo("/search");
        };
 
@@ -88,11 +84,10 @@ angular.module('swApp')
 
     })
 
-    // The search controller handles the search.htm page
+    // The search controller handles the search.tmpl.htm page
 
     .controller('searchCtrl', function ($scope, $location, logicService, modelService) {
 
-        console.log('here in search');
         // Watches
 
         // First wire the category tracked by the logic service.
@@ -160,17 +155,17 @@ angular.module('swApp')
         // This is used for the results-object directive.  It determines the template to load based off the category that was searched.
         $scope.getTemplateUrl = function() {
             if ($scope.category == "films")
-                return 'templates/filmResult.htm';
+                return 'templates/filmresult.tmpl.htm';
             if ($scope.category == "people")
-                return 'templates/peopleResult.htm';
+                return 'templates/peopleresult.tmpl.htm';
             if ($scope.category == "planets")
-                return 'templates/planetResult.htm';
+                return 'templates/planetresult.tmpl.htm';
             if ($scope.category == "species")
-                return 'templates/speciesResult.htm';
+                return 'templates/speciesresult.tmpl.htm';
             if ($scope.category == "starships")
-                return 'templates/starshipResult.htm';
+                return 'templates/starshipresult.tmpl.htm';
             if ($scope.category == "vehicles")
-                return 'templates/vehicleResult.htm';
+                return 'templates/vehicleresult.tmpl.htm';
         };
 
         // This function triggers the populating of the data on the template.
@@ -379,7 +374,7 @@ angular.module('swApp')
         // };
     })
 
-    // This controller handles the error.htm and noresult.htm
+    // This controller handles the error.tmpl.htm and noresult.htm
 
     .controller('errorCtrl', function ($scope, $timeout, $location, logicService) {
 

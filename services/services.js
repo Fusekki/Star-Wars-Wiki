@@ -8,7 +8,7 @@ angular.module('swApp')
         return $cacheFactory('myCache');
     })
 
-    // modelService stores the entries used to populate the autocomplete field in the search form in search.htm
+    // modelService stores the entries used to populate the autocomplete field in the search form in search.tmpl.htm
     .service('modelService', function() {
 
         var data =  {
@@ -366,15 +366,13 @@ angular.module('swApp')
         };
 
         var navigateTo = function(url) {
-            console.log('url is ' + url);
-            console.log('$location.path is ' + $location.path());
             if ($location.path() === url) {
-                console.log('sending route.reload');
+                // console.log('sending route.reload');
                 var currentPageTemplate = $route.current.templateUrl;
                 $templateCache.remove(currentPageTemplate);
                 $route.reload();
             } else {
-                console.log('path different. sending to new path');
+                // console.log('path different. sending to new path');
                 $location.path(url);
             }
         };
@@ -1084,7 +1082,3 @@ angular.module('swApp')
             // End Debug area.
         };
     });
-
-
-
-
