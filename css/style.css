@@ -654,3 +654,10 @@ form {
         max-width: 782px;
     }
 }
+
+/*Microsoft IE*/
+@media screen and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .category_img {
+        width: 100%;
+    }
+}

@@ -318,7 +318,7 @@ angular.module('swApp')
 
         var spinner = null;
 
-        self.orientation = screen.orientation.angle;
+        // self.orientation = screen.orientation.angle;
 
         var capitalize = function(word) {
             return word.charAt(0).toUpperCase() + word.slice(1);
