@@ -2,7 +2,7 @@
 
 (function() {
     // using the function form of use-strict...
-    // "use strict";
+    "use strict";
 
     // jQuery to collapse the navbar on scroll
     function collapseNavbar() {
