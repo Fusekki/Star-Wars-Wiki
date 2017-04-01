@@ -1,5 +1,6 @@
 //MODULE
 
+
 (function() {
     // using the function form of use-strict...
     "use strict";
