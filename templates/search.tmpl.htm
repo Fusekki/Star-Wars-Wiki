@@ -1,4 +1,4 @@
-<form ng-submit="submit()"">
+<form ng-submit="submit()">
     <div class="form-group">
         <label for="srch">Search the <span class="yellow_text">{{ category }} </span> of the Star Wars Universe</label>
         <input type="text" ng-model="search_term" autocomplete="off" uib-typeahead="item for item in getItems() | filter:$viewValue | limitTo:8" class="form-control" id="srch" placeholder="Enter search term" required />
